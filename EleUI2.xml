@@ -1,0 +1,2729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage />
+	<TimerPackage />
+	<AliasPackage>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>UI Aliases</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>UISave</name>
+				<script>saveWindows()</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ui save$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>UILoad</name>
+				<script>loadWindows()</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ui load$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>uiConfig</name>
+				<script>toggleBox(configContainer)</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ui config$</regex>
+			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>LoadMap</name>
+				<script>loadMap(getMudletHomeDir().."/EleUI2/EleUI2Map.dat")
+find_room()</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ui installmap$</regex>
+			</Alias>
+		</AliasGroup>
+	</AliasPackage>
+	<ActionPackage />
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>UI</name>
+			<packageName></packageName>
+			<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external scripts --
+-------------------------------------------------
+</script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>vitals</name>
+				<packageName></packageName>
+				<script>function update_statsBox()
+  if gmcp.Char.Vitals.exp then
+  statsBox:echo(
+  [[&lt;span style="font-size:25px"&gt;&lt;centedr&gt;HP:]] .. gmcp.Char.Vitals.hp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxhp ..[[&lt;/span&gt;
+  &lt;br&gt;&lt;span style="font-size:25px"&gt;&lt;centerd&gt;MP:]] .. gmcp.Char.Vitals.mp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxmp ..[[&lt;/span&gt;
+  &lt;br&gt;&lt;span style="font-size:25px"&gt;&lt;centerd&gt;SP:]] .. gmcp.Char.Vitals.sp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxsp ..[[&lt;/span&gt;
+  &lt;br&gt;
+  &lt;br&gt;&lt;span style="font-size:15px"&gt;&lt;centerd&gt;XP ]] .. comma_value(gmcp.Char.Vitals.exp) ..[[&lt;/span&gt;]]
+  )
+  end
+end
+
+function comma_value(amount)
+  local formatted = amount
+  while true do  
+    formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+    if (k==0) then
+      break
+    end
+  end
+  return formatted
+end
+
+registerAnonymousEventHandler("gmcp.Char.Vitals", "update_statsBox")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>chatBox</name>
+				<packageName></packageName>
+				<script>function incoming_tell()
+  local tab = "Tell"
+  local chat_msg = gmcp.Msg.Tell.msg
+  local from = gmcp.Msg.Tell.from
+--display(gmcp.Msg.Tell)
+  if not table.contains(chatBox.consoles,tab) then
+    chatBox:addTab(tab)
+  end
+  cecho(from.." "..chat_msg.."\n")
+  chatBox:cecho(tab,from.." "..chat_msg.."\n")
+end
+
+function incoming_channel()
+  local tab = gmcp.Msg.Chat.channel
+  local chat_msg = gmcp.Msg.Chat.msg
+  local chat_who = gmcp.Msg.Chat.who
+  local boxMsg
+  if not table.contains(chatBox.consoles,tab) then
+    chatBox:addTab(tab)
+  end
+  if gmcp.Msg.Chat.emote &gt; 0 then
+    boxMsg = chat_msg.."\n"
+  else
+    boxMsg = chat_who.." "..chat_msg.."\n"
+  end
+  chatBox:cecho(tab,boxMsg)
+end
+
+registerAnonymousEventHandler("gmcp.Msg.Chat", "incoming_channel")
+registerAnonymousEventHandler("gmcp.Msg.Tell", "incoming_tell")
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Buffs</name>
+				<packageName></packageName>
+				<script>function get_Buffs()
+  myBuffs = myBuffs or {}
+  myBuffsTotal =   myBuffsTotal or 0
+
+  for spell,dur in pairs(gmcp.Char.Buffs) do
+    if dur ~= 0 then
+      local count = 0
+      for _ in pairs(myBuffs) do count = count + 1 end
+        myBuffsTotal = count -1
+        demonnic.anitimer:new(spell, {x = 0, y=myBuffsTotal*25, height = 20, width = "100%"}, dur[1], {container = buffBoxContainer, showTime = true, timerCaption = spell})
+        myBuffs[spell] = demonnic.anitimer.timers[spell].current
+      else 
+        demonnic.anitimer.timers[spell].gauge:hide()
+        myBuffs[spell] = null
+        demonnic.anitimer:destroy(spell)
+      local count = 0
+      for _ in pairs(myBuffs) do count = count + 1 end
+      myBuffsTotal = count
+    end
+  end
+
+  local tBuff = {}
+  local tName = {}
+  local pos = 0
+  local timeLeft = 0
+  for i,v in pairs(myBuffs) do 
+    timeLeft = demonnic.anitimer.timers[i].current
+    table.insert(tBuff,timeLeft)
+    tName[timeLeft]=i
+  end
+  table.sort(tBuff)
+  for i,v in pairs(tBuff) do 
+    demonnic.anitimer.timers[tName[v]].gauge:move(0,pos*25)
+    pos = pos +1
+  end
+
+end
+
+registerAnonymousEventHandler("gmcp.Char.Buffs","get_Buffs")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Cooldowns</name>
+				<packageName></packageName>
+				<script>function get_Cooldowns()
+
+  myCooldowns = myCooldowns or {}
+  myCooldownsTotal =   myCooldownsTotal or 0
+
+--display(gmcp.Char.Cooldowns)
+
+  local count = 0
+  for spell,dur in pairs(gmcp.Char.Cooldowns) do
+    if dur ~= 0 then
+      local count = 0
+      for _ in pairs(myCooldowns) do count = count + 1 end
+      myCooldownsTotal = count -1
+      demonnic.anitimer:new("cd"..spell, {x = 0, y=myCooldownsTotal*25, height = 20, width = "100%"}, dur, {container = cooldownBox, showTime = true, timerCaption = spell,hook = "aTimerEnd(\""..spell.."\")"})
+      myCooldowns[spell] = demonnic.anitimer.timers["cd"..spell].current
+    else 
+      if demonnic.anitimer.timers["cd"..spell] then demonnic.anitimer.timers["cd"..spell].gauge:hide() end
+      myCooldowns["cd"..spell] = null
+      demonnic.anitimer:destroy("cd"..spell)
+    end
+  end
+  
+  local count = 0
+  for _ in pairs(myCooldowns) do count = count + 1 end
+  myCooldownsTotal = count
+
+  local tCooldowns = {}
+  local tName = {}
+  local pos = 0
+  local timeLeft = 0
+  for i,v in pairs(myCooldowns) do 
+    timeLeft = demonnic.anitimer.timers["cd"..i].current
+    table.insert(tCooldowns,timeLeft)
+    tName[timeLeft]=i
+  end
+  table.sort(tCooldowns)
+  for i,v in pairs(tCooldowns) do 
+    demonnic.anitimer.timers["cd"..tName[v]].gauge:move(0,pos*25)
+    pos = pos +1
+  end
+
+end
+
+registerAnonymousEventHandler("gmcp.Char.Cooldowns","get_Cooldowns")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Body</name>
+				<packageName></packageName>
+				<script>function get_Body()
+  myLimbs = myLimbs or {}
+  for limb,details in pairs(gmcp.Char.Limbs) do
+    myLimbs[limb] = myLimbs[limb] or {}
+    if gmcp.Char.Limbs[limb].hp then myLimbs[limb].hp = gmcp.Char.Limbs[limb].hp or details.hp end
+    if gmcp.Char.Limbs[limb].maxhp then myLimbs[limb].maxhp = gmcp.Char.Limbs[limb].maxhp or details.maxhp end
+    if gmcp.Char.Limbs[limb].severed then myLimbs[limb].severed = gmcp.Char.Limbs[limb].severed or details.severed end
+    if gmcp.Char.Limbs[limb].bandaged then myLimbs[limb].bandaged = gmcp.Char.Limbs[limb].bandaged or details.bandaged end
+    if myLimbs[limb].hp and myLimbs[limb].maxhp then
+      myLimbs[limb].pc = 100 - math.ceil((myLimbs[limb].hp/myLimbs[limb].maxhp)*100)
+    end
+  end
+
+  tempLimb = {}
+  for limb,details in pairs(myLimbs) do
+    tempLimb[limb] = details.pc
+  end
+  list = {}
+  for name,value in pairs(tempLimb) do
+  	list[#list+1] = name
+  end
+  function byval(a,b)
+  	return tempLimb[a] &gt; tempLimb[b]
+  end
+  table.sort(list,byval)
+  local bodyString = "&lt;table&gt;"
+  for k=1,#list do
+        bodyString = bodyString .. "&lt;tr&gt;&lt;td width='50%'&gt;".. list[k] .. "&lt;/td&gt;&lt;td&gt;" .. tempLimb[list[k]] .. "&lt;/td&gt;&lt;/tr&gt;"
+  end
+  bodyBox:echo(bodyString)
+end
+
+registerAnonymousEventHandler("gmcp.Char.Limbs","get_Body")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>helpers</name>
+				<packageName></packageName>
+				<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external scripts --
+-------------------------------------------------
+function aTimerEnd(spell)
+  local timer = timer or ""
+  if myCooldowns[spell] then 
+    myCooldowns[spell] = nil
+  end 
+local tCooldowns = {}
+  local tName = {}
+  local pos = 0
+  local timeLeft = 0
+  for i,v in pairs(myCooldowns) do 
+    timeLeft = demonnic.anitimer.timers["cd"..i].current
+    table.insert(tCooldowns,timeLeft)
+    tName[timeLeft]=i
+  end
+  table.sort(tCooldowns)
+  for i,v in pairs(tCooldowns) do 
+    demonnic.anitimer.timers["cd"..tName[v]].gauge:move(0,pos*25)
+    pos = pos +1
+  end
+end
+
+function toggleBox(uiElement)
+  if uiElement.hidden == true then
+    uiElement:show()
+  else
+    uiElement:hide()
+  end
+end
+
+function saveWindows()
+  statBoxContainer:save()
+  bodyBoxContainer:save()
+  buffBoxContainer:save()
+  configContainer:save()
+  cooldownBoxContainer:save()
+  castbarBoxContainer:save()
+  mapBoxContainer:save()
+  chatBoxContainer:save()
+  cecho("&lt;cyan&gt;»»&lt;reset&gt;Layout Saved&lt;cyan&gt;««&lt;reset&gt;\n")
+end
+
+function loadWindows()
+  statBoxContainer:load()
+  bodyBoxContainer:load()
+  buffBoxContainer:load()
+  configContainer:load()
+  cooldownBoxContainer:load()
+  castbarBoxContainer:load()
+  mapBoxContainer:load()
+  chatBoxContainer:load()
+  cecho("&lt;cyan&gt;»»&lt;reset&gt;Layout Restored&lt;cyan&gt;««&lt;reset&gt;\n")
+end
+
+function SecondsToClock(seconds)
+  local seconds = tonumber(seconds)
+  if seconds &lt;= 0 then
+    return "00:00";
+  else
+    hours = string.format("%02.f", math.floor(seconds/3600));
+    mins = string.format("%02.f", math.floor(seconds/60 - (hours*60)));
+    secs = string.format("%02.f", math.floor(seconds - hours*3600 - mins *60));
+    return mins..":"..secs
+  end
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>onLoad</name>
+				<packageName></packageName>
+				<script>function get_Ready()
+  print(":: Getting stuff ready....")
+
+
+statBoxContainer = statBoxContainer or Adjustable.Container:new({name="statBoxContainer",titleText="Vitals"})
+  statsBox = Geyser.Label:new({name = "Stats", color = "black", x = 0, y = 0, width = "100%", height = "100%"},statBoxContainer)
+  statsBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+
+buffBoxContainer = buffBoxContainer or Adjustable.Container:new({name="buffBoxContainer",titleText="Buff Status"})
+  buffBox = Geyser.Label:new({name = "Buffs", color = "black", x = 0, y = 0, width = "100%", height = "100%"},buffBoxContainer)
+  buffBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+
+bodyBoxContainer = bodyBoxContainer or Adjustable.Container:new({name="bodyBoxContainer",titleText="Body Damage"})
+  bodyBox = Geyser.Label:new({name = "Body", color = "black", x = 0, y = 0, width = "100%", height = "100%"},bodyBoxContainer)
+  bodyBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+
+cooldownBoxContainer = cooldownBoxContainer or Adjustable.Container:new({name="cooldownBoxContainer",titleText="Cooldown Status"})
+  cooldownBox = Geyser.Label:new({name = "Cooldowns", color = "black", x = 0, y = 0, width = "100%", height = "100%"},cooldownBoxContainer)
+  cooldownBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+
+mapBoxContainer = mapBoxContainer or Adjustable.Container:new({name="mapBoxContainer",titleText="You Are Here!"})
+
+chatBoxContainer = chatBoxContainer or Adjustable.Container:new({name="chatBoxContainer",titleText="Chat"})
+  local stylesheet = [[background-color: rgb(0,180,0,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
+  local istylesheet = [[background-color: rgb(60,60,60,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
+  chatBox = EMCO:new({ x = "0", y = "0", width = "100%", height = "100%", gap = 2, activeTabCSS = stylesheet, inactiveTabCSS = istylesheet},chatBoxContainer)
+  chatBox:enableScrollbars()
+  chatBox:enableBlink()
+  
+castbarBoxContainer = castbarBoxContainer or Adjustable.Container:new({name="castbarBoxContainer",titleText="Casting"})
+  castbarBox = Geyser.Label:new({name = "Casting", color = "black", x = 0, y = 0, width = "100%", height = "100%"},cooldownBoxContainer)
+  castbarBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+  castbarBoxContainer:resize(300,50)
+
+configContainer = configContainer or Adjustable.Container:new({name="configContainer",titleText="Config"})
+  configStats = Geyser.Label:new({name = "configStats", color = "black", x = 0, y = 0, width = "100%", height = "20"},configContainer)
+  configStats:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
+  configStats:setClickCallback("toggleBox",statBoxContainer)
+  configStats:echo("Stats Window")
+
+  configBuffs = Geyser.Label:new({name = "configBuffs", color = "black", x = 0, y = 20, width = "100%", height = "20"},configContainer)
+  configBuffs:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
+  configBuffs:setClickCallback("toggleBox",buffBoxContainer)
+  configBuffs:echo("Buffs/Debuffs Window")
+
+  configBody = Geyser.Label:new({name = "configBody", color = "black", x = 0, y = 40, width = "100%", height = "20"},configContainer)
+  configBody:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
+  configBody:setClickCallback("toggleBox",bodyBoxContainer)
+  configBody:echo("Limb Damage Window")
+
+  configCooldowns = Geyser.Label:new({name = "configCooldown", color = "black", x = 0, y = 60, width = "100%", height = "20"},configContainer)
+  configCooldowns:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
+  configCooldowns:setClickCallback("toggleBox",cooldownBoxContainer)
+  configCooldowns:echo("Cooldowns Window")
+
+  chatCooldowns = Geyser.Label:new({name = "chatCooldown", color = "black", x = 0, y = 80, width = "100%", height = "20"},configContainer)
+  chatCooldowns:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
+  chatCooldowns:setClickCallback("toggleBox",chatBoxContainer)
+  chatCooldowns:echo("Chat Window")
+
+
+
+  configMap = Geyser.Label:new({name = "configmap", color = "black", x = 0, y = 100, width = "100%", height = "20"},configContainer)
+  configMap:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
+  configMap:setClickCallback("toggleBox",mapBoxContainer)
+  configMap:echo("Map")
+
+
+  configSave = Geyser.Label:new({name = "configSave", color = "black", x = 0, y = 120, width = "100%", height = "20"},configContainer)
+  configSave:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
+  configSave:setClickCallback("saveWindows")
+  configSave:echo("Save Layout")
+  configLoad = Geyser.Label:new({name = "configLoad", color = "black", x = 0, y = 140, width = "100%", height = "20"},configContainer)
+  configLoad:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
+  configLoad:setClickCallback("loadWindows")
+  configLoad:echo("Load Layout")
+
+-- 💾
+
+statBoxContainer:load()
+bodyBoxContainer:load()
+buffBoxContainer:load()
+configContainer:load()
+cooldownBoxContainer:load()
+castbarBoxContainer:load()
+mapBoxContainer:load()
+--chatBoxContainer:load()
+
+
+mudlet = mudlet or {}; mudlet.mapper_script = true
+eleMap = eleMap or {}
+eleMap.mode = 0 				-- 1 = edit, 0=follow
+
+eleMap = Geyser.Mapper:new({
+  name = "eleMap",
+  x = 0, y = 0,
+  width = "100%",
+  height = "100%",
+},mapBoxContainer)
+
+end
+
+function first_Install(_, pkg)
+  if pkg == "EleUI2" then
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;Ele Drag and Drop UI Installed&lt;cyan&gt;««&lt;reset&gt;\n")
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;Commands: &lt;cyan&gt;««&lt;reset&gt;\n")
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;ui config - shows config window&lt;cyan&gt;««&lt;reset&gt;\n")
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;ui installmap - Installs pre-filled map&lt;cyan&gt;««&lt;reset&gt;\n")
+    get_Ready()
+    statBoxContainer:hide()
+    bodyBoxContainer:hide()
+    buffBoxContainer:hide()
+    configContainer:hide()
+    cooldownBoxContainer:hide()
+    castbarBoxContainer:hide()
+    mapBoxContainer:hide()
+  end
+end
+
+registerAnonymousEventHandler("sysLoadEvent", "get_Ready")
+registerAnonymousEventHandler("sysInstallPackage", "first_Install")
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Casting Bar</name>
+				<packageName></packageName>
+				<script>function castBar()
+  if gmcp.Char.Cast.cast_time &gt; 0 then
+    demonnic.anitimer:new("cast"..gmcp.Char.Cast.spell, {x = 0, y=0, height = "100%", width = "100%"}, gmcp.Char.Cast.cast_time, {container = castbarBoxContainer, showTime = true, timerCaption = gmcp.Char.Cast.spell})
+  else
+    demonnic.anitimer:destroy("cast"..gmcp.Char.Cast.spell)
+  end
+end
+
+registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>AdjustableContainer</name>
+				<packageName></packageName>
+				<script>--Adjustable Container
+--Just use it like a normal Geyser Container with some extras like: 
+--moveable, adjustable size, attach to borders, minimizeable, save/load...
+--right click on top border for menu
+--Inspired heavily by Adjustable Label, GUIFrame and EMCO
+--by Edru 07Feb2020
+
+Adjustable = Adjustable or {}
+Adjustable.Container = Geyser.Container:new({
+  name = "AdjustableContainerClass",})
+local adjustInfo
+
+local function make_percent(num)
+  num = num * 100
+  num = tostring(num).."%"
+  return num
+end
+
+local function shrink_title(lbl)
+    local  w  =  lbl:get_width()
+    local titleText = lbl.titleText
+    if w &lt; (#titleText-10)*6.6+20 then
+      titleText = string.sub(lbl.titleText,0,math.floor(w/6)).."..."
+    end
+    if #titleText &lt;= 15 then titleText="" end
+      lbl.adjLabel:echo(titleText,lbl.titleTxtColor,"l")
+end
+
+
+function Adjustable.Container.finishPercent (container,size_as_percent, position_as_percent)
+  local x, y, w, h = container:get_x(), container:get_y(), container:get_width(), container:get_height()
+  local winw, winh = getMainWindowSize()
+  x, y, w, h = make_percent(x/winw), make_percent(y/winh), make_percent(w/winw), make_percent(h/winh)
+  if size_as_percent then container:resize(w,h) end
+  if position_as_percent then container:move(x,y) end
+end
+
+function Adjustable.Container.onClick(container,event)
+  container.rCLabel:hide()
+  if event.button == "LeftButton" and not(container.locked) then
+      local x, y = getMousePosition()
+      local w, h = container.adjLabel:get_width(), container.adjLabel:get_height()
+      local x1, y1 = x - event.x, y - event.y
+      local x2, y2 = x1 + w, y1 + h
+      local left, right, top, bottom = event.x &lt;= 10, x &gt;= x2 - 10, event.y &lt;= 3, y &gt;= y2 - 10
+      if right and left then left = false end
+      if top and bottom then top = false end
+      local move = not (right or left or top or bottom)
+      if container.minimized then move = true end
+      adjustInfo = {name = container.adjLabel.name, top = top, bottom = bottom, left = left, right = right, move = move, x = x, y = y}
+  end
+  if event.button == "RightButton" then
+      if container.hideTimer then killTimer(container.hideTimer) end
+      container.hideTimer = tempTimer(5,function() container.rCLabel:hide()end)
+      container.rCLabel:move(event.x,event.y)
+      container.rCLabel:show()
+      for i=1,#container.att do
+        container.att[i]:hide()
+      end
+      container.lockLabel:raise()
+      container.minLabel:raise()
+      container.saveLabel:raise()
+      container.loadLabel:raise()
+      container.attLabel:raise()
+  end
+end
+
+function Adjustable.Container.onRelease (container,event)
+  if event.button == "LeftButton"  and adjustInfo and adjustInfo.name == container.adjLabel.name then
+      adjustInfo = nil
+  end
+  Adjustable.Container.finishPercent(container,true,true)
+end
+
+function Adjustable.Container.onMove (lbl, event)
+  if adjustInfo and adjustInfo.name == lbl.adjLabel.name then
+      lbl:adjustBorder()
+      local x, y = getMousePosition()
+      local winw, winh = getMainWindowSize()
+      local x1, y1, w, h = lbl.get_x(), lbl.get_y(), lbl:get_width(), lbl:get_height()
+      local dx, dy = adjustInfo.x - x, adjustInfo.y - y
+      local max, min = math.max, math.min
+      if adjustInfo.move then
+          local tx, ty = max(0,x1-dx), max(0,y1-dy)
+          tx, ty = min(tx, winw - w), min(ty, winh - h)
+          lbl:move(tx, ty)
+      else
+          local w2, h2, x2, y2 = w - dx, h - dy, x1 - dx, y1 - dy
+          local tx, ty, tw, th = x1, y1, w, h
+          if adjustInfo.top then
+              ty, th = y2, h + dy
+          elseif adjustInfo.bottom then
+              th = h2
+          end
+          if adjustInfo.left then
+              tx, tw = x2, w + dx
+          elseif adjustInfo.right then
+              tw = w2
+          end
+          tx, ty, tw, th = max(0,tx), max(0,ty), max(10,tw), max(10,th)
+          tw, th = min(tw, winw), min(th, winh)
+          tx, ty = min(tx, winw-tw), min(ty, winh-th)
+          lbl:move(tx, ty)
+          lbl:resize(tw, th)
+          shrink_title(lbl)
+      end
+      adjustInfo.x, adjustInfo.y = x, y
+  end
+end
+
+function Adjustable.Container:fPos()
+local winw, winh = getMainWindowSize()
+local fpos = ""
+if  (winh*0.8)-self.get_height()&lt;= self.get_y()  then  fpos = fpos.."bottom," end
+if  (winw*0.8)-self.get_width() &lt;= self.get_x() then  fpos = fpos.."right," end
+if self.get_y() &lt;= winh*0.2 then fpos = fpos.."top," end
+if self.get_x() &lt;= winw*0.2 then fpos = fpos.."left" end
+return fpos
+end
+
+
+function Adjustable.Container:adjustBorder()
+local winw, winh = getMainWindowSize()
+local where = false
+if type(self.attached) == "string" then 
+  where = self.attached:lower()
+  if string.find(self:fPos(),where) == nil or self.minimized or self.hidden then self:detach()
+  else
+    if        where == "right"   then setBorderRight(winw-self.get_x()) 
+      elseif  where == "left"    then setBorderLeft(self.get_width()+self.get_x())  
+      elseif  where == "bottom"  then setBorderBottom(winh-self.get_y())  
+      elseif  where == "top"     then setBorderTop(self.get_height()+self.get_y()) 
+      else self.attached= false 
+    end
+  end
+  else
+    return false
+end
+end
+
+function Adjustable.Container:resizeBorder()
+local winw, winh = getMainWindowSize()
+self.timer_active = self.timer_active or true
+-- Check if Window resize is happened. 
+-- If that is not checked this creates an infinite loop and chrashes because setBorder also causes a resize event 
+if winw ~= self.oldvalue and self.timer_active then
+  self.timer_active = false
+  tempTimer(0.2, function() self:adjustBorder() end)
+end
+self.oldvalue = winw
+end
+
+ 
+function Adjustable.Container:attachToBorder(border)
+if self.attached then self:detach() end  
+self.attached = border
+self:adjustBorder()
+self.resizeHandlerID=registerAnonymousEventHandler("sysWindowResizeEvent", function() self:resizeBorder() end)
+end
+
+function Adjustable.Container:detach()  
+self:resetBorder(self.attached)
+self.attached=false
+if self.resizeHandlerID then killAnonymousEventHandler(self.resizeHandlerID) end
+end
+
+function Adjustable.Container:resetBorder(where)
+if        where == "right"   then setBorderRight(0) 
+  elseif  where == "left"    then setBorderLeft(0)  
+  elseif  where == "bottom"  then setBorderBottom(0)  
+  elseif  where == "top"     then setBorderTop(0)
+end
+end
+
+
+
+function Adjustable.Container:createContainers()
+  self.adjLabel = Geyser.Label:new({
+  x = "0",
+      y = "0",
+      height = "100%",
+      width = "100%",
+  color = "green"
+  },self)
+  self.Inside = Geyser.Container:new({
+  x = "10",
+      y = "20",
+      height = "-10",
+      width = "-10",
+  },self)
+end
+
+function Adjustable.Container:lockContainer()
+  self.rCLabel:hide()
+  if self.minimized == false then
+  self.Inside:resize("100%",-1)
+  self.Inside:move(0,10)
+  self.adjLabel:setStyleSheet(self.adjLabelstyle..[[border: 0;]])
+  self.exitLabel:hide()
+  self.minimizeLabel:hide()
+  self.locked = true
+  self:adjustBorder()
+  self.adjLabel:echo("")
+  end
+end
+
+function Adjustable.Container:unlockContainer()
+  self.rCLabel:hide()
+  shrink_title(self)
+  self.Inside:resize(-10,-10)
+  self.Inside:move(10,20)
+  self.adjLabel:setStyleSheet(self.adjLabelstyle)
+  self.exitLabel:show()
+  self.minimizeLabel:show()
+  self.locked = false
+end
+
+function Adjustable.Container.onClickL(container)
+if container.locked == true then
+  container:unlockContainer()
+else
+  container:lockContainer()
+end
+end
+
+
+
+function Adjustable.Container.hideObj(lbl,event)
+  lbl:hide()
+  lbl:adjustBorder()
+end
+
+function Adjustable.Container.onClickMin(lbl)
+  lbl.rCLabel:hide()
+  if lbl.minimized == false then
+    lbl:minimize()
+  else
+    lbl:restore()
+  end
+end
+
+function Adjustable.Container.onClickSave(lbl)
+  lbl.rCLabel:hide()
+  lbl:save()
+end
+
+function Adjustable.Container.onClickLoad(lbl)
+  lbl.rCLabel:hide()
+  lbl:load()
+end
+
+function Adjustable.Container:minimize()
+  if self.minimized == false and self.locked == false then
+      self.origh = self.height
+      self.Inside:hide()
+      self:resize(nil,25)
+      self.minimized = true
+      self:adjustBorder()
+  end
+end
+
+function Adjustable.Container:restore()
+  if self.minimized == true then
+      self.origh = self.origh or "25%"
+      self.Inside:show()
+      self:resize(nil,self.origh)
+      self.minimized = false
+      self:adjustBorder()
+  end
+end
+
+
+function onLeaveColor(lbl,txt,color)
+  color = color or "black"
+  lbl:echo(txt,color,"l")
+end
+
+function onEnterColor(lbl,txt,color)
+  color = color or "white"
+  lbl:echo(txt,color,"l")
+end
+
+function Adjustable.Container.onClickAtt(container)
+local attm = string.split(container:fPos(), ",")
+local j = 1
+if container.hideTimer then killTimer(container.hideTimer) end
+   container.hideTimer = tempTimer(5,function() container.rCLabel:hide()end)
+for i=1,#attm do
+  container.att[math.min(3,i)].hidden = true
+  if attm[i] ~= "" and j &lt; 4 then
+    container.att[j]:echo(attm[i],"black","c")
+    container.att[j]:show()
+    container.att[j]:raise()
+    container.att[j]:setClickCallback("Adjustable.Container.chBorder",container,attm[i])
+    j=j+1
+  end
+end  
+end
+
+function Adjustable.Container.chBorder(container,side)
+container:attachToBorder(side)
+container.rCLabel:hide()   
+end
+
+function Adjustable.Container:createLabels()
+  self.exitLabel = Geyser.Label:new({
+  x=-25,y=4,width = "15", height = "15",fontSize=8
+
+  },self)
+  self.exitLabel:echo("&lt;center&gt;x&lt;/center&gt;")
+
+
+  self.minimizeLabel = Geyser.Label:new({
+  x=-45,y=4,width = "15", height = "15",fontSize=8
+
+  },self)
+  self.minimizeLabel:echo("&lt;center&gt;-&lt;/center&gt;")
+
+  self.rCLabel = Geyser.Label:new({
+  x=-45,y=4,width = "200", height = "100",fontSize=8
+
+  },self)
+
+  self.lockLabel = Geyser.Label:new({
+  x=0,y=0,width = "100", height = "20",fontSize=8,color="white"
+
+  },self.rCLabel)
+  self.minLabel = Geyser.Label:new({
+  x=0,y=20,width = "100", height = "20",fontSize=8,color="white"
+
+  },self.rCLabel)
+
+  self.saveLabel = Geyser.Label:new({
+  x=0,y=40,width = "100", height = "20",fontSize=8,color="white"
+  },self.rCLabel)
+  
+  self.loadLabel = Geyser.Label:new({
+  x=0,y=60,width = "100", height = "20",fontSize=8,color="white"
+  },self.rCLabel)
+  
+  self.attLabel = Geyser.Label:new({
+  x=0,y=80,width = "100", height = "20",fontSize=8,color="white"
+  },self.rCLabel)
+  
+  self.att[1] = Geyser.Label:new({
+  x=100,y=80,width = "80", height = "20",fontSize=8,color="white"
+  },self.rCLabel)
+  
+  self.att[2] = Geyser.Label:new({
+  x=100,y=60,width = "80", height = "20",fontSize=8,color="white"
+  },self.rCLabel)
+  
+  self.att[3] = Geyser.Label:new({
+  x=100,y=40,width = "80", height = "20",fontSize=8,color="white"
+  },self.rCLabel)
+  
+  self.rCLabel:hide()
+
+  self.lockLabel:echo(self.lockLtxt,"black","l")
+  self.minLabel:echo(self.minimizeLtxt,"black","l")
+  self.saveLabel:echo(self.saveLtxt,"black","l")
+  self.loadLabel:echo(self.loadLtxt,"black","l")
+  self.attLabel:echo(self.attLtxt,"black","l")
+
+
+
+  setLabelOnEnter(self.lockLabel.name,"onEnterColor",self.lockLabel,self.lockLtxt,nil)
+  setLabelOnEnter(self.minLabel.name,"onEnterColor",self.minLabel,self.minimizeLtxt,nil)
+  setLabelOnEnter(self.saveLabel.name,"onEnterColor",self.saveLabel,self.saveLtxt,nil)
+  setLabelOnEnter(self.loadLabel.name,"onEnterColor",self.loadLabel,self.loadLtxt,nil)
+  setLabelOnEnter(self.attLabel.name,"onEnterColor",self.attLabel,self.attLtxt,nil)
+
+
+  setLabelOnLeave(self.lockLabel.name,"onLeaveColor",self.lockLabel,self.lockLtxt,nil)
+  setLabelOnLeave(self.minLabel.name,"onLeaveColor",self.minLabel,self.minimizeLtxt,nil)
+  setLabelOnLeave(self.saveLabel.name,"onLeaveColor",self.saveLabel,self.saveLtxt,nil)
+  setLabelOnLeave(self.loadLabel.name,"onLeaveColor",self.loadLabel,self.loadLtxt,nil)
+  setLabelOnLeave(self.attLabel.name,"onLeaveColor",self.attLabel,self.attLtxt,nil)
+
+end
+
+
+
+function Adjustable.Container:add(window,cons)
+  Geyser.Container.add(self,window,cons)
+  --Add new Windows to the Inside Container
+  local wnr = self.wnr
+  wnr = wnr or 555
+  wnr = wnr + 1
+  --Add new Windows to the Inside Container
+  if self.windows[wnr] ~= nil then self.Inside:add(self.windowList[self.windows[wnr]]) end
+end
+
+function Adjustable.Container:show()
+  Geyser.Container.show(self)
+  self.rCLabel:hide()
+end
+
+function Adjustable.Container:save()
+  local mytable = {}
+  mytable.x = self.x
+  mytable.y = self.y
+  mytable.height= self.height
+  mytable.width= self.width
+  mytable.minimized= self.minimized
+  mytable.origh= self.origh
+  mytable.locked = self.locked
+  mytable.attached = self.attached
+  mytable.hidden = self.hidden
+  if not(io.exists(getMudletHomeDir().."/AdjContainer/")) then lfs.mkdir(getMudletHomeDir().."/AdjContainer/") end
+  table.save(getMudletHomeDir().."/AdjContainer/"..self.name..".lua", mytable)
+end
+
+function Adjustable.Container:load()
+  local mytable = {}
+  if io.exists(getMudletHomeDir().."/AdjContainer/"..self.name..".lua") then
+      table.load(getMudletHomeDir().."/AdjContainer/"..self.name..".lua", mytable)
+  end
+  if mytable.x then
+      self:move(mytable.x,mytable.y)
+      self:resize(mytable.width,mytable.height)
+      self.minimized = mytable.minimized
+  if mytable.locked == true then self:lockContainer()  else self:unlockContainer() end
+  if self.minimized == true then self.Inside:hide() self:resize(nil,25) else self.Inside:show() end
+      self.origh = mytable.origh
+  end
+  if mytable.attached then self:attachToBorder(mytable.attached) end
+  if mytable.hidden == true then self:hide() else self:show() end
+  self:adjustBorder()
+--  self:show()
+end
+
+
+
+Adjustable.Container.parent = Geyser.Container
+
+function Adjustable.Container:new(container)
+
+  local me = self.parent:new(container)
+  setmetatable(me, self)
+  self.__index = self
+  me.minimized = false
+  me.locked = false
+  me.formatL = [==[&lt;style&gt;
+                span { font-size: 16px;}
+                span a { font-size: 10px;}
+                &lt;/style&gt;
+                &lt;span&gt; %s&lt;a&gt; %s&lt;/a&gt;&lt;/span&gt;
+                ]==]
+  me.lockLtxt = string.format(me.formatL,"🔒","Lock/Unlock")
+  me.minimizeLtxt=string.format(me.formatL,"🗕","Min/Restore")
+  me.saveLtxt =string.format(me.formatL,"💾","Save")
+  me.loadLtxt =string.format(me.formatL,"📁","Load")
+  me.attLtxt=string.format(me.formatL,"⚓","Attach to:")
+  me:createContainers()
+  me.att = me.att or {}
+  me:createLabels()
+  me.adjLabel:setClickCallback("Adjustable.Container.onClick",me)
+  me.adjLabel:setReleaseCallback("Adjustable.Container.onRelease",me)
+  me.adjLabel:setMoveCallback("Adjustable.Container.onMove",me)
+  me.menustyle = me.menustyle or [[QLabel::hover{ background-color: rgba(0,150,255,100%);}]]
+  me.labelsytle= me.labelsytle or [[
+      QLabel{ border-radius: 7px; background-color: rgba(255,30,30,100%);}
+      QLabel::hover{
+          background-color: rgba(255,0,0,50%);
+      }
+      ]]
+  me.adjLabelstyle = me.adjLabelstyle or [[
+      background-color: rgba(0,0,0,100%);
+      border: 4px double green;
+      border-radius: 4px;]]
+  me.adjLabelstyle = me.adjLabelstyle..[[ qproperty-alignment: 'AlignLeft | AlignTop';]]
+
+  
+  me.adjLabel:setStyleSheet(me.adjLabelstyle)
+  me.exitLabel:setStyleSheet(me.labelsytle)
+  me.minimizeLabel:setStyleSheet(me.labelsytle)
+
+  me.rCLabel:setStyleSheet([[background-color: rgba(0,0,0,0%);]])
+  
+  me.lockLabel:setStyleSheet(me.menustyle)
+  me.minLabel:setStyleSheet(me.menustyle)
+  me.saveLabel:setStyleSheet(me.menustyle)
+  me.loadLabel:setStyleSheet(me.menustyle)
+  me.attLabel:setStyleSheet(me.menustyle)
+  
+  for i=1,#me.att do
+    me.att[i]:hide()
+    me.att[i]:setStyleSheet(me.menustyle)
+  end
+
+  me.minLabel:setClickCallback("Adjustable.Container.onClickMin",me)
+  me.saveLabel:setClickCallback("Adjustable.Container.onClickSave",me)
+  me.lockLabel:setClickCallback("Adjustable.Container.onClickL",me)
+  me.loadLabel:setClickCallback("Adjustable.Container.onClickLoad",me)
+  me.origh = me.height
+  me.exitLabel:setClickCallback("Adjustable.Container.hideObj",me)
+  me.minimizeLabel:setClickCallback("Adjustable.Container.onClickMin",me)
+  me.attLabel:setClickCallback("Adjustable.Container.onClickAtt",me)
+  me.wnr = #me.windows
+  me:adjustBorder()
+  me.titleTxtColor=me.titleTxtColor or "green"
+  me.titleText=me.titleText or me.name.." - Adjustable Container"
+  me.titleText = "&amp;nbsp;&amp;nbsp;"..me.titleText
+  shrink_title(me)
+  return me
+
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>overrides</name>
+				<packageName></packageName>
+				<script>function json_to_value(eledata)
+--display(eledata)
+  if string.find(eledata,"^%d*$") then
+    return tonumber(eledata)
+  elseif eledata:sub(3,5) == "msg" then
+    msg = {string.match(eledata,'{\"(%a-)\": \"(.-)\", \"(%a-)\": \"(.-)\", \"(%a-)\": \"(.-)\", \"(%a-)\": \"(.-)\", \"(%a-)\": \"(%a-)\"}')}
+    return yajl.to_value((string.format("{\"%s\": %q, \"%s\": \"%s\", \"%s\": \"%s\", \"%s\": %q, \"%s\": \"%s\" }",msg[1],msg[2],msg[3],msg[4],msg[5],msg[6],msg[7],msg[8],msg[9],msg[10])))
+  elseif eledata:sub(3,7) == "emote" then
+    msg = {string.match(eledata,'{\"(%a-)\": (%d-), \"(%a-)\": \" (.-)\", \"(%a-)\": \"(%a-)\", \"(%a-)\": \"(.-)\", \"rawmsg\": \"(.*)\"')}
+    return yajl.to_value((string.format("{\"%s\": %d, \"%s\": \"%s\", \"%s\": \"%s\", \"%s\": %q, \"rawmsg\": %q }",msg[1],msg[2],msg[3],msg[4],msg[5],msg[6],msg[7],msg[8],msg[9])))
+  else
+    return yajl.to_value(eledata)
+  end
+end
+
+function Geyser.Container:show (auto)
+  auto = auto or false
+  if auto then
+    self.auto_hidden = false
+  else
+    self.hidden = false
+  end
+  if not self.hidden and not self.auto_hidden then
+    self:show_impl()
+  end
+  for _, v in pairs(self.windowList) do
+    if v.hidden == false then v:show(true) end
+  end
+end
+
+--registerAnonymousEventHandler("sysConnectionEvent", "json_to_value")</script>
+				<eventHandlerList />
+			</Script>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>AnimatedTimers</name>
+				<packageName>AnimatedTimers</packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>code</name>
+					<packageName></packageName>
+					<script>demonnic = demonnic or {}
+demonnic.anitimer = demonnic.anitimer or {}
+demonnic.anitimer.timers = demonnic.anitimer.timers or {}
+demonnic.anitimer.activeTimers = demonnic.anitimer.activeTimers or {}
+
+function demonnic.anitimer:new(name, cons, time, options)
+  if options and type(options) ~= "table" then
+    error("demonnic.anitimer:new() -- if you provide a fourth parameter, it must be a table. Please see http://github.com/demonnic/animatedtimers for detailed usage information")
+  end
+  if not options then
+    options = {}
+  end
+  if options.showTime == nil then options.showTime = true end 
+  options.timerCaption = options.timerCaption or ""
+
+  if not demonnic.anitimer.timers[name] then
+    demonnic.anitimer.timers[name] = {}
+    demonnic.anitimer.timers[name].gauge = Geyser.Gauge:new(cons, options.container)
+    demonnic.anitimer.timers[name].watch = createStopWatch()
+  else
+    for k,v in pairs(cons) do
+      demonnic.anitimer.timers[name].gauge[k] = v
+    end
+    if options.container then
+      options.container:add(demonnic.anitimer.timers[name].gauge)
+    else
+      Geyser:add(demonnic.anitimer.timers[name].gauge)
+    end
+  end
+    demonnic.anitimer.timers[name].max = time
+    demonnic.anitimer.timers[name].current = time
+    demonnic.anitimer.timers[name].showTime = options.showTime
+    demonnic.anitimer.timers[name].timerCaption = options.timerCaption
+		demonnic.anitimer.timers[name].hook = options.hook
+    if options.cssFront then
+      if not options.cssBack then
+        options.cssBack = options.cssFront .. "background-color: black;"
+      end
+      demonnic.anitimer.timers[name].gauge:setStyleSheet(options.cssFront, options.cssBack)
+    end
+    if not table.contains(demonnic.anitimer.activeTimers, name) then table.insert(demonnic.anitimer.activeTimers, name) end
+    resetStopWatch(demonnic.anitimer.timers[name].watch)
+    startStopWatch(demonnic.anitimer.timers[name].watch)
+    demonnic.anitimer:update(name)
+end
+
+function demonnic.anitimer:getTime(name)
+  if not demonnic.anitimer.timers[name] then return 0 end
+  local max = demonnic.anitimer.timers[name].max
+  local current = getStopWatchTime(demonnic.anitimer.timers[name].watch)
+  local newValue = max - current
+  return newValue
+end
+
+function demonnic.anitimer:showTimers()
+  cecho("&lt;yellow&gt;List of animated timers which have been created")
+  for timer,_ in pairs(demonnic.anitimer.timers) do
+    cecho(string.format("   %s", timer))
+  end
+  local actives = ""
+  for _,timer in ipairs(demonnic.anitimer.activeTimers) do
+    if actives == "" then
+      actives = timer
+    else
+      actives = string.format("%s, %s", actives, timer)
+    end
+  end
+  cecho("&lt;yellow&gt;Active timers: &lt;red&gt;" .. actives)
+end
+
+function demonnic.anitimer:update(name)
+  if not demonnic.anitimer.timers[name] then return nil end
+  demonnic.anitimer.timers[name].current = demonnic.anitimer:getTime(name)
+  local time = demonnic.anitimer.timers[name].current
+  demonnic.anitimer.timers[name].text = (demonnic.anitimer.timers[name].showTime and string.format("%.1f %s", time, demonnic.anitimer.timers[name].timerCaption or "")) or (demonnic.anitimer.timers[name].timerCaption or "")
+  demonnic.anitimer.timers[name].gauge:setValue(demonnic.anitimer.timers[name].current, demonnic.anitimer.timers[name].max, demonnic.anitimer.timers[name].text)
+end
+
+function demonnic.anitimer:stop(name)
+  if not demonnic.anitimer.timers[name] then return nil end
+  stopStopWatch(demonnic.anitimer.timers[name].watch)
+  demonnic.anitimer.timers[name].gauge:hide()
+  for i,v in pairs(demonnic.anitimer.activeTimers) do
+    if demonnic.anitimer.timers[v] == demonnic.anitimer.timers[name] then
+      table.remove(demonnic.anitimer.activeTimers, i)
+      return
+    end
+  end
+end
+
+function demonnic.anitimer:stopAll()
+  for _,name in pairs(demonnic.anitimer.activeTimers) do
+    demonnic.anitimer:stop(name)
+  end
+end
+
+function demonnic.anitimer:pause(name)
+  if not demonnic.anitimer.timers[name] then return nil end
+  stopStopWatch(demonnic.anitimer.timers[name].watch)
+  for i,v in pairs(demonnic.anitimer.activeTimers) do
+    if v == name then
+      table.remove(demonnic.anitimer.activeTimers, i)
+      return
+    end
+  end
+end
+
+function demonnic.anitimer:pauseAll()
+  for name,_ in pairs(demonnic.anitimer.timers) do
+    demonnic.anitimer:pause(name)
+  end
+end
+
+function demonnic.anitimer:destroy(name)
+  if not demonnic.anitimer.timers[name] then return nil end
+  demonnic.anitimer:stop(name)
+  demonnic.anitimer.timers[name] = nil
+  return true
+end
+
+function demonnic.anitimer:destroyAll()
+  for name,_ in pairs(demonnic.anitimer.timers) do
+    demonnic.anitimer:destroy(name)
+  end
+end
+
+function demonnic.anitimer:start(name)
+  if not demonnic.anitimer.timers[name] then return nil end
+  local current = demonnic.anitimer.timers[name].current
+  if current == 0 then return nil end
+  demonnic.anitimer.timers[name].max = current
+  resetStopWatch(demonnic.anitimer.timers[name].watch)
+  startStopWatch(demonnic.anitimer.timers[name].watch)
+  if not table.contains(demonnic.anitimer.activeTimers, name) then table.insert(demonnic.anitimer.activeTimers, name) end
+  demonnic.anitimer.timers[name].gauge:show()
+  demonnic.anitimer:update(name)
+end
+
+function demonnic.anitimer:startAll()
+  for name,_ in pairs(demonnic.anitimer.timers) do
+    if not table.contains(demonnic.anitimer.activeTimers, name) then
+      demonnic.anitimer:start(name)
+    end
+  end
+end
+
+function demonnic.anitimer:animate()
+  for i,v in pairs(demonnic.anitimer.activeTimers) do
+    name = v
+    demonnic.anitimer:update(name)
+    if demonnic.anitimer:getTime(name) &lt;= 0 then
+      demonnic.anitimer.timers[name].gauge:hide()
+      table.remove(demonnic.anitimer.activeTimers, i)
+      stopStopWatch(demonnic.anitimer.timers[name].watch)
+      demonnic.anitimer.timers[name].max = 0
+      demonnic.anitimer.timers[name].current = 0
+			demonnic.anitimer:executeHook(name)
+    end
+  end
+end
+
+function demonnic.anitimer:executeHook(name)
+  local hook = demonnic.anitimer.timers[name].hook
+	local r = ""
+	if hook == nil then
+	  return
+	elseif type(hook) == "string" then
+	  local f,e = loadstring("return " .. hook)
+		if not f then
+		  f,e = assert(loadstring(hook))
+		end
+		f()
+	elseif type(hook) == "function" then
+	  hook()
+	else
+	  error("AnimatedTimers: you've provided a hook for " .. name .. " which is neither a string nor a function. Unable to execute")
+	end
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>EMCO</name>
+				<packageName>EMCO</packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>EMCO</name>
+					<packageName></packageName>
+					<script>--- Embeddable Multi Console Object.
+-- This is essentially YATCO, but with some tweaks, updates, and it returns an object
+-- similar to Geyser so that you can a.) have multiple of them and b.) easily embed it
+-- into your existing UI as you would any other Geyser element.
+-- @module EMCO
+EMCO = Geyser.Container:new({
+  name = "TabbedConsoleClass",
+})
+
+function EMCO:readYATCO()
+  local config
+  if demonnic and demonnic.chat and demonnic.chat.config then
+    config = demonnic.chat.config
+  else
+    cecho("&lt;white&gt;(&lt;blue&gt;EMCO&lt;white&gt;)&lt;reset&gt; Could not find demonnic.chat.config, nothing to convert\n")
+    return
+  end
+  local constraints = "EMCO:new({\n"
+  constraints = string.format("%s  x = %d,\n", constraints, demonnic.chat.container.get_x())
+  constraints = string.format("%s  y = %d,\n", constraints, demonnic.chat.container.get_y())
+  constraints = string.format("%s  width = %d,\n", constraints, demonnic.chat.container.get_width())
+  constraints = string.format("%s  height = %d,\n", constraints, demonnic.chat.container.get_height())
+  if config.timestamp then
+    constraints = string.format("%s  timestamp = true,\n  timestampFormat = \"%s\",\n", constraints, config.timestamp)
+  else
+    constraints = string.format("%s  timestamp = false,\n", constraints)
+  end
+  if config.timestampColor then
+    constraints = string.format("%s  customTimestampColor = true,\n", constraints)
+  else
+    constraints = string.format("%s  customTimestampColor = false,\n", constraints)
+  end
+  if config.timestampFG then
+    constraints = string.format("%s  timestampFGColor = \"%s\",\n", constraints, config.timestampFG)
+  end
+  if config.timestampBG then
+    constraints = string.format("%s  timestampBGColor = \"%s\",\n", constraints, config.timestampBG)
+  end
+  if config.channels then
+    local channels = "consoles = {\n"
+    for _,channel in ipairs(config.channels) do
+      if _ == #config.channels then
+        channels = string.format("%s    \"%s\"", channels, channel)
+      else
+        channels = string.format("%s    \"%s\",\n", channels, channel)
+      end
+    end
+    channels = string.format("%s\n  },\n", channels)
+    constraints = string.format([[%s  %s]], constraints, channels)
+  end
+  if config.Alltab then
+    constraints = string.format("%s  allTab = true,\n", constraints)
+    constraints = string.format("%s  allTabName = \"%s\",\n", constraints, config.Alltab)
+  else
+    constraints = string.format("%s  allTab = false,\n", constraints)
+  end
+  if config.Maptab and config.Maptab ~= "" then
+    constraints = string.format("%s  mapTab = true,\n", constraints)
+    constraints = string.format("%s  mapTabName = \"%s\",\n", constraints, config.Maptab)
+  else
+    constraints = string.format("%s  mapTab = false,\n", constraints)
+  end
+  constraints = string.format("%s  blink = %s,\n", constraints, tostring(config.blink))
+  constraints = string.format("%s  blinkFromAll = %s,\n", constraints, tostring(config.blinkFromAll))
+  if config.fontSize then
+    constraints = string.format("%s  fontSize = %d,\n", constraints, config.fontSize)
+  end
+  constraints = string.format("%s  preserveBackground = %s,\n", constraints, tostring(config.preserveBackground))
+  constraints = string.format("%s  gag = %s,\n", constraints, tostring(config.gag))
+  constraints = string.format("%s  activeTabBGColor = \"&lt;%s,%s,%s&gt;\",\n", constraints, config.activeColors.r, config.activeColors.g, config.activeColors.b)
+  constraints = string.format("%s  inactiveTabBGColor = \"&lt;%s,%s,%s&gt;\",\n", constraints, config.inactiveColors.r, config.inactiveColors.g, config.inactiveColors.b)
+  constraints = string.format("%s  consoleColor = \"&lt;%s,%s,%s&gt;\",\n", constraints, config.windowColors.r, config.windowColors.g, config.windowColors.b)
+  constraints = string.format("%s  activeTabFGColor = \"%s\",\n", constraints, config.activeTabText)
+  constraints = string.format("%s  inactiveTabFGColor = \"%s\"", constraints, config.inactiveTabText)
+  constraints = string.format("%s\n})", constraints)
+  return constraints
+end
+
+--- Scans for the old YATCO configuration values and prints out a set of constraints to use.
+-- with EMCO to achieve the same effect. Is just the invocation
+function EMCO:miniConvertYATCO()
+  local constraints = self:readYATCO()
+  cecho("&lt;white&gt;(&lt;blue&gt;EMCO&lt;white&gt;)&lt;reset&gt; Found a YATCO config. Here are the constraints to use with EMCO(x,y,width, and height have been converted to their absolute values):\n\n")
+  echo(constraints .. "\n")
+end
+
+--- Echos to the main console a script object you can add which will fully convert YATCO to EMCO.
+-- This replaces the demonnic.chat variable with a newly created EMCO object, so that the main
+-- functions used to place information on the consoles (append(), cecho(), etc) should continue to
+-- work in the user's triggers and events.
+function EMCO:convertYATCO()
+  local invocation = self:readYATCO()
+  local header = [[
+  &lt;white&gt;(&lt;blue&gt;EMCO&lt;white&gt;)&lt;reset&gt; Found a YATCO config. Make a new script, then copy and paste the following output into it.
+  &lt;white&gt;(&lt;blue&gt;EMCO&lt;white&gt;)&lt;reset&gt; Afterward, uninstall YATCO (you can leave YATCOConfig until you're sure everything is right) and restart Mudlet
+  &lt;white&gt;(&lt;blue&gt;EMCO&lt;white&gt;)&lt;reset&gt; If everything looks right, you can uninstall YATCOConfig. 
+
+
+-- Copy everything below this line until the next line starting with --
+demonnic = demonnic or {}
+demonnic.chat = ]]
+  cecho(string.format("%s%s\n--- End script\n", header, invocation))
+end
+
+function EMCO:checkTabPosition(position)
+  if position == nil then
+    return 0
+  end
+  return tonumber(position) or type(position)
+end
+
+function EMCO:checkTabName(tabName)
+  if not tostring(tabName) then
+    return "tabName as string expected, got" .. type(tabName)
+  end
+  tabName = tostring(tabName)
+  if table.contains(self.consoles, tabName) then
+    return "tabName must be unique, and we already have a tab named " .. tabName
+  else
+    return "clear"
+  end
+end
+
+function EMCO.ae(funcName, message)
+  error(string.format("%s: Argument Error: %s", funcName, message))
+end
+
+function EMCO:ce(funcName, message)
+  error(string.format("%s:gg Constraint Error: %s", funcName, message))
+end
+
+--- Adds a tab to the EMCO object
+-- @tparam string tabName the name of the tab to add
+-- @tparam[opt] number position position in the tab switcher to put this tab
+function EMCO:addTab(tabName, position)
+  local funcName = "EMCO:addTab(tabName, position)"
+  position = self:checkTabPosition(position)
+  if type(position) == "string" then self.ae(funcName, "position as number expected, got " .. position) end
+  local tabCheck = self:checkTabName(tabName)
+  if tabCheck ~= "clear" then self.ae(funcName, tabCheck) end
+  if position == 0 then
+    table.insert(self.consoles, tabName)
+    self:createComponentsForTab(tabName)
+  else
+    table.insert(self.consoles, position, tabName)
+    self:reset()
+  end
+end
+
+function EMCO:switchTab(tabName)
+  local oldTab = self.currentTab
+  if oldTab ~= tabName and oldTab ~= "" then
+    self.windows[oldTab]:hide()
+    self.tabs[oldTab]:setStyleSheet(self.inactiveTabCSS)
+    self.tabs[oldTab]:setColor(self.inactiveTabBGColor)
+    self.tabs[oldTab]:echo(oldTab, self.inactiveTabFGColor, "c")
+    if self.blink then
+      if self.allTab and tabName == self.allTabName then
+        self.tabsToBlink = {}
+      elseif self.tabsToBlink[tabName] then
+        self.tabsToBlink[tabName] = nil
+      end
+    end
+  end
+  self.tabs[tabName]:setStyleSheet(self.activeTabCSS)
+  self.tabs[tabName]:setColor(self.activeTabBGColor)
+  self.tabs[tabName]:echo(tabName, self.activeTabFGColor, "c")
+  if oldTab and self.windows[oldTab] then
+    self.windows[oldTab]:hide()
+  end
+  self.windows[tabName]:show()
+  self.currentTab = tabName
+end
+
+function EMCO:createComponentsForTab(tabName)
+  local tab = Geyser.Label:new({
+    name = string.format("%sTab%s", self.name, tabName)
+  }, self.tabBox)
+  tab:echo(tabName, self.inactiveTabFGColor, 'c')
+  -- use the inactive CSS. It's "" if unset, which is ugly, but
+  tab:setStyleSheet(self.inactiveTabCSS)
+  -- set the BGColor if set. if the CSS is set it overrides the setColor, but if it's "" then the setColor actually covers that.
+  -- and we set a default for the inactiveBGColor
+  tab:setColor(self.inactiveTabBGColor)
+  tab:setClickCallback("EMCOHelper.switchTab", nil, string.format("%s+%s",self.name, tabName))
+  self.tabs[tabName] = tab
+  local window
+  local windowConstraints = {
+    x = 1,
+    y = 1,
+    height = "-2px",
+    width = "100%",
+    name = string.format("%sWindow%s", self.name, tabName)
+  }
+  local parent = self.consoleContainer
+  if self.mapTab and tabName == self.mapTabName then
+    window = Geyser.Mapper:new(windowConstraints, parent)
+  else
+    window = Geyser.MiniConsole:new(windowConstraints, parent)
+    window:setFontSize(self.fontSize)
+    window:setColor(self.consoleColor)
+    if self.autoWrap then
+      window:enableAutoWrap()
+    else
+      window:setWrap(self.wrapAt)
+    end
+    if self.scrollbars then
+      window:enableScrollBar()
+    else
+      window:disableScrollBar()
+    end
+  end
+  self.windows[tabName] = window
+  window:hide()
+end
+
+--- resets the object, redrawing everything
+function EMCO:reset()
+  self:createContainers()
+  for _,tabName in ipairs(self.consoles) do
+    self:createComponentsForTab(tabName)
+  end
+  local default
+  if self.currentTab == "" then
+    default = self.allTabName or self.consoles[1]
+  else
+    default = self.currentTab
+  end
+  self:switchTab(default)
+end
+
+function EMCO:createContainers()
+  self.tabBoxLabel = Geyser.Label:new({
+    x=0,
+    y=0,
+    width = "100%",
+    height = tostring(tonumber(self.tabHeight) + 2) .. "px",
+    name = self.name .. "TabBoxLabel"
+  }, self)
+  self.tabBox = Geyser.HBox:new({
+    x=0,
+    y=0,
+    width = "100%",
+    height = "100%",
+    name = self.name .. "TabBox"
+  }, self.tabBoxLabel)
+  self.tabBoxLabel:setStyleSheet(self.tabBoxCSS)
+  self.tabBoxLabel:setColor(self.tabBoxColor)
+
+  local heightPlusGap = tonumber(self.tabHeight) + tonumber(self.gap)
+  self.consoleContainer = Geyser.Label:new({
+    x = 0,
+    y = tostring(heightPlusGap) .. "px",
+    width = "100%",
+    height = "-0px",
+    name = self.name .. "ConsoleContainer"
+  }, self)
+  self.consoleContainer:setStyleSheet(self.consoleContainerCSS)
+  self.consoleContainer:setColor(self.consoleContainerColor)
+end
+
+function EMCO:stripTimeChars(str)
+  return string.gsub(string.trim(str), '[hHmMszZaApPdy:. ]', '')
+end
+
+--- Expands boolean definitions to be more flexible.
+-- &lt;br&gt;True values are "true", "yes", "0", 0, and true
+-- &lt;br&gt;False values are "false", "no", "1", 1, false, and nil
+-- @param bool item to test for truthiness
+function EMCO:fuzzyBoolean(bool)
+  if type(bool) == "boolean" or bool == nil then
+    return bool
+  elseif tostring(bool) then
+    local truth = {
+      "yes",
+      "true",
+      "0"
+    }
+    local untruth = {
+      "no",
+      "false",
+      "1"
+    }
+    local boolstr = tostring(bool)
+    if table.contains(truth, boolstr) then
+      return true
+    elseif table.contains(untruth, boolstr) then
+      return false
+    else
+      return nil
+    end
+  else
+    return nil
+  end
+end
+
+--- enables custom colors for the timestamp, if displayed
+function EMCO:enableCustomTimestampColor()
+  self.customTimestampColor = true
+end
+
+--- disables custom colors for the timestamp, if displayed
+function EMCO:disableCustomTimestampColor()
+  self.customTimestampColor = false
+end
+
+--- enables the display of timestamps
+function EMCO:enableTimestamp()
+  self.timestamp = true
+end
+
+--- disables the display of timestamps
+function EMCO:disableTimestamp()
+  self.timestamp = false
+end
+
+--- Sets the formatting for the timestamp, if enabled
+-- @tparam string format Format string which describes the display of the timestamp. See: https://wiki.mudlet.org/w/Manual:Lua_Functions#getTime
+function EMCO:setTimestampFormat(format)
+  local funcName = "EMCO:setTimestampFormat(format)"
+  local strippedFormat = self:stripTimeChars(format)
+  if strippedFormat ~= "" then
+    self.ae(funcName, "format contains invalid time format characters. Please see https://wiki.mudlet.org/w/Manual:Lua_Functions#getTime for formatting information")
+  else
+    self.timestampFormat = format
+  end
+end
+
+--- Sets the background color for the timestamp, if customTimestampColor is enabled.
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setTimestampBGColor(color)
+  self.timestampBGColor = color
+end
+--- Sets the foreground color for the timestamp, if customTimestampColor is enabled.
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setTimestampFGColor(color)
+  self.timestampFGColor = color
+end
+
+--- Sets the 'all' tab name.
+-- &lt;br&gt;This is the name of the tab itself
+-- @tparam string allTabName name of the tab to use as the all tab. Must be a tab which exists in the object.
+function EMCO:setAllTabName(allTabName)
+  local funcName = "EMCO:setAllTabName(allTabName)"
+  local allTabNameType = type(allTabName)
+  if allTabNameType ~= "string" then self.ae(funcName, "allTabName expected as string, got" .. allTabNameType) end
+  if not table.contains(self.consoles, allTabName) then self.ae(funcName, "allTabName must be the name of one of the console tabs. Valid options are: " .. table.concat(self.containers, ",")) end
+  self.allTabName = allTabName
+end
+
+--- Enables use of the 'all' tab
+function EMCO:enableAllTab()
+  self.allTab = true
+end
+
+--- Disables use of the 'all' tab
+function EMCO:disableAllTab()
+  self.allTab = false
+end
+
+--- Enables tying the Mudlet Mapper to one of the tabs.
+-- &lt;br&gt;mapTabName must be set, or this will error. Forces a redraw of the entire object
+function EMCO:enableMapTab()
+  local funcName = "EMCO:enableMapTab()"
+  if not self.mapTabName then
+    error(funcName .. ": cannot enable the map tab, mapTabName not set. try running :setMapTabName(mapTabName) first with the name of the tab you want to bind the map to")
+  end
+  self.mapTab = true
+  self:reset()
+end
+
+--- disables binding the Mudlet Mapper to one of the tabs.
+-- &lt;br&gt;CAUTION: this may have unexpected behaviour, as you can only open one Mapper console per profile
+-- so you can't really unbind it. Binding of the Mudlet Mapper is best decided at instantiation.
+function EMCO:disableMapTab()
+  self.mapTab = false
+end
+
+--- sets the name of the tab to bind the Mudlet Map.
+-- &lt;br&gt;Forces a redraw of the object
+-- &lt;br&gt;CAUTION: Mudlet only allows one Map object to be open at one time, so if you are going to attach the map to an object
+-- you should probably do it at instantiation.
+-- @tparam string mapTabName name of the tab to connect the Mudlet Map to.
+function EMCO:setMapTabName(mapTabName)
+  local funcName = "EMCO:setMapTabName(mapTabName)"
+  local mapTabNameType = type(mapTabName)
+  if mapTabNameType ~= "string" then
+    self.ae(funcName, "mapTabName as string expected, got" .. mapTabNameType)
+  end
+  if not table.contains(self.consoles, mapTabName) and mapTabName ~= "" then
+    self.ae(funcName, "mapTabName must be one of the existing console tabs. Current tabs are: " .. table.concat(self.consoles, ","))
+  end
+  self.mapTabName = mapTabName
+end
+
+--- Enables tab blinking even if you're on the 'all' tab
+function EMCO:enableBlinkFromAll()
+  self.enableBlinkFromAll = true
+end
+
+--- Disables tab blinking when you're on the 'all' tab
+function EMCO:disableBlinkFromAll()
+  self.enableBlinkFromAll = false
+end
+
+--- Enables gagging of the line passed in to :append(tabName)
+function EMCO:enableGag()
+  self.gag = true
+end
+
+--- Disables gagging of the line passed in to :append(tabName)
+function EMCO:disableGag()
+  self.gag = false
+end
+
+--- Enables tab blinking when new information comes in to an inactive tab
+function EMCO:enableBlink()
+  self.blink = true
+end
+
+--- Disables tab blinking when new information comes in to an inactive tab
+function EMCO:disableBlink()
+  self.blink = false
+end
+
+--- Enables preserving the chat's background over the background of an incoming :append()
+function EMCO:enablePreserveBackground()
+  self.preserveBackground = true
+end
+
+--- Enables preserving the chat's background over the background of an incoming :append()
+function EMCO:disablePreserveBackground()
+  self.preserveBackground = false
+end
+
+--- Sets how long in seconds to wait between blinks
+-- @tparam number blinkTime time in seconds to wait between blinks
+function EMCO:setBlinkTime(blinkTime)
+  local funcName = "EMCO:setBlinkTime(blinkTime)"
+  local blinkTimeNumber = tonumber(blinkTime)
+  if not blinkTimeNumber then
+    self.ae(funcName, "blinkTime as number expected, got ".. type(blinkeTime))
+  else
+    self.blinkTime = blinkTimeNumber
+    if self.blinkTimerID then
+      killTimer(self.blinkTimerID)
+    end
+    self.blinkTimerID = tempTimer(blinkTimeNumber, function() self:blink() end, true)
+  end
+end
+
+function EMCO:doBlink()
+  if self.hidden or self.auto_hidden or not self.blink then
+    return
+  end
+  for tab,_ in pairs(self.tabsToBlink) do
+    self.tabs[tab]:flash()
+  end
+end
+
+--- Sets the font size of the attached consoles
+-- @tparam number fontSize font size for attached consoles
+function EMCO:setFontSize(fontSize)
+  local funcName = "EMCO:setFontSize(fontSize)"
+  local fontSizeNumber = tonumber(fontSize)
+  local fontSizeType = type(fontSize)
+  if not fontSizeNumber then
+    self.ae(funcName, "fontSize as number expected, got " .. fontSizeType)
+  else
+    self.fontSize = fontSizeNumber
+    for _,tabName in ipairs(self.consoles) do
+      if self.mapTab and tabName == self.mapTabName then
+        -- skip this one
+      else
+        local window = self.windows[tabName]
+        window:setFontSize(fontSizeNumber)
+      end
+    end
+  end
+end
+
+function EMCO:adjustTabNames()
+  for _,console in ipairs(self.consoles) do
+    if console == self.currentTab then
+      self.tabs[console]:echo(console, self.activTabFGColor, 'c')
+    else
+      self.tabs[console]:echo(console, self.inactiveTabFGColor, 'c')
+    end
+  end
+end
+
+function EMCO:adjustTabBackgrounds()
+  for _, console in ipairs(self.consoles) do
+    local tab = self.tabs[console]
+    if console == self.currentTab then
+      tab:setStyleSheet(self.activeTabCSS)
+      tab:setColor(self.activeBGColor)
+    else
+      tab:setStyleSheet(self.inactiveTabCSS)
+      tab:setColor(self.inactiveBGColor)
+    end
+  end
+end
+
+--- Sets the FG color for the active tab
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setActiveTabFGColor(color)
+  self.activeTabFGColor = color
+  self:adjustTabNames()
+end
+
+--- Sets the FG color for the inactive tab
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setInactiveTabFGColor(color)
+  self.inactiveTabFGColor = color
+  self:adjustTabNames()
+end
+
+--- Sets the BG color for the active tab.
+-- &lt;br&gt;NOTE: If you set CSS for the active tab, it will override this setting.
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setActiveTabBGColor(color)
+  self.activeTabBGColor = color
+  self:adjustTabBackgrounds()
+end
+
+--- Sets the BG color for the inactive tab.
+-- &lt;br&gt;NOTE: If you set CSS for the inactive tab, it will override this setting.
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setInactiveTabBGColor(color)
+  self.inactiveTabBGColor = color
+  self:adjustTabBackgrounds()
+end
+
+--- Sets the BG color for the consoles attached to this object
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setConsoleColor(color)
+  self.consoleColor = color
+  self:adjustConsoleColors()
+end
+
+function EMCO:adjustConsoleColors()
+  for _,console in ipairs(self.consoles) do
+    if self.mapTab and self.mapTabName == console then
+      -- skip Map
+    else
+      self.windows[console]:setColor(self.consoleColor)
+    end
+  end
+end
+
+--- Sets the CSS to use for the tab box which contains the tabs for the object
+-- @tparam string css The css styling to use for the tab box
+function EMCO:setTabBoxCSS(css)
+  local funcName = "EMCHO:setTabBoxCSS(css)"
+  local cssType = type(css)
+  if cssType ~= "string" then
+    self.ae(funcName, "css as string expected, got " .. cssType)
+  else
+    self.tabBoxCSS = css
+    self:adjustTabBoxBackground()
+  end
+end
+
+--- Sets the color to use for the tab box background
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setTabBoxColor(color)
+  self.tabBoxColor = color
+  self:adjustTabBoxBackground()
+end
+
+function EMCO:adjustTabBoxBackground()
+    self.tabBoxLabel:setStyleSheet(self.tabBoxCSS)
+    self.tabBoxLabel:setColor(self.tabBoxColor)
+end
+
+--- Sets the color for the container which holds the consoles attached to this object.
+-- @param color Color string suitable for decho or hecho, or color name eg "purple", or table of colors {r,g,b}
+function EMCO:setConsoleContainerColor(color)
+  self.consoleContainerColor = color
+  self:adjustConsoleContainerBackground()
+end
+
+--- Sets the CSS to use for the container which holds the consoles attached to this object
+-- @tparam string css CSS to use for the container
+function EMCO:setConsoleContainerCSS(css)
+  self.consoleContainerCSS = css
+  self:adjustConsoleContainerBackground()
+end
+
+function EMCO:adjustConsoleContainerBackground()
+  self.consoleContainer:setStyleSheet(self.consoleContainerCSS)
+  self.consoleContainer:setColor(self.consoleContainerColor)
+end
+
+--- Sets the amount of space to use between the tabs and the consoles
+-- @tparam number gap Number of pixels to keep between the tabs and consoles
+function EMCO:setGap(gap)
+  local gapNumber = tonumber(gap)
+  local funcName = "EMCO:setGap(gap)"
+  local gapType = type(gap)
+  if not gapNumber then
+    self.ae(funcName, "gap expected as number, got " .. gapType)
+  else
+    self.gap = gapNumber
+    self:reset()
+  end
+end
+
+--- Sets the height of the tabs in pixels
+-- @tparam number tabHeight the height of the tabs for the object, in pixels
+function EMCO:setTabHeight(tabHeight)
+  local tabHeightNumber = tonumber(tabHeight)
+  local funcName = "EMCO:setTabHeight(tabHeight)"
+  local tabHeightType = type(tabHeight)
+  if not tabHeightNumber then
+    self.ae(funcName, "tabHeight as number expected, got ".. tabHeightType)
+  else
+    self.tabHeight = tabHeightNumber
+    self:reset()
+  end
+end
+
+--- Enables autowrap for the object, and by extension all attached consoles.
+-- &lt;br&gt;To enable autoWrap for a specific miniconsole only, call myEMCO.windows[tabName]:enableAutoWrap()
+-- but be warned if you do this it may be overwritten by future calls to EMCO:enableAutoWrap() or :disableAutoWrap()
+function EMCO:enableAutoWrap()
+  self.autoWrap = true
+  for _,console in ipairs(self.consoles) do
+    if self.mapTab and console == self.mapTabName then
+      -- skip the map
+    else
+      self.windows[console]:enableAutoWrap()
+    end
+  end
+end
+
+--- Disables autowrap for the object, and by extension all attached consoles.
+-- &lt;br&gt;To disable autoWrap for a specific miniconsole only, call myEMCO.windows[tabName]:disableAutoWrap()
+-- but be warned if you do this it may be overwritten by future calls to EMCO:enableAutoWrap() or :disableAutoWrap()
+function EMCO:disableAutoWrap()
+  self.autoWrap = false
+  for _,console in ipairs(self.consoles) do
+    if self.mapTab and self.mapTabName == console then
+      -- skip Map
+    else
+      self.windows[console]:disableAutoWrap()
+    end
+  end
+end
+
+--- Sets the number of characters to wordwrap the attached consoles at.
+-- &lt;br&gt;it is generally recommended to make use of autoWrap unless you need
+-- a specific width for some reason
+function EMCO:setWrap(wrapAt)
+  local funcName = "EMCO:setWrap(wrapAt)"
+  local wrapAtNumber = tonumber(wrapAt)
+  local wrapAtType = type(wrapAt)
+  if not wrapAtNumber then
+    self.ae(funcName, "wrapAt as number expect, got " .. wrapAtType)
+  else
+    self.wrapAt = wrapAtNumber
+    for _,console in ipairs(self.consoles) do
+      if self.mapTab and self.mapTabName == console then
+        -- skip the Map
+      else
+        self.windows[console]:setWrap(wrapAtNumber)
+      end
+    end
+  end
+end
+
+--- Appends the current line from the MUD to a tab.
+-- &lt;br&gt;depending on this object's configuration, may gag the line
+-- &lt;br&gt;depending on this object's configuration, may gag the next prompt
+-- @tparam string tabName The name of the tab to append the line to
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:append(tabName, excludeAll)
+  local funcName = "EMCO:append(tabName, excludeAll)"
+  local tabNameType = type(tabName)
+  local validTab = table.contains(self.consoles, tabName)
+  if tabNameType ~= "string" then
+    self.ae(funcName, "tabName as string expected, got ".. tabNameType)
+  elseif not validTab then
+    self.ae(funcName, "tabName must be a tab which is contained in this object. Valid tabnames are: " .. table.concat(self.consoles, ","))
+  end
+  self:xEcho(tabName, nil, 'a', excludeAll)
+end
+
+function EMCO:checkEchoArgs(funcName, tabName, message, excludeAll)
+  local tabNameType = type(tabName)
+  local messageType = type(message)
+  local validTabName = table.contains(self.consoles, tabName)
+  local excludeAllType = type(excludeAll)
+  local ae = self.ae
+  if tabNameType ~= "string" then
+    ae(funcName, "tabName as string expected, got " .. tabNameType)
+  elseif messageType ~= "string" then
+    ae(funcName, "message as string expected, got " .. messageType)
+  elseif not validTabName then
+    ae(funcName, "tabName must be the name of a tab attached to this object. Valid names are: " .. table.concat(self.consoles, ","))
+  elseif excludeAllType ~= "nil" and excludeAllType ~= "boolean" then
+    ae(funcName, "optional argument excludeAll expected as boolean, got " .. excludeAllType)
+  end
+end
+
+function EMCO:xEcho(tabName, message, xtype, excludeAll)
+  if self.mapTab and self.mapTabName == tabName then
+    error("You cannot send text to the Map tab")
+  end
+  local console = self.windows[tabName]
+  local allTab = (self.allTab and not excludeAll and not table.contains(self.allTabExclusions, tabName) and tabName ~= self.allTabName) and self.windows[self.allTabName] or false
+  local ofr,ofg,ofb,obr,obg,obb
+  if xtype == "a" then
+    selectCurrentLine()
+    ofr,ofg,ofb = getFgColor()
+    obr,obg,obb = getBgColor()
+    if self.preserveBackground then
+      local r,g,b = Geyser.Color.parse(self.consoleColor)
+      setBgColor(r,g,b)
+    end
+    copy()
+  else
+    ofr,ofg,ofb = Geyser.Color.parse("white")
+    obr,obg,obb = Geyser.Color.parse(self.consoleColor)
+  end
+  if self.timestamp then
+    local colorString = ""
+    if self.customTimestampColor then
+      local tfr,tfg,tfb = Geyser.Color.parse(self.timestampFGColor)
+      local tbr,tbg,tbb = Geyser.Color.parse(self.timestampBGColor)
+      colorString = string.format("&lt;%s,%s,%s:%s,%s,%s&gt;", tfr,tfg,tfb,tbr,tbg,tbb)
+    else
+      colorString = string.format("&lt;%s,%s,%s:%s,%s,%s&gt;", ofr,ofg,ofb,obr,obg,obb)
+    end
+    local timestamp = getTime(true, self.timestampFormat)
+    local fullTimestamp = string.format("%s%s&lt;r&gt; ", colorString, timestamp)
+    console:decho(fullTimestamp)
+    if allTab and tabName ~= self.allTabName then
+      allTab:decho(fullTimestamp)
+    end
+  end
+  if self.blink and tabName ~= self.currentTab then
+    if not (self.allTabName == self.currentTab and not self.blinkFromAll) then
+      self.tabsToBlink[tabName] = true
+    end
+  end
+  if xtype == "a" then
+    console:appendBuffer()
+    if allTab then
+      allTab:appendBuffer()
+    end
+    if self.gag then
+      deleteLine()
+      if self.gagPrompt then
+        tempPromptTrigger(function() deleteLine() end, 1)
+      end
+    end
+  else
+    console[xtype](console, message)
+    if allTab then allTab[xtype](allTab, message) end
+  end
+  if self.blankLine then
+    console:echo("\n")
+    if allTab then allTab:echo("\n") end
+  end
+end
+
+--- cecho to a tab, maintaining functionality
+-- @tparam string tabName the name of the tab to cecho to
+-- @tparam string message the message to cecho to that tab's console
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:cecho(tabName, message, excludeAll)
+  local funcName = "EMCO:cecho(tabName, message, excludeAll)"
+  self:checkEchoArgs(funcName, tabName, message, excludeAll)
+  self:xEcho(tabName, message, 'cecho', excludeAll)
+end
+
+--- decho to a tab, maintaining functionality
+-- @tparam string tabName the name of the tab to decho to
+-- @tparam string message the message to decho to that tab's console
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:decho(tabName, message, excludeAll)
+  local funcName = "EMCO:decho(console, message, excludeAll)"
+  self:checkEchoArgs(funcName, tabName, message, excludeAll)
+  self:xEcho(tabName, message, 'decho', excludeAll)
+end
+
+--- hecho to a tab, maintaining functionality
+-- @tparam string tabName the name of the tab to hecho to
+-- @tparam string message the message to hecho to that tab's console
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:hecho(tabName, message, excludeAll)
+  local funcName = "EMCO:hecho(console, message, excludeAll)"
+  self:checkEchoArgs(funcName, tabName, message, excludeAll)
+  self:xEcho(tabName, message, 'hecho', excludeAll)
+end
+
+--- echo to a tab, maintaining functionality
+-- @tparam string tabName the name of the tab to echo to
+-- @tparam string message the message to echo to that tab's console
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:echo(tabName, message, excludeAll)
+  local funcName = "EMCO:echo(console, message, excludeAll)"
+  self:checkEchoArgs(funcName, tabName, message, excludeAll)
+  self:xEcho(tabName, message, 'echo', excludeAll)
+end
+
+-- internal function used for type checking echoLink/Popup arguments
+function EMCO:checkLinkArgs(funcName, tabName, text, commands, hints, excludeAll, popup)
+  local expectedType = popup and "table" or "string"
+  local textType = type(text)
+  local commandsType = type(commands)
+  local hintsType = type(hints)
+  local tabNameType = type(tabName)
+  local validTabName = table.contains(self.consoles, tabName)
+  local excludeAllType = type(excludeAll)
+  local sf = string.format
+  local ae = self.ae
+  if textType ~= "string" then
+    ae(funcName, "text as string expected, got " .. textType)
+  elseif commandsType ~= expectedType then
+    ae(funcName, sf("commands as %s expected, got %s", expectedType, commandsType))
+  elseif hintsType ~= expectedType then
+    ae(funcName, sf("hints as %s expected, got %s", expectedType, hintsType))
+  elseif tabNameType ~= "string" then
+    ae(funcName, "tabName as string expected, got " .. tabNameType)
+  elseif not validTabName then
+    ae(funcName, sf("tabName must be a tab which exists, tab %s could not be found", tabName))
+  elseif self.mapTab and tabName == self.mapTabName then
+    ae(funcName, sf("You cannot echo to the map tab, and %s is configured as the mapTabName", tabName))
+  elseif excludeAllType ~= "nil" and excludeAllType ~= "boolean" then
+    ae(funcName, "Optional argument excludeAll expected as boolean, got " .. excludeAllType)
+  end
+end
+
+-- internal function used for handling echoLink/popup
+function EMCO:xLink(tabName, linkType, text, commands, hints, useCurrentFormat, excludeAll)
+  local console = self.windows[tabName]
+  local allTab = (self.allTab and not excludeAll and not table.contains(self.allTabExclusions, tabName) and tabName ~= self.allTabName) and self.windows[self.allTabName] or false
+  local arguments = {text, commands, hints, useCurrentFormat}
+  if self.timestamp then
+    local colorString = ""
+    if self.customTimestampColor then
+      local tfr,tfg,tfb = Geyser.Color.parse(self.timestampFGColor)
+      local tbr,tbg,tbb = Geyser.Color.parse(self.timestampBGColor)
+      colorString = string.format("&lt;%s,%s,%s:%s,%s,%s&gt;", tfr,tfg,tfb,tbr,tbg,tbb)
+    else
+      local ofr,ofg,ofb = Geyser.Color.parse("white")
+      local obr,obg,obb = Geyser.Color.parse(self.consoleColor)
+      colorString = string.format("&lt;%s,%s,%s:%s,%s,%s&gt;", ofr,ofg,ofb,obr,obg,obb)
+    end
+    local timestamp = getTime(true, self.timestampFormat)
+    local fullTimestamp = string.format("%s%s&lt;r&gt; ", colorString, timestamp)
+    console:decho(fullTimestamp)
+    if allTab then
+      allTab:decho(fullTimestamp)
+    end
+  end
+  console[linkType](console, unpack(arguments))
+  if allTab then allTab[linkType](allTab, unpack(arguments)) end
+end
+
+--- cechoLink to a tab
+-- @tparam string tabName the name of the tab to cechoLink to
+-- @tparam string text the text underlying the link
+-- @tparam string command the lua code to run in string format
+-- @tparam string hint the tooltip hint to use for the link
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:cechoLink(tabName, text, command, hint, excludeAll)
+  local funcName = "EMCO:cechoLink(tabName, text, command, hint)"
+  self:checkLinkArgs(funcName, tabName, text, command, hint, excludeAll)
+  self:xLink(tabName, "cechoLink", text, command, hint, true, excludeAll)
+end
+
+--- dechoLink to a tab
+-- @tparam string tabName the name of the tab to dechoLink to
+-- @tparam string text the text underlying the link
+-- @tparam string command the lua code to run in string format
+-- @tparam string hint the tooltip hint to use for the link
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:dechoLink(tabName, text, command, hint, excludeAll)
+  local funcName = "EMCO:dechoLink(tabName, text, command, hint)"
+  self:checkLinkArgs(funcName, tabName, text, command, hint, excludeAll)
+  self:xLink(tabName, "dechoLink", text, command, hint, true, excludeAll)
+end
+
+--- hechoLink to a tab
+-- @tparam string tabName the name of the tab to hechoLink to
+-- @tparam string text the text underlying the link
+-- @tparam string command the lua code to run in string format
+-- @tparam string hint the tooltip hint to use for the link
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:hechoLink(tabName, text, command, hint, excludeAll)
+  local funcName = "EMCO:hechoLink(tabName, text, command, hint)"
+  self:checkLinkArgs(funcName, tabName, text, command, hint, excludeAll)
+  self:xLink(tabName, "hechoLink", text, command, hint, true, excludeAll)
+end
+
+--- echoLink to a tab
+-- @tparam string tabName the name of the tab to echoLink to
+-- @tparam string text the text underlying the link
+-- @tparam string command the lua code to run in string format
+-- @tparam string hint the tooltip hint to use for the link
+-- @tparam boolean useCurrentFormat use the format for the window or blue on black (hyperlink colors)
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:echoLink(tabName, text, command, hint, useCurrentFormat, excludeAll)
+  local funcName = "EMCO:echoLink(tabName, text, command, hint, useCurrentFormat)"
+  self:checkLinkArgs(funcName, tabName, text, command, hint, excludeAll)
+  self:xLink(tabName, "echoLink", text, command, hint, useCurrentFormat, excludeAll)
+end
+
+--- cechoPopup to a tab
+-- @tparam string tabName the name of the tab to cechoPopup to
+-- @tparam string text the text underlying the link
+-- @tparam table commands the lua code to run in string format
+-- @tparam table hints the tooltip hint to use for the link
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:cechoPopup(tabName, text, commands, hints, excludeAll)
+  local funcName = "EMCO:cechoPopup(tabName, text, commands, hints)"
+  self:checkLinkArgs(funcName, tabName, text, commands, hints, excludeAll, true)
+  self:xLink(tabName, "cechoPopup", text, commands, hints, true, excludeAll)
+end
+
+--- dechoPopup to a tab
+-- @tparam string tabName the name of the tab to dechoPopup to
+-- @tparam string text the text underlying the link
+-- @tparam table commands the lua code to run in string format
+-- @tparam table hints the tooltip hint to use for the link
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:dechoPopup(tabName, text, commands, hints, excludeAll)
+  local funcName = "EMCO:dechoPopup(tabName, text, commands, hints)"
+  self:checkLinkArgs(funcName, tabName, text, commands, hints, excludeAll, true)
+  self:xLink(tabName, "dechoPopup", text, commands, hints, true, excludeAll)
+end
+
+--- hechoPopup to a tab
+-- @tparam string tabName the name of the tab to hechoPopup to
+-- @tparam string text the text underlying the link
+-- @tparam table commands the lua code to run in string format
+-- @tparam table hints the tooltip hint to use for the link
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:hechoPopup(tabName, text, commands, hints, excludeAll)
+  local funcName = "EMCO:hechoPopup(tabName, text, commands, hints)"
+  self:checkLinkArgs(funcName, tabName, text, commands, hints, excludeAll, true)
+  self:xLink(tabName, "hechoPopup", text, commands, hints, true, excludeAll)
+end
+
+--- echoPopup to a tab
+-- @tparam string tabName the name of the tab to echoPopup to
+-- @tparam string text the text underlying the link
+-- @tparam table commands the lua code to run in string format
+-- @tparam table hints the tooltip hint to use for the link
+-- @tparam boolean useCurrentFormat use the format for the window or blue on black (hyperlink colors)
+-- @tparam boolean excludeAll if true, will exclude this from being mirrored to the allTab
+function EMCO:echoPopup(tabName, text, commands, hints, useCurrentFormat, excludeAll)
+  local funcName = "EMCO:echoPopup(tabName, text, commands, hints, useCurrentFormat)"
+  self:checkLinkArgs(funcName, tabName, text, commands, hints, excludeAll, true)
+  self:xLink(tabName, "echoPopup", text, commands, hints, useCurrentFormat, excludeAll)
+end
+
+--- adds a tab to the exclusion list for echoing to the allTab
+-- @tparam string tabName the name of the tab to add to the exclusion list
+function EMCO:addAllTabExclusion(tabName)
+  local funcName = "EMCO:addAllTabExclusion(tabName)"
+  local ae = self.ae
+  local tabNameType = type(tabName)
+  local validTabName = table.contains(self.consoles, tabName)
+  if tabNameType ~= "string" then
+    ae(funcName, "tabName as string expected, got " .. tabNameType)
+  elseif not validTabName then
+    ae(funcName, string.format("tabName %s does not exist in this EMCO. valid tabs: " .. table.concat(self.consoles, ",")))
+  end
+  if not table.contains(self.allTabExclusions, tabName) then table.insert(self.allTabExclusions, tabName) end
+end
+
+--- removess a tab from the exclusion list for echoing to the allTab
+-- @tparam string tabName the name of the tab to remove from the exclusion list
+function EMCO:removeAllTabExclusion(tabName)
+  local funcName = "EMCO:removeAllTabExclusion(tabName)"
+  local ae = self.ae
+  local tabNameType = type(tabName)
+  local validTabName = table.contains(self.consoles, tabName)
+  if tabNameType ~= "string" then
+    ae(funcName, "tabName as string expected, got " .. tabNameType)
+  elseif not validTabName then
+    ae(funcName, string.format("tabName %s does not exist in this EMCO. valid tabs: " .. table.concat(self.consoles, ",")))
+  end
+  local index = table.index_of(self.allTabExclusions, tabName)
+  if index then table.remove(self.allTabExclusions, index) end
+end
+
+--- Enable placing a blank line between all messages.
+function EMCO:enableBlankLine()
+  self.blankLine = true
+end
+
+--- Enable placing a blank line between all messages.
+function EMCO:disableBlankLine()
+  self.blankLine = false
+end
+
+--- Enable scrollbars for the miniconsoles
+function EMCO:enableScrollbars()
+  self.scrollbars = true
+  self:adjustScrollbars()
+end
+
+--- Disable scrollbars for the miniconsoles
+function EMCO:disableScrollbars()
+  self.scrollbars = false
+  self:adjustScrollbars()
+end
+
+function EMCO:adjustScrollbars()
+  for _,console in ipairs(self.consoles) do
+    if self.mapTab and self.mapTabName == console then
+      -- skip the Map tab
+    else
+      if self.scrollbars then
+        self.windows[console]:enableScrollBar()
+      else
+        self.windows[console]:disableScrollBar()
+      end
+    end
+  end
+end
+
+EMCOHelper = EMCOHelper or {}
+EMCOHelper.items = EMCOHelper.items or {}
+function EMCOHelper:switchTab(designator)
+  local args = string.split(designator, "+")
+  local emcoName = args[1]
+  local tabName = args[2]
+  for _,emco in ipairs(EMCOHelper.items) do
+    if emco.name == emcoName then
+      emco:switchTab(tabName)
+      return
+    end
+  end
+end
+
+EMCO.parent = Geyser.Container
+
+--- Creates a new Embeddable Multi Console Object.
+-- &lt;br&gt;see https://github.com/demonnic/EMCO/wiki for information on valid constraints and defaults
+-- @tparam table cons table of constraints which configures the EMCO.
+-- @tparam GeyserObject container The container to use as the parent for the EMCO
+-- @return the newly created EMCO
+function EMCO:new(cons, container)
+  local funcName = "EMCO:new(cons, container)"
+  cons = cons or {}
+  cons.type = cons.type or "tabbedConsole"
+  cons.consoles = cons.consoles or { "All" }
+  if cons.mapTab then
+    if not type(cons.mapTabName) == "string" then
+      self:ce(funcName, [["mapTab" is true, thus constraint "mapTabName" and string expected, got ]] .. type(cons.mapTabName))
+    elseif not table.contains(cons.consoles, cons.mapTabName) then
+      self:ce(funcName, [["mapTabName" must be one of the consoles contained within constraint "consoles". Valid option for tha mapTab are: ]] .. table.concat(cons.consoles, ","))
+    end
+  end
+  cons.allTabExclusions = cons.allTabExclusions or {}
+  if not type(cons.allTabExclusions) == "table" then self:se(funcName, "allTabExclusions must be a table if it is provided") end
+  local me = self.parent:new(cons, container)
+  setmetatable(me, self)
+  self.__index = self
+  -- set some defaults. Almost all the defaults we had for YATCO, plus a few new ones
+  if me:fuzzyBoolean(cons.timestamp) then
+    me:enableTimestamp()
+  else
+    me:disableTimestamp()
+  end
+  if me:fuzzyBoolean(cons.customTimestampColor) then
+    me:enableCustomTimestampColor()
+  else
+    me:disableCustomTimestampColor()
+  end
+  if me:fuzzyBoolean(cons.mapTab) then
+    me.mapTab = true
+  else
+    me.mapTab = false
+  end
+  if me:fuzzyBoolean(cons.blinkFromAll) then
+    me:enableBlinkFromAll()
+  else
+    me:disableBlinkFromAll()
+  end
+  if me:fuzzyBoolean(cons.preserveBackground) then
+    me:enablePreserveBackground()
+  else
+    me:disablePreserveBackground()
+  end
+  if me:fuzzyBoolean(cons.gag)then
+    me:enableGag()
+  else
+    me:disableGag()
+  end
+  me:setTimestampFormat(cons.timestampFormat or "HH:mm:ss")
+  me:setTimestampBGColor(cons.timestampBGColor or "blue")
+  me:setTimestampFGColor(cons.timestampFGColor or "red")
+  if me:fuzzyBoolean(cons.allTab) then
+    me:enableAllTab(cons.allTab)
+  else
+    me:disableAllTab()
+  end
+  if me:fuzzyBoolean(cons.blink) then
+    me:enableBlink()
+  else
+    me:disableBlink()
+  end
+  if me:fuzzyBoolean(cons.blankLine) then
+    me:enableBlankLine()
+  else
+    me:disableBlankLine()
+  end
+  if me:fuzzyBoolean(cons.scrollbars) then
+    me.scrollbars = true
+  else
+    me.scrollbars = false
+  end
+  me.blinkTime = cons.blinkTime or 3
+  me.fontSize = cons.fontSize or 9
+  me.activeTabCSS = cons.activeTabCSS or ""
+  me.inactiveTabCSS = cons.inactiveTabCSS or ""
+  me.activeTabFGColor = cons.activeTabFGColor or "purple"
+  me.inactiveTabFGColor = cons.inactiveTabFGColor or "white"
+  me.activeTabBGColor = cons.activeTabBGColor or "&lt;0,180,0&gt;"
+  me.inactiveTabBGColor = cons.inactiveTabBGColor or "&lt;60,60,60&gt;"
+  me.consoleColor = cons.consoleColor or "black"
+  me.tabBoxCSS = cons.tabBoxCSS or ""
+  me.tabBoxColor = cons.tabBoxColor or "black"
+  me.consoleContainerCSS = cons.consoleContainerCSS or ""
+  me.consoleContainerColor = cons.consoleContainerColor or "black"
+  me.gap = cons.gap or 1
+  me.consoles = cons.consoles
+  me.tabHeight = cons.tabHeight or 25
+  if cons.autoWrap == nil then
+    me.autoWrap = true
+  else
+    me.autoWrap = cons.autoWrap
+  end
+  me.wrapAt = cons.wrapAt or 300
+  me.currentTab = ""
+  me.tabs = {}
+  me.tabsToBlink = {}
+  me.windows = {}
+  self.blinkTimerID = tempTimer(me.blinkTime, function() me:doBlink() end, true)
+  me:reset()
+  if me.allTab then me:setAllTabName(me.allTabName or me.consoles[1]) end
+  table.insert(EMCOHelper.items, me)
+  return me
+end
+</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Mapper</name>
+				<packageName>Mapper</packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>EleMapper</name>
+					<packageName></packageName>
+					<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external Scripts --
+-------------------------------------------------
+--
+-- v0.2
+--
+-- eleMap.currentRoom = Mudlet room ID
+--
+
+
+function count_rooms()
+	local count = 0
+	for dir, id in pairs(getRooms()) do
+		count = count +1
+	end
+	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Total Rooms: "..count.."\n")
+end
+
+function get_Colours()
+	for c, id in pairs(getCustomEnvColorTable()) do
+		setFgColor(id[1],id[2],id[3])
+		print("setRoomEnv(ID,"..c..")")
+	end
+end
+
+
+function add_room_neighbours(realID,exits)
+	local x,y,z = getRoomCoordinates(realID)
+  for dir, exitHash in pairs(exits) do
+		if not roomExists(getRoomIDbyHash(exitHash)) then
+			local newx,newy,newz = calculate_Coordinates(x,y,z,dir)
+			local newID = createRoomID()
+      addRoom(newID)
+  		setRoomCoordinates(newID,newx,newy,newz)
+  		setRoomArea(newID,getRoomArea(realID))
+			setRoomIDbyHash(newID,exitHash)
+		end
+		if not getRoomExits(realID)[dir] then
+  		if is_standard_exit(dir) then
+  			setExit(realID,getRoomIDbyHash(exitHash),dir)
+  			setExit(getRoomIDbyHash(exitHash),realID,reversemap[dir])
+  		else
+  			addSpecialExit(realID,getRoomIDbyHash(exitHash),dir)
+  		end
+    end
+	end
+	updateMap()
+end
+
+function is_standard_exit(dir)
+	if dir == "north" then
+		return true
+	elseif dir == "northeast" then
+		return true
+	elseif dir == "east" then
+		return true
+	elseif dir == "southeast" then
+		return true
+	elseif dir == "south" then
+		return true
+	elseif dir == "southwest" then
+		return true
+	elseif dir == "west" then
+		return true
+	elseif dir == "northwest" then
+		return true
+	elseif dir == "up" then
+		return true
+	elseif dir == "down" then
+		return true
+	elseif dir == "in" then
+		return true
+	elseif dir == "out" then
+		return true
+	else
+		return false
+	end
+end
+
+function calculate_Coordinates(x,y,z,dir)
+	if dir == "north" then
+		y = y + 2
+	elseif dir == "northeast" then
+		x = x + 2
+		y = y + 2
+	elseif dir == "east" then
+		x = x + 2
+	elseif dir == "southeast" then
+		x = x + 2
+		y = y - 2
+	elseif dir == "south" then
+		y = y - 2
+	elseif dir == "southwest" then
+		x = x - 2
+		y = y - 2
+	elseif dir == "west" then
+		x = x - 2
+	elseif dir == "northwest" then
+		x = x - 2
+		y = y + 2
+	elseif dir == "up" then
+		z = z + 2
+	elseif dir == "down" then
+		z = z - 2
+	else
+		x = x + 1
+		y = y + 1
+	end
+	return x,y,z
+end
+
+function find_room()
+  gmcp.Room = gmcp.Room or {}
+  if gmcp.Room.Id == nil then gmcp.Room.Id = "drakenwood.4.580481" end
+	eleMap.lastRoom = eleMap.currentRoom or gmcp.Room.Id
+	eleMap.currentRoom = getRoomIDbyHash(gmcp.Room.Id)
+	if roomExists(eleMap.currentRoom) then
+		centerview(eleMap.currentRoom)
+	else 
+		cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; No Room found for &lt;red&gt;"..gmcp.Room.Id.."&lt;reset&gt;\n")
+	end
+end
+
+function add_exits()
+	local startMatrix = getStopWatchTime(mapMatrix)	
+	local newID = createRoomID()
+	if roomExists(eleMap.currentRoom) then
+		add_room_neighbours(eleMap.currentRoom,gmcp.Room.Exits)
+	else
+		find_link(gmcp.Room.Exits)
+	end
+end
+
+function find_link(exits)
+  for dir, id in pairs(exits) do
+		local roomID = getRoomIDbyHash(id)
+		if roomExists(roomID) then
+			cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Found adjoining room =&gt;&lt;red&gt;"..id.."&lt;reset&gt; "..exitmap[reversemap[dir]].."\n")
+			local x,y,z = getRoomCoordinates(roomID)
+			local newx,newy,newz = calculate_Coordinates(x,y,z,exitmap[reversemap[dir]])
+--			add_room(eleMap.currentRoom,newx,newy,newz,getRoomArea(eleMap.lastRoom))
+			add_room(gmcp.Room.Id,newx,newy,newz,getRoomArea(eleMap.lastRoom))
+			break
+		end
+	end
+	if not roomExists(getRoomIDbyHash(gmcp.Room.Id)) then
+			local x,y,z = getRoomCoordinates(eleMap.lastRoom)
+			add_room(eleMap.currentRoom,x+1,y+1,z,getRoomArea(eleMap.lastRoom))
+			cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; I didn't know where to put this room! ["..gmcp.Room.Id.."] please move it manually (New Zone?)\n")
+	end
+end
+
+function add_room(hashID,x,y,z,area)
+	local newID = createRoomID()
+--print("Adding room id "..newID.." Hash:"..hashID)
+	if hashId ~= -1 then
+  	addRoom(newID)
+  	setRoomCoordinates(newID,x,y,z)
+  	setRoomArea(newID,area)
+  	setRoomIDbyHash(newID,hashID)
+  	centerview(newID)
+  	add_room_neighbours(newID,gmcp.Room.Exits)
+	end
+end
+
+function purge_map()
+	for id, room in pairs(getRooms()) do
+		deleteRoom(id)
+		print("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Deleting =&gt; "..id.."\n")
+	end	
+end
+
+reversemap = {
+  n = 6,
+  north = 6,
+  ne = 8,
+  northeast = 8,
+  nw = 7,
+  northwest = 7,
+  e = 5,
+  east = 5,
+  w = 4,
+  west = 4,
+  s = 1,
+  south = 1,
+  se = 3,
+  southeast = 3,
+  sw = 2,
+  southwest = 2,
+  u = 10,
+  up = 10,
+  d = 9,
+  down = 9,
+  ["in"] = 12,
+  out = 11}
+exitmap = {
+  n = 1,
+  north = 1,
+  ne = 2,
+  northeast = 2,
+  nw = 3,
+  northwest = 3,
+  e = 4,
+  east = 4,
+  w = 5,
+  west = 5,
+  s = 6,
+  south = 6,
+  se = 7,
+  southeast = 7,
+  sw = 8,
+  southwest = 8,
+  u = 9,
+  up = 9,
+  d = 10,
+  down = 10,
+  ["in"] = 11,
+  out = 12,
+  [1] = "north",
+  [2] = "northeast",
+  [3] = "northwest",
+  [4] = "east",
+  [5] = "west",
+  [6] = "south",
+  [7] = "southeast",
+  [8] = "southwest",
+  [9] = "up",
+  [10] = "down",
+  [11] = "in",
+  [12] = "out",
+}	
+
+function mapper_Installed(_, name)
+	if name ~= "Mapper" then return end
+	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; EleMap Installed\n")
+--	convert_map_to_hash()
+  if next(getRooms()) == nil then
+  	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; NEW MAP STARTED\n")
+  	cecho("&lt;cyan&lt;[  MAP  ]&lt;reset&gt; Adding first room "..gmcp.Room.Id.." Assuming your in Drakenwood, Manually move to new zone if not!\n")
+  	setAreaName(1,"Drakenwood")
+  	setAreaName(2,"Valena")
+  	setAreaName(3,"Rosfarren")
+  	setAreaName(4,"Aerdy")
+		setAreaName(5,"Dun Glenderry")
+		local newID = createRoomID()
+  	addRoom(newID)
+  	setRoomCoordinates(newID,0,0,0)
+  	setRoomArea(newID,1)
+		setRoomIDbyHash(newID,gmcp.Room.Id)
+  	centerview(newID)
+  	add_room_neighbours(getRoomIDbyHash(gmcp.Room.Id),gmcp.Room.Exits)
+  	updateMap()
+  end
+end
+
+function doSpeedWalk()
+		speedwalk(table.concat(speedWalkDir, ", "),false,0.36)
+end
+
+function onSymbol(...)
+	local style = arg[2]
+	local rooms = arg[3]
+	if style == "Post Office" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"✉")
+	  end
+	elseif style == "Store" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"🛒")
+	  end
+	elseif style == "Bank" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"💰")
+	  end
+	elseif style == "Stable" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"🐴")
+	  end
+	elseif style == "Book" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"📖")
+	  end
+	elseif style == "Bar" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"🍺")
+	  end
+	elseif style == "Swords" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"💎")
+	  end
+	elseif style == "Swords" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"⚔")
+	  end
+	elseif style == "Clear" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"")
+	  end
+	end
+end
+
+function convert_map_to_hash()
+	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Checking if map needs converting to GUID\n")
+	local converted = 0
+	for id, room in pairs(getRooms()) do
+		if getRoomIDbyHash(id) == -1 then
+			setRoomIDbyHash(id, id)		
+			converted = converted + 1
+		end
+	end
+	if converted&gt;0 then
+	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Converted "..converted.." rooms\n")
+	end
+end
+
+function mapWindowOpen()
+	mapMatrix = mapMatrix or createStopWatch()
+  addMapMenu("Add Symbol")
+  addMapEvent("Post Office", "onSymbol","Add Symbol")
+  addMapEvent("Store", "onSymbol","Add Symbol")
+  addMapEvent("Stable", "onSymbol","Add Symbol")
+  addMapEvent("Bank", "onSymbol","Add Symbol")
+  addMapEvent("Book", "onSymbol","Add Symbol")
+  addMapEvent("Swords", "onSymbol","Add Symbol")
+  addMapEvent("Bar", "onSymbol","Add Symbol")
+  addMapEvent("Gem", "onSymbol","Add Symbol")
+  addMapEvent("Clear", "onSymbol","Add Symbol")
+	convert_map_to_hash()
+	find_room()
+	if not mapAlias1 then tempAlias("^map count$",[[count_rooms()]]) end
+	if not mapAlias2 then tempAlias("^map colours$",[[get_Colours()]]) end
+	if not mapAlias3 then tempAlias("^map purge$",[[purge_map()]]) end
+	if not mapAlias4 then tempAlias("^map convert$",[[convert_map_to_hash()]]) end
+end
+
+registerAnonymousEventHandler("mapOpenEvent", "mapWindowOpen")
+registerAnonymousEventHandler("onSymbol", "onSymbol")
+registerAnonymousEventHandler("gmcp.Room.Id", "find_room")
+registerAnonymousEventHandler("gmcp.Room.Exits", "add_exits")
+registerAnonymousEventHandler("sysInstall", "mapper_Installed")
+</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
+		</ScriptGroup>
+	</ScriptPackage>
+	<KeyPackage />
+	<VariablePackage>
+		<HiddenVariables />
+	</VariablePackage>
+</MudletPackage>
