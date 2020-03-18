@@ -2,7 +2,22 @@
 <!DOCTYPE MudletPackage>
 <MudletPackage version="1.001">
 	<TriggerPackage />
-	<TimerPackage />
+	<TimerPackage>
+		<TimerGroup isActive="yes" isFolder="yes" isTempTimer="no" isOffsetTimer="no">
+			<name>AnimatedTimers</name>
+			<script></script>
+			<command></command>
+			<packageName>AnimatedTimers</packageName>
+			<time></time>
+			<Timer isActive="yes" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+				<name>Animate</name>
+				<script>demonnic.anitimer:animate()</script>
+				<command></command>
+				<packageName></packageName>
+				<time>00:00:00.005</time>
+			</Timer>
+		</TimerGroup>
+	</TimerPackage>
 	<AliasPackage>
 		<AliasGroup isActive="yes" isFolder="yes">
 			<name>UI Aliases</name>
@@ -39,6 +54,27 @@ find_room()</script>
 				<packageName></packageName>
 				<regex>^ui installmap$</regex>
 			</Alias>
+			<Alias isActive="yes" isFolder="no">
+				<name>ui theme</name>
+				<script>ui_Theme(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^ui theme (.*)$</regex>
+			</Alias>
+		</AliasGroup>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>AnimatedTimers</name>
+			<script></script>
+			<command></command>
+			<packageName>AnimatedTimers</packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>anitimer demo</name>
+				<script></script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^anitimer demo$</regex>
+			</Alias>
 		</AliasGroup>
 	</AliasPackage>
 	<ActionPackage />
@@ -57,14 +93,24 @@ find_room()</script>
 				<name>vitals</name>
 				<packageName></packageName>
 				<script>function update_statsBox()
+  gmcp = gmcp or {}
+  gmcp.Char = gmcp.Char or {}
+  gmcp.Char.Vitals = gmcp.Char.Vitals or {}
+  gmcp.Char.Status = gmcp.Char.Status or {}
+  gmcp.Char.Status.class = gmcp.Char.Status.class or {}
+  
   if gmcp.Char.Vitals.exp then
-  statsBox:echo(
-  [[&lt;span style="font-size:25px"&gt;&lt;centedr&gt;HP:]] .. gmcp.Char.Vitals.hp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxhp ..[[&lt;/span&gt;
-  &lt;br&gt;&lt;span style="font-size:25px"&gt;&lt;centerd&gt;MP:]] .. gmcp.Char.Vitals.mp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxmp ..[[&lt;/span&gt;
-  &lt;br&gt;&lt;span style="font-size:25px"&gt;&lt;centerd&gt;SP:]] .. gmcp.Char.Vitals.sp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxsp ..[[&lt;/span&gt;
-  &lt;br&gt;
+  local primeClass,secondClass = unpack(gmcp.Char.Status.class)
+  statsDetails:echo(
+  [[&lt;span style="style="font-family: 'Game Played';font-size:15px;"&gt;&lt;center&gt; ]] .. string.upper(primeClass .. "/".. secondClass) ..[[&lt;/span&gt;
   &lt;br&gt;&lt;span style="font-size:15px"&gt;&lt;centerd&gt;XP ]] .. comma_value(gmcp.Char.Vitals.exp) ..[[&lt;/span&gt;]]
   )
+    hpbar.text:echo([[&lt;span style="font-family: 'Game Played';font-size:25px;"&gt;&amp;nbsp;HP:]] .. gmcp.Char.Vitals.hp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxhp ..[[&lt;/span&gt;]])
+    mpbar.text:echo([[&lt;span style="font-family: 'Game Played';font-size:25px;"&gt;&amp;nbsp;MP:]] .. gmcp.Char.Vitals.mp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxmp ..[[&lt;/span&gt;]])
+    spbar.text:echo([[&lt;span style="font-family: 'Game Played';font-size:25px;"&gt;&amp;nbsp;SP:]] .. gmcp.Char.Vitals.sp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxsp ..[[&lt;/span&gt;]])
+    hpbar:setValue(gmcp.Char.Vitals.hp,gmcp.Char.Vitals.maxhp)
+    mpbar:setValue(gmcp.Char.Vitals.mp,gmcp.Char.Vitals.maxmp)
+    spbar:setValue(gmcp.Char.Vitals.sp,gmcp.Char.Vitals.maxsp)
   end
 end
 
@@ -89,12 +135,10 @@ registerAnonymousEventHandler("gmcp.Char.Vitals", "update_statsBox")</script>
   local tab = "Tell"
   local chat_msg = gmcp.Msg.Tell.msg
   local from = gmcp.Msg.Tell.from
---display(gmcp.Msg.Tell)
   if not table.contains(chatBox.consoles,tab) then
     chatBox:addTab(tab)
   end
-  cecho(from.." "..chat_msg.."\n")
-  chatBox:cecho(tab,from.." "..chat_msg.."\n")
+  chatBox:cecho(tab,"&lt;red&gt;"..from..":&lt;reset&gt; "..chat_msg.."\n")
 end
 
 function incoming_channel()
@@ -105,10 +149,10 @@ function incoming_channel()
   if not table.contains(chatBox.consoles,tab) then
     chatBox:addTab(tab)
   end
-  if gmcp.Msg.Chat.emote &gt; 0 then
+  if gmcp.Msg.Chat.emote &gt; 1 then
     boxMsg = chat_msg.."\n"
   else
-    boxMsg = chat_who.." "..chat_msg.."\n"
+    boxMsg = "&lt;cyan&gt;["..chat_who.."]&lt;reset&gt; "..chat_msg.."\n"
   end
   chatBox:cecho(tab,boxMsg)
 end
@@ -284,29 +328,16 @@ function toggleBox(uiElement)
   else
     uiElement:hide()
   end
+  do_Config()
 end
 
 function saveWindows()
-  statBoxContainer:save()
-  bodyBoxContainer:save()
-  buffBoxContainer:save()
-  configContainer:save()
-  cooldownBoxContainer:save()
-  castbarBoxContainer:save()
-  mapBoxContainer:save()
-  chatBoxContainer:save()
+  Adjustable.Container.saveAll()
   cecho("&lt;cyan&gt;»»&lt;reset&gt;Layout Saved&lt;cyan&gt;««&lt;reset&gt;\n")
 end
 
 function loadWindows()
-  statBoxContainer:load()
-  bodyBoxContainer:load()
-  buffBoxContainer:load()
-  configContainer:load()
-  cooldownBoxContainer:load()
-  castbarBoxContainer:load()
-  mapBoxContainer:load()
-  chatBoxContainer:load()
+  Adjustable.Container.loadAll()
   cecho("&lt;cyan&gt;»»&lt;reset&gt;Layout Restored&lt;cyan&gt;««&lt;reset&gt;\n")
 end
 
@@ -320,7 +351,53 @@ function SecondsToClock(seconds)
     secs = string.format("%02.f", math.floor(seconds - hours*3600 - mins *60));
     return mins..":"..secs
   end
-end</script>
+end
+
+function properCase(str)
+  return string.gsub(" "..str, "%W%l", string.upper):sub(2)
+end
+
+function ui_Theme(theme)
+  local adjLabelstyle
+  adjLabelstyle = adjLabelstyle or [[
+      background-color: rgba(0,0,0,100%);
+      border: 4px double ]]..theme..[[;
+      border-radius: 4px;]]
+  adjLabelstyle = adjLabelstyle..[[ qproperty-alignment: 'AlignLeft | AlignTop';]]
+  cont = cont or Geyser
+  for  k,v in pairs(cont.windowList) do
+    if v.type == "adjustablecontainer" then 
+      v.adjLabel:setStyleSheet(adjLabelstyle)
+    end
+    Adjustable.Container.saveAll(v)
+  end
+
+end
+</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>PartyStuff</name>
+				<packageName></packageName>
+				<script>function do_Party()
+  local who = next(gmcp.Party.Members)
+  partyList = partyList or {}
+  partyList[who] = gmcp.Party.Members[who] or {}
+  partyList[who].Vitals = gmcp.Party.Vitals[who] or {}
+end
+
+function do_Party_Vitals()
+  local who = next(gmcp.Party.Members)
+  partyList[who].Vitals = gmcp.Party.Vitals[who]
+end
+
+function testParty()
+end
+
+registerAnonymousEventHandler("gmcp.Party.Members","do_Party")
+registerAnonymousEventHandler("gmcp.Party.Vitals","do_Party_Vitals")
+registerAnonymousEventHandler("gmcp.Party","testParty")
+</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -328,11 +405,52 @@ end</script>
 				<packageName></packageName>
 				<script>function get_Ready()
   print(":: Getting stuff ready....")
-
+  setDiscordApplicationID("689229426529140740")
+  setDiscordLargeIcon("server-icon")
+  setDiscordElapsedStartTime(os.time(os.date("*t")))
 
 statBoxContainer = statBoxContainer or Adjustable.Container:new({name="statBoxContainer",titleText="Vitals"})
   statsBox = Geyser.Label:new({name = "Stats", color = "black", x = 0, y = 0, width = "100%", height = "100%"},statBoxContainer)
-  statsBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+  statsDetails = Geyser.Label:new({name = "Details", color = "black", x = 0, y = 125, width = "100%", height = "40px"},statsBox)  hpbar = Geyser.Gauge:new({name="hpbar",x="0%", y="5px",width="100%", height="35px"},statsBox)
+  hpbar:setStyleSheet([[qproperty-alignment: 'AlignBottom';]])
+  hpbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #f04141, stop: 0.1 #ef2929, stop: 0.49 #cc0000, stop: 0.5 #a40000, stop: 1 #cc0000);
+      border-top: 1px black solid;
+      border-left: 1px black solid;
+      border-bottom: 1px black solid;
+      border-radius: 7;
+      padding: 3px;]])
+  hpbar.back:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #bd3333, stop: 0.1 #bd2020, stop: 0.49 #990000, stop: 0.5 #700000, stop: 1 #990000);
+      border-width: 1px;
+      border-color: black;
+      border-style: solid;
+      border-radius: 7;
+      padding: 3px;]])
+  mpbar = Geyser.Gauge:new({name="mpbar",x="0%", y="45px",width="100%", height="35px"},statsBox)
+  mpbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #9841f0, stop: 0.1 #8c29f0, stop: 0.49 #6600cc, stop: 0.5 #5200a3, stop: 1 #6600cc);
+      border-top: 1px black solid;
+      border-left: 1px black solid;
+      border-bottom: 1px black solid;
+      border-radius: 7;
+      padding: 3px;]])
+  mpbar.back:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #7833bd, stop: 0.1 #6e20bd, stop: 0.49 #4c0099, stop: 0.5 #380070, stop: 1 #4c0099);
+      border-width: 1px;
+      border-color: black;
+      border-style: solid;
+      border-radius: 7;
+      padding: 3px;]])
+  spbar = Geyser.Gauge:new({name="spbar",x="0%", y="85px",width="100%", height="35px"},statsBox)
+  spbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #98f041, stop: 0.1 #8cf029, stop: 0.49 #66cc00, stop: 0.5 #52a300, stop: 1 #66cc00);
+      border-top: 1px black solid;
+      border-left: 1px black solid;
+      border-bottom: 1px black solid;
+      border-radius: 7;
+      padding: 3px;]])
+  spbar.back:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #78bd33, stop: 0.1 #6ebd20, stop: 0.49 #4c9900, stop: 0.5 #387000, stop: 1 #4c9900);
+      border-width: 1px;
+      border-color: black;
+      border-style: solid;
+      border-radius: 7;
+      padding: 3px;]])
 
 buffBoxContainer = buffBoxContainer or Adjustable.Container:new({name="buffBoxContainer",titleText="Buff Status"})
   buffBox = Geyser.Label:new({name = "Buffs", color = "black", x = 0, y = 0, width = "100%", height = "100%"},buffBoxContainer)
@@ -349,9 +467,9 @@ cooldownBoxContainer = cooldownBoxContainer or Adjustable.Container:new({name="c
 mapBoxContainer = mapBoxContainer or Adjustable.Container:new({name="mapBoxContainer",titleText="You Are Here!"})
 
 chatBoxContainer = chatBoxContainer or Adjustable.Container:new({name="chatBoxContainer",titleText="Chat"})
-  local stylesheet = [[background-color: rgb(0,180,0,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
+  local stylesheet = [[background-color: rgb(0,0,0,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
   local istylesheet = [[background-color: rgb(60,60,60,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
-  chatBox = EMCO:new({ x = "0", y = "0", width = "100%", height = "100%", gap = 2, activeTabCSS = stylesheet, inactiveTabCSS = istylesheet},chatBoxContainer)
+  chatBox = EMCO:new({ x = "0", y = "0", width = "100%", height = "100%", gap = 2, consoles = {"Tell"},activeTabCSS = stylesheet, inactiveTabCSS = istylesheet},chatBoxContainer)
   chatBox:enableScrollbars()
   chatBox:enableBlink()
   
@@ -360,60 +478,10 @@ castbarBoxContainer = castbarBoxContainer or Adjustable.Container:new({name="cas
   castbarBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
   castbarBoxContainer:resize(300,50)
 
-configContainer = configContainer or Adjustable.Container:new({name="configContainer",titleText="Config"})
-  configStats = Geyser.Label:new({name = "configStats", color = "black", x = 0, y = 0, width = "100%", height = "20"},configContainer)
-  configStats:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
-  configStats:setClickCallback("toggleBox",statBoxContainer)
-  configStats:echo("Stats Window")
-
-  configBuffs = Geyser.Label:new({name = "configBuffs", color = "black", x = 0, y = 20, width = "100%", height = "20"},configContainer)
-  configBuffs:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
-  configBuffs:setClickCallback("toggleBox",buffBoxContainer)
-  configBuffs:echo("Buffs/Debuffs Window")
-
-  configBody = Geyser.Label:new({name = "configBody", color = "black", x = 0, y = 40, width = "100%", height = "20"},configContainer)
-  configBody:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
-  configBody:setClickCallback("toggleBox",bodyBoxContainer)
-  configBody:echo("Limb Damage Window")
-
-  configCooldowns = Geyser.Label:new({name = "configCooldown", color = "black", x = 0, y = 60, width = "100%", height = "20"},configContainer)
-  configCooldowns:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
-  configCooldowns:setClickCallback("toggleBox",cooldownBoxContainer)
-  configCooldowns:echo("Cooldowns Window")
-
-  chatCooldowns = Geyser.Label:new({name = "chatCooldown", color = "black", x = 0, y = 80, width = "100%", height = "20"},configContainer)
-  chatCooldowns:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
-  chatCooldowns:setClickCallback("toggleBox",chatBoxContainer)
-  chatCooldowns:echo("Chat Window")
-
-
-
-  configMap = Geyser.Label:new({name = "configmap", color = "black", x = 0, y = 100, width = "100%", height = "20"},configContainer)
-  configMap:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
-  configMap:setClickCallback("toggleBox",mapBoxContainer)
-  configMap:echo("Map")
-
-
-  configSave = Geyser.Label:new({name = "configSave", color = "black", x = 0, y = 120, width = "100%", height = "20"},configContainer)
-  configSave:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
-  configSave:setClickCallback("saveWindows")
-  configSave:echo("Save Layout")
-  configLoad = Geyser.Label:new({name = "configLoad", color = "black", x = 0, y = 140, width = "100%", height = "20"},configContainer)
-  configLoad:setStyleSheet([[QLabel::hover {background-color: slateblue};]])
-  configLoad:setClickCallback("loadWindows")
-  configLoad:echo("Load Layout")
-
+do_Config()
 -- 💾
 
-statBoxContainer:load()
-bodyBoxContainer:load()
-buffBoxContainer:load()
-configContainer:load()
-cooldownBoxContainer:load()
-castbarBoxContainer:load()
-mapBoxContainer:load()
---chatBoxContainer:load()
-
+Adjustable.Container.loadAll()
 
 mudlet = mudlet or {}; mudlet.mapper_script = true
 eleMap = eleMap or {}
@@ -428,6 +496,70 @@ eleMap = Geyser.Mapper:new({
 
 end
 
+function do_Config()
+local configCSS = [[QLabel{padding-left:25px;}QLabel::hover {background-image : url("]]..getMudletHomeDir()..[[/imgs/FF7Cursor.png"); background-repeat:no-repeat;};]]
+configContainer = configContainer or Adjustable.Container:new({name="configContainer",titleText="Config"})
+  configStats = configStats or Geyser.Label:new({name = "configStats", color = "black", x = 0, y = 0, width = "100%", height = "20"},configContainer)
+  configStats:setStyleSheet(configCSS)
+  configStats:setClickCallback("toggleBox",statBoxContainer)
+  local hiddenState = ""
+  if (statBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configStats:echo("Stats Window "..hiddenState)
+
+  configBuffs = configBuffs or Geyser.Label:new({name = "configBuffs", color = "black", x = 0, y = 20, width = "100%", height = "20"},configContainer)
+  configBuffs:setStyleSheet(configCSS)
+  configBuffs:setClickCallback("toggleBox",buffBoxContainer)
+  local hiddenState = ""
+  if (buffBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configBuffs:echo("Buffs/Debuffs Window "..hiddenState)
+
+  configBody = configBody or Geyser.Label:new({name = "configBody", color = "black", x = 0, y = 40, width = "100%", height = "20"},configContainer)
+  configBody:setStyleSheet(configCSS)
+  configBody:setClickCallback("toggleBox",bodyBoxContainer)
+  local hiddenState = ""
+  if (bodyBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configBody:echo("Limb Damage Window "..hiddenState)
+
+  configCooldowns = configCooldowns or Geyser.Label:new({name = "configCooldown", color = "black", x = 0, y = 60, width = "100%", height = "20"},configContainer)
+  configCooldowns:setStyleSheet(configCSS)
+  configCooldowns:setClickCallback("toggleBox",cooldownBoxContainer)
+  local hiddenState = ""
+  if (cooldownBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configCooldowns:echo("Cooldowns Window "..hiddenState)
+
+  chatCooldowns = chatCooldowns or Geyser.Label:new({name = "chatCooldown", color = "black", x = 0, y = 80, width = "100%", height = "20"},configContainer)
+  chatCooldowns:setStyleSheet(configCSS)
+  chatCooldowns:setClickCallback("toggleBox",chatBoxContainer)
+  local hiddenState = ""
+  if (chatBoxContainer.hidden == false) then hiddenState = "✔️" end
+  chatCooldowns:echo("Chat Window "..hiddenState)
+
+  configMap = configMap or Geyser.Label:new({name = "configmap", color = "black", x = 0, y = 100, width = "100%", height = "20"},configContainer)
+  configMap:setStyleSheet(configCSS)
+  configMap:setClickCallback("toggleBox",mapBoxContainer)
+  local hiddenState = ""
+  if (mapBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configMap:echo("Map "..hiddenState)
+
+  configcastbar = configcastbar or Geyser.Label:new({name = "configcastbar", color = "black", x = 0, y = 120, width = "100%", height = "20"},configContainer)
+  configcastbar:setStyleSheet(configCSS)
+  configcastbar:setClickCallback("toggleBox",castbarBoxContainer)
+  local hiddenState = ""
+  if (castbarBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configcastbar:echo("CastBar "..hiddenState)
+
+
+  configSave = configSave or Geyser.Label:new({name = "configSave", color = "black", x = 0, y = 140, width = "100%", height = "20"},configContainer)
+  configSave:setStyleSheet(configCSS)
+  configSave:setClickCallback("saveWindows")
+  configSave:echo("Save Layout")
+  
+  configLoad = configLoad or Geyser.Label:new({name = "configLoad", color = "black", x = 0, y = 160, width = "100%", height = "20"},configContainer)
+  configLoad:setStyleSheet(configCSS)
+  configLoad:setClickCallback("loadWindows")
+  configLoad:echo("Load Layout")
+end
+
 function first_Install(_, pkg)
   if pkg == "EleUI2" then
     cecho("&lt;cyan&gt;»»&lt;reset&gt;Ele Drag and Drop UI Installed&lt;cyan&gt;««&lt;reset&gt;\n")
@@ -435,13 +567,11 @@ function first_Install(_, pkg)
     cecho("&lt;cyan&gt;»»&lt;reset&gt;ui config - shows config window&lt;cyan&gt;««&lt;reset&gt;\n")
     cecho("&lt;cyan&gt;»»&lt;reset&gt;ui installmap - Installs pre-filled map&lt;cyan&gt;««&lt;reset&gt;\n")
     get_Ready()
-    statBoxContainer:hide()
-    bodyBoxContainer:hide()
-    buffBoxContainer:hide()
-    configContainer:hide()
-    cooldownBoxContainer:hide()
-    castbarBoxContainer:hide()
-    mapBoxContainer:hide()
+  for  k,v in pairs(Geyser.windowList) do
+    if v.type == "adjustablecontainer" then 
+      v:hide()
+    end
+  end
   end
 end
 
@@ -462,519 +592,6 @@ registerAnonymousEventHandler("sysInstallPackage", "first_Install")
 end
 
 registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")</script>
-				<eventHandlerList />
-			</Script>
-			<Script isActive="yes" isFolder="no">
-				<name>AdjustableContainer</name>
-				<packageName></packageName>
-				<script>--Adjustable Container
---Just use it like a normal Geyser Container with some extras like: 
---moveable, adjustable size, attach to borders, minimizeable, save/load...
---right click on top border for menu
---Inspired heavily by Adjustable Label, GUIFrame and EMCO
---by Edru 07Feb2020
-
-Adjustable = Adjustable or {}
-Adjustable.Container = Geyser.Container:new({
-  name = "AdjustableContainerClass",})
-local adjustInfo
-
-local function make_percent(num)
-  num = num * 100
-  num = tostring(num).."%"
-  return num
-end
-
-local function shrink_title(lbl)
-    local  w  =  lbl:get_width()
-    local titleText = lbl.titleText
-    if w &lt; (#titleText-10)*6.6+20 then
-      titleText = string.sub(lbl.titleText,0,math.floor(w/6)).."..."
-    end
-    if #titleText &lt;= 15 then titleText="" end
-      lbl.adjLabel:echo(titleText,lbl.titleTxtColor,"l")
-end
-
-
-function Adjustable.Container.finishPercent (container,size_as_percent, position_as_percent)
-  local x, y, w, h = container:get_x(), container:get_y(), container:get_width(), container:get_height()
-  local winw, winh = getMainWindowSize()
-  x, y, w, h = make_percent(x/winw), make_percent(y/winh), make_percent(w/winw), make_percent(h/winh)
-  if size_as_percent then container:resize(w,h) end
-  if position_as_percent then container:move(x,y) end
-end
-
-function Adjustable.Container.onClick(container,event)
-  container.rCLabel:hide()
-  if event.button == "LeftButton" and not(container.locked) then
-      local x, y = getMousePosition()
-      local w, h = container.adjLabel:get_width(), container.adjLabel:get_height()
-      local x1, y1 = x - event.x, y - event.y
-      local x2, y2 = x1 + w, y1 + h
-      local left, right, top, bottom = event.x &lt;= 10, x &gt;= x2 - 10, event.y &lt;= 3, y &gt;= y2 - 10
-      if right and left then left = false end
-      if top and bottom then top = false end
-      local move = not (right or left or top or bottom)
-      if container.minimized then move = true end
-      adjustInfo = {name = container.adjLabel.name, top = top, bottom = bottom, left = left, right = right, move = move, x = x, y = y}
-  end
-  if event.button == "RightButton" then
-      if container.hideTimer then killTimer(container.hideTimer) end
-      container.hideTimer = tempTimer(5,function() container.rCLabel:hide()end)
-      container.rCLabel:move(event.x,event.y)
-      container.rCLabel:show()
-      for i=1,#container.att do
-        container.att[i]:hide()
-      end
-      container.lockLabel:raise()
-      container.minLabel:raise()
-      container.saveLabel:raise()
-      container.loadLabel:raise()
-      container.attLabel:raise()
-  end
-end
-
-function Adjustable.Container.onRelease (container,event)
-  if event.button == "LeftButton"  and adjustInfo and adjustInfo.name == container.adjLabel.name then
-      adjustInfo = nil
-  end
-  Adjustable.Container.finishPercent(container,true,true)
-end
-
-function Adjustable.Container.onMove (lbl, event)
-  if adjustInfo and adjustInfo.name == lbl.adjLabel.name then
-      lbl:adjustBorder()
-      local x, y = getMousePosition()
-      local winw, winh = getMainWindowSize()
-      local x1, y1, w, h = lbl.get_x(), lbl.get_y(), lbl:get_width(), lbl:get_height()
-      local dx, dy = adjustInfo.x - x, adjustInfo.y - y
-      local max, min = math.max, math.min
-      if adjustInfo.move then
-          local tx, ty = max(0,x1-dx), max(0,y1-dy)
-          tx, ty = min(tx, winw - w), min(ty, winh - h)
-          lbl:move(tx, ty)
-      else
-          local w2, h2, x2, y2 = w - dx, h - dy, x1 - dx, y1 - dy
-          local tx, ty, tw, th = x1, y1, w, h
-          if adjustInfo.top then
-              ty, th = y2, h + dy
-          elseif adjustInfo.bottom then
-              th = h2
-          end
-          if adjustInfo.left then
-              tx, tw = x2, w + dx
-          elseif adjustInfo.right then
-              tw = w2
-          end
-          tx, ty, tw, th = max(0,tx), max(0,ty), max(10,tw), max(10,th)
-          tw, th = min(tw, winw), min(th, winh)
-          tx, ty = min(tx, winw-tw), min(ty, winh-th)
-          lbl:move(tx, ty)
-          lbl:resize(tw, th)
-          shrink_title(lbl)
-      end
-      adjustInfo.x, adjustInfo.y = x, y
-  end
-end
-
-function Adjustable.Container:fPos()
-local winw, winh = getMainWindowSize()
-local fpos = ""
-if  (winh*0.8)-self.get_height()&lt;= self.get_y()  then  fpos = fpos.."bottom," end
-if  (winw*0.8)-self.get_width() &lt;= self.get_x() then  fpos = fpos.."right," end
-if self.get_y() &lt;= winh*0.2 then fpos = fpos.."top," end
-if self.get_x() &lt;= winw*0.2 then fpos = fpos.."left" end
-return fpos
-end
-
-
-function Adjustable.Container:adjustBorder()
-local winw, winh = getMainWindowSize()
-local where = false
-if type(self.attached) == "string" then 
-  where = self.attached:lower()
-  if string.find(self:fPos(),where) == nil or self.minimized or self.hidden then self:detach()
-  else
-    if        where == "right"   then setBorderRight(winw-self.get_x()) 
-      elseif  where == "left"    then setBorderLeft(self.get_width()+self.get_x())  
-      elseif  where == "bottom"  then setBorderBottom(winh-self.get_y())  
-      elseif  where == "top"     then setBorderTop(self.get_height()+self.get_y()) 
-      else self.attached= false 
-    end
-  end
-  else
-    return false
-end
-end
-
-function Adjustable.Container:resizeBorder()
-local winw, winh = getMainWindowSize()
-self.timer_active = self.timer_active or true
--- Check if Window resize is happened. 
--- If that is not checked this creates an infinite loop and chrashes because setBorder also causes a resize event 
-if winw ~= self.oldvalue and self.timer_active then
-  self.timer_active = false
-  tempTimer(0.2, function() self:adjustBorder() end)
-end
-self.oldvalue = winw
-end
-
- 
-function Adjustable.Container:attachToBorder(border)
-if self.attached then self:detach() end  
-self.attached = border
-self:adjustBorder()
-self.resizeHandlerID=registerAnonymousEventHandler("sysWindowResizeEvent", function() self:resizeBorder() end)
-end
-
-function Adjustable.Container:detach()  
-self:resetBorder(self.attached)
-self.attached=false
-if self.resizeHandlerID then killAnonymousEventHandler(self.resizeHandlerID) end
-end
-
-function Adjustable.Container:resetBorder(where)
-if        where == "right"   then setBorderRight(0) 
-  elseif  where == "left"    then setBorderLeft(0)  
-  elseif  where == "bottom"  then setBorderBottom(0)  
-  elseif  where == "top"     then setBorderTop(0)
-end
-end
-
-
-
-function Adjustable.Container:createContainers()
-  self.adjLabel = Geyser.Label:new({
-  x = "0",
-      y = "0",
-      height = "100%",
-      width = "100%",
-  color = "green"
-  },self)
-  self.Inside = Geyser.Container:new({
-  x = "10",
-      y = "20",
-      height = "-10",
-      width = "-10",
-  },self)
-end
-
-function Adjustable.Container:lockContainer()
-  self.rCLabel:hide()
-  if self.minimized == false then
-  self.Inside:resize("100%",-1)
-  self.Inside:move(0,10)
-  self.adjLabel:setStyleSheet(self.adjLabelstyle..[[border: 0;]])
-  self.exitLabel:hide()
-  self.minimizeLabel:hide()
-  self.locked = true
-  self:adjustBorder()
-  self.adjLabel:echo("")
-  end
-end
-
-function Adjustable.Container:unlockContainer()
-  self.rCLabel:hide()
-  shrink_title(self)
-  self.Inside:resize(-10,-10)
-  self.Inside:move(10,20)
-  self.adjLabel:setStyleSheet(self.adjLabelstyle)
-  self.exitLabel:show()
-  self.minimizeLabel:show()
-  self.locked = false
-end
-
-function Adjustable.Container.onClickL(container)
-if container.locked == true then
-  container:unlockContainer()
-else
-  container:lockContainer()
-end
-end
-
-
-
-function Adjustable.Container.hideObj(lbl,event)
-  lbl:hide()
-  lbl:adjustBorder()
-end
-
-function Adjustable.Container.onClickMin(lbl)
-  lbl.rCLabel:hide()
-  if lbl.minimized == false then
-    lbl:minimize()
-  else
-    lbl:restore()
-  end
-end
-
-function Adjustable.Container.onClickSave(lbl)
-  lbl.rCLabel:hide()
-  lbl:save()
-end
-
-function Adjustable.Container.onClickLoad(lbl)
-  lbl.rCLabel:hide()
-  lbl:load()
-end
-
-function Adjustable.Container:minimize()
-  if self.minimized == false and self.locked == false then
-      self.origh = self.height
-      self.Inside:hide()
-      self:resize(nil,25)
-      self.minimized = true
-      self:adjustBorder()
-  end
-end
-
-function Adjustable.Container:restore()
-  if self.minimized == true then
-      self.origh = self.origh or "25%"
-      self.Inside:show()
-      self:resize(nil,self.origh)
-      self.minimized = false
-      self:adjustBorder()
-  end
-end
-
-
-function onLeaveColor(lbl,txt,color)
-  color = color or "black"
-  lbl:echo(txt,color,"l")
-end
-
-function onEnterColor(lbl,txt,color)
-  color = color or "white"
-  lbl:echo(txt,color,"l")
-end
-
-function Adjustable.Container.onClickAtt(container)
-local attm = string.split(container:fPos(), ",")
-local j = 1
-if container.hideTimer then killTimer(container.hideTimer) end
-   container.hideTimer = tempTimer(5,function() container.rCLabel:hide()end)
-for i=1,#attm do
-  container.att[math.min(3,i)].hidden = true
-  if attm[i] ~= "" and j &lt; 4 then
-    container.att[j]:echo(attm[i],"black","c")
-    container.att[j]:show()
-    container.att[j]:raise()
-    container.att[j]:setClickCallback("Adjustable.Container.chBorder",container,attm[i])
-    j=j+1
-  end
-end  
-end
-
-function Adjustable.Container.chBorder(container,side)
-container:attachToBorder(side)
-container.rCLabel:hide()   
-end
-
-function Adjustable.Container:createLabels()
-  self.exitLabel = Geyser.Label:new({
-  x=-25,y=4,width = "15", height = "15",fontSize=8
-
-  },self)
-  self.exitLabel:echo("&lt;center&gt;x&lt;/center&gt;")
-
-
-  self.minimizeLabel = Geyser.Label:new({
-  x=-45,y=4,width = "15", height = "15",fontSize=8
-
-  },self)
-  self.minimizeLabel:echo("&lt;center&gt;-&lt;/center&gt;")
-
-  self.rCLabel = Geyser.Label:new({
-  x=-45,y=4,width = "200", height = "100",fontSize=8
-
-  },self)
-
-  self.lockLabel = Geyser.Label:new({
-  x=0,y=0,width = "100", height = "20",fontSize=8,color="white"
-
-  },self.rCLabel)
-  self.minLabel = Geyser.Label:new({
-  x=0,y=20,width = "100", height = "20",fontSize=8,color="white"
-
-  },self.rCLabel)
-
-  self.saveLabel = Geyser.Label:new({
-  x=0,y=40,width = "100", height = "20",fontSize=8,color="white"
-  },self.rCLabel)
-  
-  self.loadLabel = Geyser.Label:new({
-  x=0,y=60,width = "100", height = "20",fontSize=8,color="white"
-  },self.rCLabel)
-  
-  self.attLabel = Geyser.Label:new({
-  x=0,y=80,width = "100", height = "20",fontSize=8,color="white"
-  },self.rCLabel)
-  
-  self.att[1] = Geyser.Label:new({
-  x=100,y=80,width = "80", height = "20",fontSize=8,color="white"
-  },self.rCLabel)
-  
-  self.att[2] = Geyser.Label:new({
-  x=100,y=60,width = "80", height = "20",fontSize=8,color="white"
-  },self.rCLabel)
-  
-  self.att[3] = Geyser.Label:new({
-  x=100,y=40,width = "80", height = "20",fontSize=8,color="white"
-  },self.rCLabel)
-  
-  self.rCLabel:hide()
-
-  self.lockLabel:echo(self.lockLtxt,"black","l")
-  self.minLabel:echo(self.minimizeLtxt,"black","l")
-  self.saveLabel:echo(self.saveLtxt,"black","l")
-  self.loadLabel:echo(self.loadLtxt,"black","l")
-  self.attLabel:echo(self.attLtxt,"black","l")
-
-
-
-  setLabelOnEnter(self.lockLabel.name,"onEnterColor",self.lockLabel,self.lockLtxt,nil)
-  setLabelOnEnter(self.minLabel.name,"onEnterColor",self.minLabel,self.minimizeLtxt,nil)
-  setLabelOnEnter(self.saveLabel.name,"onEnterColor",self.saveLabel,self.saveLtxt,nil)
-  setLabelOnEnter(self.loadLabel.name,"onEnterColor",self.loadLabel,self.loadLtxt,nil)
-  setLabelOnEnter(self.attLabel.name,"onEnterColor",self.attLabel,self.attLtxt,nil)
-
-
-  setLabelOnLeave(self.lockLabel.name,"onLeaveColor",self.lockLabel,self.lockLtxt,nil)
-  setLabelOnLeave(self.minLabel.name,"onLeaveColor",self.minLabel,self.minimizeLtxt,nil)
-  setLabelOnLeave(self.saveLabel.name,"onLeaveColor",self.saveLabel,self.saveLtxt,nil)
-  setLabelOnLeave(self.loadLabel.name,"onLeaveColor",self.loadLabel,self.loadLtxt,nil)
-  setLabelOnLeave(self.attLabel.name,"onLeaveColor",self.attLabel,self.attLtxt,nil)
-
-end
-
-
-
-function Adjustable.Container:add(window,cons)
-  Geyser.Container.add(self,window,cons)
-  --Add new Windows to the Inside Container
-  local wnr = self.wnr
-  wnr = wnr or 555
-  wnr = wnr + 1
-  --Add new Windows to the Inside Container
-  if self.windows[wnr] ~= nil then self.Inside:add(self.windowList[self.windows[wnr]]) end
-end
-
-function Adjustable.Container:show()
-  Geyser.Container.show(self)
-  self.rCLabel:hide()
-end
-
-function Adjustable.Container:save()
-  local mytable = {}
-  mytable.x = self.x
-  mytable.y = self.y
-  mytable.height= self.height
-  mytable.width= self.width
-  mytable.minimized= self.minimized
-  mytable.origh= self.origh
-  mytable.locked = self.locked
-  mytable.attached = self.attached
-  mytable.hidden = self.hidden
-  if not(io.exists(getMudletHomeDir().."/AdjContainer/")) then lfs.mkdir(getMudletHomeDir().."/AdjContainer/") end
-  table.save(getMudletHomeDir().."/AdjContainer/"..self.name..".lua", mytable)
-end
-
-function Adjustable.Container:load()
-  local mytable = {}
-  if io.exists(getMudletHomeDir().."/AdjContainer/"..self.name..".lua") then
-      table.load(getMudletHomeDir().."/AdjContainer/"..self.name..".lua", mytable)
-  end
-  if mytable.x then
-      self:move(mytable.x,mytable.y)
-      self:resize(mytable.width,mytable.height)
-      self.minimized = mytable.minimized
-  if mytable.locked == true then self:lockContainer()  else self:unlockContainer() end
-  if self.minimized == true then self.Inside:hide() self:resize(nil,25) else self.Inside:show() end
-      self.origh = mytable.origh
-  end
-  if mytable.attached then self:attachToBorder(mytable.attached) end
-  if mytable.hidden == true then self:hide() else self:show() end
-  self:adjustBorder()
---  self:show()
-end
-
-
-
-Adjustable.Container.parent = Geyser.Container
-
-function Adjustable.Container:new(container)
-
-  local me = self.parent:new(container)
-  setmetatable(me, self)
-  self.__index = self
-  me.minimized = false
-  me.locked = false
-  me.formatL = [==[&lt;style&gt;
-                span { font-size: 16px;}
-                span a { font-size: 10px;}
-                &lt;/style&gt;
-                &lt;span&gt; %s&lt;a&gt; %s&lt;/a&gt;&lt;/span&gt;
-                ]==]
-  me.lockLtxt = string.format(me.formatL,"🔒","Lock/Unlock")
-  me.minimizeLtxt=string.format(me.formatL,"🗕","Min/Restore")
-  me.saveLtxt =string.format(me.formatL,"💾","Save")
-  me.loadLtxt =string.format(me.formatL,"📁","Load")
-  me.attLtxt=string.format(me.formatL,"⚓","Attach to:")
-  me:createContainers()
-  me.att = me.att or {}
-  me:createLabels()
-  me.adjLabel:setClickCallback("Adjustable.Container.onClick",me)
-  me.adjLabel:setReleaseCallback("Adjustable.Container.onRelease",me)
-  me.adjLabel:setMoveCallback("Adjustable.Container.onMove",me)
-  me.menustyle = me.menustyle or [[QLabel::hover{ background-color: rgba(0,150,255,100%);}]]
-  me.labelsytle= me.labelsytle or [[
-      QLabel{ border-radius: 7px; background-color: rgba(255,30,30,100%);}
-      QLabel::hover{
-          background-color: rgba(255,0,0,50%);
-      }
-      ]]
-  me.adjLabelstyle = me.adjLabelstyle or [[
-      background-color: rgba(0,0,0,100%);
-      border: 4px double green;
-      border-radius: 4px;]]
-  me.adjLabelstyle = me.adjLabelstyle..[[ qproperty-alignment: 'AlignLeft | AlignTop';]]
-
-  
-  me.adjLabel:setStyleSheet(me.adjLabelstyle)
-  me.exitLabel:setStyleSheet(me.labelsytle)
-  me.minimizeLabel:setStyleSheet(me.labelsytle)
-
-  me.rCLabel:setStyleSheet([[background-color: rgba(0,0,0,0%);]])
-  
-  me.lockLabel:setStyleSheet(me.menustyle)
-  me.minLabel:setStyleSheet(me.menustyle)
-  me.saveLabel:setStyleSheet(me.menustyle)
-  me.loadLabel:setStyleSheet(me.menustyle)
-  me.attLabel:setStyleSheet(me.menustyle)
-  
-  for i=1,#me.att do
-    me.att[i]:hide()
-    me.att[i]:setStyleSheet(me.menustyle)
-  end
-
-  me.minLabel:setClickCallback("Adjustable.Container.onClickMin",me)
-  me.saveLabel:setClickCallback("Adjustable.Container.onClickSave",me)
-  me.lockLabel:setClickCallback("Adjustable.Container.onClickL",me)
-  me.loadLabel:setClickCallback("Adjustable.Container.onClickLoad",me)
-  me.origh = me.height
-  me.exitLabel:setClickCallback("Adjustable.Container.hideObj",me)
-  me.minimizeLabel:setClickCallback("Adjustable.Container.onClickMin",me)
-  me.attLabel:setClickCallback("Adjustable.Container.onClickAtt",me)
-  me.wnr = #me.windows
-  me:adjustBorder()
-  me.titleTxtColor=me.titleTxtColor or "green"
-  me.titleText=me.titleText or me.name.." - Adjustable Container"
-  me.titleText = "&amp;nbsp;&amp;nbsp;"..me.titleText
-  shrink_title(me)
-  return me
-
-end</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -1013,6 +630,643 @@ end
 --registerAnonymousEventHandler("sysConnectionEvent", "json_to_value")</script>
 				<eventHandlerList />
 			</Script>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>AdjustableContainer</name>
+				<packageName>AdjustableContainer</packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>AdjustableContainer</name>
+					<packageName></packageName>
+					<script>--Adjustable Container V1.3
+--Just use it like a normal Geyser Container with some extras like: 
+--moveable, adjustable size, attach to borders, minimizeable, save/load...
+--right click on top border for menu
+--Inspired heavily by Adjustable Label, GUIFrame and EMCO
+--by Edru 27Feb2020
+
+Adjustable = Adjustable or {}
+Adjustable.Container = Adjustable.Container or Geyser.Container:new({
+  name = "AdjustableContainerClass",})
+local adjustInfo
+
+local function make_percent(num)
+  num = num * 100
+  num = tostring(num).."%"
+  return num
+end
+
+local function shrink_title(lbl)
+    local  w  =  lbl:get_width()
+    local titleText = lbl.titleText
+    if #titleText &lt;= 15 then titleText = titleText.."   " end
+    if w &lt; (#titleText-10)*6.6+20 then
+      titleText = string.sub(lbl.titleText,0,math.floor(w/6)).."..."
+    end
+    if #titleText &lt;= 15 then titleText="" end
+      lbl.adjLabel:echo(titleText,lbl.titleTxtColor,"l")
+end
+  
+function Adjustable.Container:setTitle(text,color)
+    text = text or self.name.." - Adjustable Container"
+    self.titleTxtColor = color or "green"
+    self.titleText = "&amp;nbsp;&amp;nbsp;"..text
+    shrink_title(self)
+end
+
+
+function Adjustable.Container:finishPercent (size_as_percent, position_as_percent)
+  local x, y, w, h = self:get_x(), self:get_y(), self:get_width(), self:get_height()
+  local winw, winh = getMainWindowSize()
+  if (self.container) and (self.container ~= Geyser) then
+    x,y = x-self.container.get_x(),y-self.container.get_y()
+    winw, winh = self.container.get_width(), self.container.get_height()
+  end
+  x, y, w, h = make_percent(x/winw), make_percent(y/winh), make_percent(w/winw), make_percent(h/winh)
+  if size_as_percent then self:resize(w,h) end
+  if position_as_percent then self:move(x,y) end
+end
+
+function Adjustable.Container:onClick(event)
+ self.rCLabel:hide()
+  if event.button == "LeftButton" and not(self.locked) then
+      local x, y = getMousePosition()
+      local w, h = self.adjLabel:get_width(), self.adjLabel:get_height()
+      local x1, y1 = x - event.x, y - event.y
+      local x2, y2 = x1 + w, y1 + h
+      local left, right, top, bottom = event.x &lt;= 10, x &gt;= x2 - 10, event.y &lt;= 3, y &gt;= y2 - 10
+      if right and left then left = false end
+      if top and bottom then top = false end
+      local move = not (right or left or top or bottom)
+      if self.minimized then move = true end
+      adjustInfo = {name = self.adjLabel.name, top = top, bottom = bottom, left = left, right = right, move = move, x = x, y = y}
+  end
+  if event.button == "RightButton" then
+      if self.hideTimer then killTimer(self.hideTimer) end
+      self.hideTimer = tempTimer(5,function() self.rCLabel:hide()end)
+      self.rCLabel:move(event.x,event.y)
+      self.rCLabel:show()
+      if self.container == Geyser then
+        for i=1,#self.att do
+          self.att[i]:hide()
+        end
+        self.attLabel:raise()
+      end
+      for i=1, #self.locksl do
+        self.locksl[i]:hide()
+      end
+      self.lockLabel:raise()
+      self.minLabel:raise()
+      self.saveLabel:raise()
+      self.loadLabel:raise()
+      self.lockSLabel:raise()
+  end
+end
+
+function Adjustable.Container:onRelease (event)
+  if event.button == "LeftButton"  and adjustInfo and adjustInfo.name == self.adjLabel.name then
+      adjustInfo = nil
+  end
+  Adjustable.Container.finishPercent(self,true,true)
+end
+
+function Adjustable.Container:onMove (event)
+  if adjustInfo and adjustInfo.name == self.adjLabel.name then
+      self:adjustBorder()
+      local x, y = getMousePosition()
+      local winw, winh = getMainWindowSize()
+      local x1, y1, w, h = self.get_x(), self.get_y(), self:get_width(), self:get_height()
+      if (self.container) and (self.container ~= Geyser) then
+        --x,y = 
+        x1,y1 = x1-self.container.get_x(), y1-self.container.get_y()
+        winw, winh = self.container.get_width(), self.container.get_height()
+      end
+      local dx, dy = adjustInfo.x - x, adjustInfo.y - y
+      local max, min = math.max, math.min
+      if adjustInfo.move then
+          local tx, ty = max(0,x1-dx), max(0,y1-dy)
+          tx, ty = min(tx, winw - w), min(ty, winh - h)
+          self:move(tx, ty)
+          --[[
+          if x1-dx &lt;-5 then self:attachToBorder("left") end
+          if y1-dy &lt;-5 then self:attachToBorder("top") end
+          if winw - w &lt; tx+0.1 then self:attachToBorder("right") end
+          if winh - h &lt; ty+0.1 then self:attachToBorder("bottom") end--]]
+      else
+          local w2, h2, x2, y2 = w - dx, h - dy, x1 - dx, y1 - dy
+          local tx, ty, tw, th = x1, y1, w, h
+          if adjustInfo.top then
+              ty, th = y2, h + dy
+          elseif adjustInfo.bottom then
+              th = h2
+          end
+          if adjustInfo.left then
+              tx, tw = x2, w + dx
+          elseif adjustInfo.right then
+              tw = w2
+          end
+          tx, ty, tw, th = max(0,tx), max(0,ty), max(10,tw), max(10,th)
+          tw, th = min(tw, winw), min(th, winh)
+          tx, ty = min(tx, winw-tw), min(ty, winh-th)
+          self:move(tx, ty)
+          local minw, minh = 0,0
+          if self.container == Geyser then minw, minh = 75,25 end
+          self:resize(max(minw,tw), max(minh,th))
+          shrink_title(self)
+      end
+      adjustInfo.x, adjustInfo.y = x, y
+  end
+end
+
+function Adjustable.Container:fPos()
+  local winw, winh = getMainWindowSize()
+  local fpos = ""
+  if  (winh*0.8)-self.get_height()&lt;= self.get_y()  then  fpos = fpos.."bottom," end
+  if  (winw*0.8)-self.get_width() &lt;= self.get_x() then  fpos = fpos.."right," end
+  if self.get_y() &lt;= winh*0.2 then fpos = fpos.."top," end
+  if self.get_x() &lt;= winw*0.2 then fpos = fpos.."left" end
+  return fpos
+end
+
+function Adjustable.Container:adjustBorder()
+  local winw, winh = getMainWindowSize()
+  local where = false
+  if type(self.attached) == "string" then 
+    where = self.attached:lower()
+    if string.find(self:fPos(),where) == nil or self.minimized or self.hidden then self:detach()
+    else
+      if        where == "right"   then setBorderRight(winw-self.get_x()) 
+        elseif  where == "left"    then setBorderLeft(self.get_width()+self.get_x())  
+        elseif  where == "bottom"  then setBorderBottom(winh-self.get_y())  
+        elseif  where == "top"     then setBorderTop(self.get_height()+self.get_y()) 
+        else self.attached= false 
+      end
+    end
+    else
+      return false
+  end
+end
+
+function Adjustable.Container:resizeBorder()
+  local winw, winh = getMainWindowSize()
+  self.timer_active = self.timer_active or true
+  -- Check if Window resize is happened. 
+  -- If that is not checked this creates an infinite loop and chrashes because setBorder also causes a resize event 
+  if winw ~= self.oldvalue and self.timer_active then
+    self.timer_active = false
+    tempTimer(0.2, function() self:adjustBorder() end)
+  end
+  self.oldvalue = winw
+end
+ 
+function Adjustable.Container:attachToBorder(border)
+    if self.attached then self:detach() end  
+    self.attached = border
+    self:adjustBorder()
+    self.resizeHandlerID=registerAnonymousEventHandler("sysWindowResizeEvent", function() self:resizeBorder() end)
+end
+
+function Adjustable.Container:detach()  
+    self:resetBorder(self.attached)
+    self.attached=false
+    if self.resizeHandlerID then killAnonymousEventHandler(self.resizeHandlerID) end
+end
+
+function Adjustable.Container:resetBorder(where)
+    if        where == "right"   then setBorderRight(0) 
+      elseif  where == "left"    then setBorderLeft(0)  
+      elseif  where == "bottom"  then setBorderBottom(0)  
+      elseif  where == "top"     then setBorderTop(0)
+    end
+end
+
+function Adjustable.Container:createContainers()
+  self.adjLabel = Geyser.Label:new({
+      x = "0",
+      y = "0",
+      height = "100%",
+      width = "100%",
+      color = "green"
+  },self)
+  self.Inside = Geyser.Container:new({
+      x = self.padding,
+      y = self.padding*2,
+      height = "-"..self.padding,
+      width = "-"..self.padding,
+  },self)
+end
+
+function Adjustable.Container:lockContainer(lockStyle)
+  self.rCLabel:hide()
+  if lockStyle then self.lockStyle = lockStyle end
+  if self.minimized == false then
+    self.lockStylef[self.lockStyle](self)
+    self.exitLabel:hide()
+    self.minimizeLabel:hide()
+    self.locked = true
+    self:adjustBorder()
+  end
+end
+
+function Adjustable.Container:unlockContainer()
+  self.rCLabel:hide()
+  shrink_title(self)
+  self.Inside:resize("-"..self.padding,"-"..self.padding)
+  self.Inside:move(self.padding, self.padding*2)
+  self.adjLabel:setStyleSheet(self.adjLabelstyle)
+  self.exitLabel:show()
+  self.minimizeLabel:show()
+  self.locked = false
+end
+
+function Adjustable.Container:setPadding(padding)
+  self.padding = padding
+  if self.locked then
+    self:lockContainer()
+  else
+    self:unlockContainer()
+  end 
+end
+
+function Adjustable.Container:onClickL()
+  if self.locked == true then
+    self:unlockContainer()
+  else
+    self:lockContainer()
+  end
+end
+
+
+function Adjustable.Container:hideObj(event)
+  self:hide()
+  self:adjustBorder()
+end
+
+function Adjustable.Container:onClickMin()
+  self.rCLabel:hide()
+  if self.minimized == false then
+    self:minimize()
+  else
+    self:restore()
+  end
+end
+
+function Adjustable.Container:onClickSave()
+  self.rCLabel:hide()
+  self:save()
+end
+
+function Adjustable.Container:onClickLoad()
+  self.rCLabel:hide()
+  self:load()
+end
+
+function Adjustable.Container:minimize()
+  if self.minimized == false and self.locked == false then
+      self.origh = self.height
+      self.Inside:hide()
+      self:resize(nil,25)
+      self.minimized = true
+      self:adjustBorder()
+  end
+end
+
+function Adjustable.Container:restore()
+  if self.minimized == true then
+      self.origh = self.origh or "25%"
+      self.Inside:show()
+      self:resize(nil,self.origh)
+      self.minimized = false
+      self:adjustBorder()
+  end
+end
+
+
+function Adjustable.Container:onLeaveColor(txt,color)
+  color = color or "black"
+  self:echo(txt,color,"l")
+end
+
+function Adjustable.Container:onEnterColor(txt,color)
+  color = color or "white"
+  self:echo(txt,color,"l")
+end
+
+function Adjustable.Container:onClickAtt()
+    for i=1, #self.locksl do
+      self.locksl[i]:hide()
+    end
+    local attm = string.split(self:fPos(), ",")
+    local j = 1
+    if self.hideTimer then killTimer(self.hideTimer) end
+       self.hideTimer = tempTimer(5,function() self.rCLabel:hide()end)
+    for i=1,#attm do
+      self.att[math.min(3,i)].hidden = true
+      if attm[i] ~= "" and j &lt; 4 then
+        self.att[j]:echo("&lt;center&gt;"..attm[i],"black","l")
+        self.att[j]:show()
+        self.att[j]:raise()
+        self.att[j]:setClickCallback("Adjustable.Container.chBorder", self, attm[i])
+        j=j+1
+      end
+    end  
+end
+
+function Adjustable.Container:onClickLStyle()
+    for i=1,#self.att do
+      self.att[i]:hide()
+    end
+    local j = 1
+    if self.hideTimer then killTimer(self.hideTimer) end
+    self.hideTimer = tempTimer(5,function() self.rCLabel:hide()end)
+    for i=1,#self.locksl do self.locksl[i].hidden = true end   
+    for k,v in pairs(self.lockStylef) do
+      if j &gt; 5 then break end
+      self.locksl[j]:echo("&lt;center&gt;"..k,"black","l")
+      self.locksl[j]:show()
+      self.locksl[j]:raise()
+      self.locksl[j]:setClickCallback([[Adjustable.Container.lockContainer]], self, k)
+      j=j+1
+    end
+end
+
+function Adjustable.Container:chBorder(side)
+    self:attachToBorder(side)
+    self.rCLabel:hide()   
+end
+
+function Adjustable.Container:createLabels()
+  self.exitLabel = Geyser.Label:new({
+  x=-25,y=4,width = "15", height = "15",fontSize=8
+
+  },self)
+  self.exitLabel:echo("&lt;center&gt;x&lt;/center&gt;")
+
+
+  self.minimizeLabel = Geyser.Label:new({
+  x=-45,y=4,width = "15", height = "15",fontSize=8
+
+  },self)
+  self.minimizeLabel:echo("&lt;center&gt;-&lt;/center&gt;")
+  
+  --rightClick Label creation
+  self.rCLabel = Geyser.Label:new({
+  x=-45,y=4,width = "200", height = "120",fontSize=8
+
+  },self)
+
+  self.lockLabel = Geyser.Label:new({
+  x=0,y=0,width = "100", height = "20",fontSize=8,color="white"
+
+  },self.rCLabel)
+  
+  self.minLabel = Geyser.Label:new({
+  x=0,y=20,width = "100", height = "20",fontSize=8,color="white"
+
+  },self.rCLabel)
+
+  self.saveLabel = Geyser.Label:new({
+  x=0,y=40,width = "100", height = "20",fontSize=8,color="white"
+  },self.rCLabel)
+  
+  self.loadLabel = Geyser.Label:new({
+  x=0,y=60,width = "100", height = "20",fontSize=8,color="white"
+  },self.rCLabel)
+  
+  if self.container == Geyser then
+      self.attLabel = Geyser.Label:new({
+      x=0,y=80,width = "100", height = "20",fontSize=8,color="white"
+      },self.rCLabel)
+      
+      self.att[1] = Geyser.Label:new({
+      x=100,y=80,width = "80", height = "20",fontSize=8,color="white"
+      },self.rCLabel)
+      
+      self.att[2] = Geyser.Label:new({
+      x=100,y=60,width = "80", height = "20",fontSize=8,color="white"
+      },self.rCLabel)
+      
+      self.att[3] = Geyser.Label:new({
+      x=100,y=40,width = "80", height = "20",fontSize=8,color="white"
+      },self.rCLabel)
+      
+      self.lockSLabel = Geyser.Label:new({
+      x=0,y=100,width = "100", height = "20",fontSize=8,color="white"
+      },self.rCLabel)
+      for i=1,6 do
+        self.locksl[i] = Geyser.Label:new({
+        x=100,y=120-(i*20),width = "80", height = "20",fontSize=8,color="white"
+        },self.rCLabel)
+      end
+  else
+      self.lockSLabel = Geyser.Label:new({
+      x=0,y=80,width = "100", height = "20",fontSize=8,color="white"
+      },self.rCLabel)
+      for i=1,5 do
+        self.locksl[i] = Geyser.Label:new({
+        x=100,y=100-(i*20),width = "80", height = "20",fontSize=8,color="white"
+        },self.rCLabel)
+      end
+  end 
+  self.rCLabel:hide()
+end
+  
+function Adjustable.Container:styleLabels()
+  if self.container == Geyser then
+    self.attLabel.txt=string.format(self.formatL,"⚓","Attach to:")
+    self.attLabel:setClickCallback("Adjustable.Container.onClickAtt",self)
+  end
+  for k,v in pairs (self.rCLabel.windowList) do
+    v:setStyleSheet(self.menustyle)
+    v:echo(v.txt, "black", "l")
+    setLabelOnEnter(k,"Adjustable.Container.onEnterColor", v, v.txt, nil)
+    setLabelOnLeave(k,"Adjustable.Container.onLeaveColor", v, v.txt, nil)
+  end
+end
+
+function Adjustable.Container:add(window,cons)
+  Geyser.Container.add(self,window,cons)
+  --Add new Windows to the Inside Container
+  local wnr = self.wnr
+  wnr = wnr or 555
+  wnr = wnr + 1
+  --Add new Windows to the Inside Container
+  if self.windows[wnr] ~= nil then self.Inside:add(self.windowList[self.windows[wnr]]) end
+end
+
+function Adjustable.Container:show(auto)
+  Geyser.Container.show(self, auto)
+  self.rCLabel:hide()
+end
+
+function Adjustable.Container:save()
+  local mytable = {}
+  mytable.x = self.x
+  mytable.y = self.y
+  mytable.height= self.height
+  mytable.width= self.width
+  mytable.minimized= self.minimized
+  mytable.origh= self.origh
+  mytable.locked = self.locked
+  mytable.attached = self.attached
+  mytable.lockStyle = self.lockStyle
+  mytable.padding = self.padding
+  mytable.hidden = self.hidden
+  if not(io.exists(getMudletHomeDir().."/AdjContainer/")) then lfs.mkdir(getMudletHomeDir().."/AdjContainer/") end
+  table.save(getMudletHomeDir().."/AdjContainer/"..self.name..".lua", mytable)
+end
+
+function Adjustable.Container:load()
+  local mytable = {}
+  if io.exists(getMudletHomeDir().."/AdjContainer/"..self.name..".lua") then
+      table.load(getMudletHomeDir().."/AdjContainer/"..self.name..".lua", mytable)
+  end
+  self.lockStyle = mytable.lockStyle or self.lockStyle
+  self.padding = mytable.padding or self.padding
+  if mytable.x then
+      self:move(mytable.x,mytable.y)
+      self:resize(mytable.width,mytable.height)
+      self.minimized = mytable.minimized
+      self.hidden = mytable.hidden
+  if mytable.locked == true then self:lockContainer()  else self:unlockContainer() end
+  if self.minimized == true then self.Inside:hide() self:resize(nil,25) else self.Inside:show() end
+      self.origh = mytable.origh
+  end
+  if mytable.attached then self:attachToBorder(mytable.attached) end
+  self:adjustBorder()
+  if mytable.hidden == true then self:hide() else self:show() end
+end
+
+function Adjustable.Container:reposition()
+  Geyser.Container.reposition(self)
+  if self.titleText and not(self.locked) then
+    shrink_title(self)
+  end
+end
+
+function Adjustable.Container.saveAll(cont)
+  cont = cont or Geyser
+  for  k,v in pairs(cont.windowList) do
+    if v.type == "adjustablecontainer" then 
+      v:save()
+    end
+--    print(v.name)
+    Adjustable.Container.saveAll(v)
+  end
+end
+
+function Adjustable.Container.loadAll(cont)
+  cont = cont or Geyser
+  for  k,v in pairs(cont.windowList) do
+    if v.type == "adjustablecontainer" then 
+      v:load()
+    end
+    Adjustable.Container.loadAll(v)
+  end
+end
+
+Adjustable.Container.lockStylef = Adjustable.Container.lockStylef or {}
+Adjustable.Container.lockStylef["standard"] = function (s) 
+    s.Inside:resize("100%",-1)
+    s.Inside:move(0,s.padding)
+    s.adjLabel:setStyleSheet(s.adjLabelstyle..[[border: 0;]])
+    s.adjLabel:echo("")
+  end
+  
+Adjustable.Container.lockStylef["border"] = function (s) 
+    s.Inside:resize("-"..s.padding,"-"..s.padding)
+    s.Inside:move(s.padding, s.padding)
+    s.adjLabel:setStyleSheet(s.adjLabelstyle)
+    s.adjLabel:echo("")
+  end
+  
+Adjustable.Container.lockStylef["full"] = function (s) 
+    s.Inside:resize("100%","100%")
+    s.Inside:move(0,0)
+    s.adjLabel:echo("")
+  end
+
+Adjustable.Container.lockStylef["light"] = function (s)
+    shrink_title(s)
+    s.Inside:resize("-"..s.padding,"-"..s.padding)
+    s.Inside:move(s.padding, s.padding*2)
+    s.adjLabel:setStyleSheet(s.adjLabelstyle)
+  end 
+  
+Adjustable.Container.parent = Geyser.Container
+
+function Adjustable.Container:new(cons,container)
+  local me = self.parent:new(cons,container)
+  setmetatable(me, self)
+  self.__index = self
+  me.type = "adjustablecontainer"
+  me.padding = me.padding or 10    
+  me:createContainers()
+  me.att = me.att or {}
+  me.locksl = me.locksl or {}
+  me:createLabels()
+  --Resize if in a Container
+  if container then
+    me:move(0,0)
+    me:resize((me.container:get_width()/me:get_width())*100, (me.container:get_height()/me:get_height())*100)
+    me:finishPercent (true, true)
+  end
+ 
+  me.minimized = false
+  me.locked = false
+  me.formatL = [==[&lt;style&gt;
+                span { font-size: 16px;}
+                span a { font-size: 10px;}
+                &lt;/style&gt;
+                &lt;span&gt; %s&lt;a&gt; %s&lt;/a&gt;&lt;/span&gt;
+                ]==]
+  me.lockLabel.txt = string.format(me.formatL,"🔒","Lock/Unlock")
+  me.minLabel.txt=string.format(me.formatL,"🗕","Min/Restore")
+  me.saveLabel.txt =string.format(me.formatL,"💾","Save")
+  me.loadLabel.txt =string.format(me.formatL,"📁","Load")
+  me.lockSLabel.txt =string.format(me.formatL,"🖌️","Lockstyle")
+  me.menustyle = me.menustyle or [[QLabel::hover{ background-color: rgba(0,150,255,100%); color: white;}]]
+  me.labelsytle= me.labelsytle or [[
+      QLabel{ border-radius: 7px; background-color: rgba(255,30,30,100%);}
+      QLabel::hover{ background-color: rgba(255,0,0,50%);}
+      ]]
+  me.adjLabelstyle = me.adjLabelstyle or [[
+      background-color: rgba(0,0,0,100%);
+      border: 4px double yellow;
+      border-radius: 4px;]]
+  me.adjLabelstyle = me.adjLabelstyle..[[ qproperty-alignment: 'AlignLeft | AlignTop';]]
+  me.adjLabel:setClickCallback("Adjustable.Container.onClick",me)
+  me.adjLabel:setReleaseCallback("Adjustable.Container.onRelease",me)
+  me.adjLabel:setMoveCallback("Adjustable.Container.onMove",me)
+  
+  me.adjLabel:setStyleSheet(me.adjLabelstyle)
+  me.exitLabel:setStyleSheet(me.labelsytle)
+  me.minimizeLabel:setStyleSheet(me.labelsytle)
+
+  me.rCLabel:setStyleSheet([[background-color: rgba(0,0,0,0%);]])
+  me:styleLabels()
+
+  me.minLabel:setClickCallback("Adjustable.Container.onClickMin",me)
+  me.saveLabel:setClickCallback("Adjustable.Container.onClickSave",me)
+  me.lockLabel:setClickCallback("Adjustable.Container.onClickL",me)
+  me.loadLabel:setClickCallback("Adjustable.Container.onClickLoad",me)
+  me.lockSLabel:setClickCallback("Adjustable.Container.onClickLStyle",me)
+  me.origh = me.height
+  me.exitLabel:setClickCallback("Adjustable.Container.hideObj",me)
+  me.minimizeLabel:setClickCallback("Adjustable.Container.onClickMin",me)
+  me.wnr = #me.windows
+  me:adjustBorder()
+  me.titleTxtColor=me.titleTxtColor or "green"
+  me.titleText=me.titleText or me.name.." - Adjustable Container"
+  me.titleText = "&amp;nbsp;&amp;nbsp; "..me.titleText
+  shrink_title(me)
+  me.lockStyle = me.lockStyle or "standard"
+  return me
+
+end</script>
+					<eventHandlerList />
+				</Script>
+			</ScriptGroup>
 			<ScriptGroup isActive="yes" isFolder="yes">
 				<name>AnimatedTimers</name>
 				<packageName>AnimatedTimers</packageName>
@@ -1095,7 +1349,7 @@ function demonnic.anitimer:update(name)
   if not demonnic.anitimer.timers[name] then return nil end
   demonnic.anitimer.timers[name].current = demonnic.anitimer:getTime(name)
   local time = demonnic.anitimer.timers[name].current
-  demonnic.anitimer.timers[name].text = (demonnic.anitimer.timers[name].showTime and string.format("%.1f %s", time, demonnic.anitimer.timers[name].timerCaption or "")) or (demonnic.anitimer.timers[name].timerCaption or "")
+  demonnic.anitimer.timers[name].text = [[&lt;span style="font-family: 'Game Pldayed';"&gt;]]..(demonnic.anitimer.timers[name].showTime and string.format("%.0f %s", time, demonnic.anitimer.timers[name].timerCaption or "")) or (demonnic.anitimer.timers[name].timerCaption or "")
   demonnic.anitimer.timers[name].gauge:setValue(demonnic.anitimer.timers[name].current, demonnic.anitimer.timers[name].max, demonnic.anitimer.timers[name].text)
 end
 
@@ -2609,9 +2863,7 @@ exitmap = {
 }	
 
 function mapper_Installed(_, name)
-	if name ~= "Mapper" then return end
-	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; EleMap Installed\n")
---	convert_map_to_hash()
+	if name ~= "EleUI2" then return end
   if next(getRooms()) == nil then
   	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; NEW MAP STARTED\n")
   	cecho("&lt;cyan&lt;[  MAP  ]&lt;reset&gt; Adding first room "..gmcp.Room.Id.." Assuming your in Drakenwood, Manually move to new zone if not!\n")
@@ -2703,12 +2955,10 @@ function mapWindowOpen()
   addMapEvent("Bar", "onSymbol","Add Symbol")
   addMapEvent("Gem", "onSymbol","Add Symbol")
   addMapEvent("Clear", "onSymbol","Add Symbol")
-	convert_map_to_hash()
 	find_room()
 	if not mapAlias1 then tempAlias("^map count$",[[count_rooms()]]) end
 	if not mapAlias2 then tempAlias("^map colours$",[[get_Colours()]]) end
 	if not mapAlias3 then tempAlias("^map purge$",[[purge_map()]]) end
-	if not mapAlias4 then tempAlias("^map convert$",[[convert_map_to_hash()]]) end
 end
 
 registerAnonymousEventHandler("mapOpenEvent", "mapWindowOpen")
