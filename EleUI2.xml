@@ -1,7 +1,555 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE MudletPackage>
 <MudletPackage version="1.001">
-	<TriggerPackage />
+	<HostPackage>
+		<Host autoClearCommandLineAfterSend="yes" printCommand="no" USE_IRE_DRIVER_BUGFIX="yes" mUSE_FORCE_LF_AFTER_PROMPT="no" mUSE_UNIX_EOL="no" mNoAntiAlias="no" mEchoLuaErrors="yes" runAllKeyMatches="no" AmbigousWidthGlyphsToBeWide="auto" mRawStreamDump="no" mIsLoggingTimestamps="no" logDirectory="" logFileName="" logFileNameFormat="yyyy-MM-dd#HH-mm-ss" mAlertOnNewData="yes" mFORCE_NO_COMPRESSION="no" mFORCE_GA_OFF="no" mFORCE_SAVE_ON_EXIT="no" mEnableGMCP="yes" mEnableMSSP="yes" mEnableMSP="yes" mEnableMSDP="no" mMapStrongHighlight="no" mLogStatus="no" mEnableSpellCheck="yes" mEnableUserDictionary="yes" mUseSharedDictionary="no" mShowInfo="no" mAcceptServerGUI="yes" mAcceptServerMedia="yes" mMapperUseAntiAlias="yes" mFORCE_MXP_NEGOTIATION_OFF="no" enableTextAnalyzer="no" mRoomSize="1.1" mLineSize="13.0" mBubbleMode="no" mShowRoomIDs="no" mShowPanel="no" mHaveMapperScript="yes" mEditorAutoComplete="yes" mEditorTheme="Mudlet" mEditorThemeFile="Mudlet.tmTheme" mThemePreviewItemID="2" mThemePreviewType="trigger" mSearchEngineName="Google" mTimerSupressionInterval="00:00:10.000" mUseProxy="no" mProxyAddress="" mProxyPort="0" mProxyUsername="" mProxyPassword="" mAutoReconnect="yes" mSslTsl="no" mSslIgnoreExpired="yes" mSslIgnoreSelfSigned="yes" mSslIgnoreAll="yes" mDiscordAccessFlags="2495" mRequiredDiscordUserName="" mRequiredDiscordUserDiscriminator="" mSGRCodeHasColSpaceId="no" mServerMayRedefineColors="no" playerRoomPrimaryColor="#ffff0000" playerRoomSecondaryColor="#ffffffff" playerRoomStyle="0" playerRoomOuterDiameter="120" playerRoomInnerDiameter="70" mDoubleClickIgnore="&quot;'">
+			<name>Brax</name>
+			<mInstalledPackages>
+				<string>send-text-to-all-games</string>
+				<string>deleteOldProfiles</string>
+				<string>echo</string>
+				<string>run-lua-code-v4</string>
+				<string>AnimatedTimers</string>
+				<string>Mapper</string>
+				<string>AdjustableContainer</string>
+			</mInstalledPackages>
+			<url>elephant.org</url>
+			<serverPackageName>nothing</serverPackageName>
+			<serverPackageVersion>-1</serverPackageVersion>
+			<port>4444</port>
+			<borderTopHeight>63</borderTopHeight>
+			<borderBottomHeight>55</borderBottomHeight>
+			<borderLeftWidth>0</borderLeftWidth>
+			<borderRightWidth>0</borderRightWidth>
+			<wrapAt>80</wrapAt>
+			<wrapIndentCount>0</wrapIndentCount>
+			<mFgColor>#c0c0c0</mFgColor>
+			<mBgColor>#000000</mBgColor>
+			<mCommandFgColor>#717100</mCommandFgColor>
+			<mCommandBgColor>#000000</mCommandBgColor>
+			<mCommandLineFgColor>#808080</mCommandLineFgColor>
+			<mCommandLineBgColor>#000000</mCommandLineBgColor>
+			<mBlack>#000000</mBlack>
+			<mLightBlack>#808080</mLightBlack>
+			<mRed>#800000</mRed>
+			<mLightRed>#ff0000</mLightRed>
+			<mBlue>#000080</mBlue>
+			<mLightBlue>#0000ff</mLightBlue>
+			<mGreen>#008000</mGreen>
+			<mLightGreen>#00ff00</mLightGreen>
+			<mYellow>#808000</mYellow>
+			<mLightYellow>#ffff00</mLightYellow>
+			<mCyan>#008080</mCyan>
+			<mLightCyan>#00ffff</mLightCyan>
+			<mMagenta>#800080</mMagenta>
+			<mLightMagenta>#ff00ff</mLightMagenta>
+			<mWhite>#c0c0c0</mWhite>
+			<mLightWhite>#ffffff</mLightWhite>
+			<mDisplayFont>Bitstream Vera Sans Mono,14,-1,5,50,0,0,0,1,0</mDisplayFont>
+			<mCommandLineFont>Bitstream Vera Sans Mono,14,-1,5,50,0,0,0,0,0</mCommandLineFont>
+			<mCommandSeparator>;;</mCommandSeparator>
+			<commandLineMinimumHeight>30</commandLineMinimumHeight>
+			<mFgColor2>#c0c0c0</mFgColor2>
+			<mBgColor2>#000000</mBgColor2>
+			<mBlack2>#000000</mBlack2>
+			<mLightBlack2>#808080</mLightBlack2>
+			<mRed2>#800000</mRed2>
+			<mLightRed2>#ff0000</mLightRed2>
+			<mBlue2>#000080</mBlue2>
+			<mLightBlue2>#0000ff</mLightBlue2>
+			<mGreen2>#008000</mGreen2>
+			<mLightGreen2>#00ff00</mLightGreen2>
+			<mYellow2>#808000</mYellow2>
+			<mLightYellow2>#ffff00</mLightYellow2>
+			<mCyan2>#008080</mCyan2>
+			<mLightCyan2>#00ffff</mLightCyan2>
+			<mMagenta2>#800080</mMagenta2>
+			<mLightMagenta2>#ff00ff</mLightMagenta2>
+			<mWhite2>#c0c0c0</mWhite2>
+			<mLightWhite2>#ffffff</mLightWhite2>
+			<mSpellDic>en_US</mSpellDic>
+			<mLineSize>13.0</mLineSize>
+			<mRoomSize>1.1</mRoomSize>
+			<stopwatches />
+		</Host>
+	</HostPackage>
+	<TriggerPackage>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Confuse</name>
+			<script>brax = brax or {}
+brax.wimpy = brax.wimpy or {}
+local avoid = {"Confusion","Force Cage"}
+if table.contains(avoid,matches[2]) then
+  send(brax.wimpy)
+end
+</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^.* begins to cast (.*) at you\!\!$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>pspray</name>
+			<script>brax = brax or {}
+brax.wimpy = brax.wimpy or {}
+if matches[2] ~= "Demon" then
+  send(brax.wimpy)
+end
+</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^(.*) begins to cast (.*)\.$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>UI</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Honey Chat</name>
+				<script>if not table.contains(chatBox.consoles,"Honey") then
+  chatBox:addTab("Honey")
+end
+chatBox:cecho("Honey","&lt;cyan&gt;["..matches[2].."]&lt;reset&gt; "..matches[3].."\n")
+</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^\[Honey\s?(.*)\] (.*)$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>wimpy</name>
+				<script>brax = brax or {}
+brax.wimpy = matches[2]</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^Wimpydir now set to (.*).$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Combat</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>smack</name>
+				<script>cinsertText("🗡️")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^You (.*) in the (.*) with your (.*)\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>You deal a deadly blow.....to outer space!</name>
+				<script>cinsertText("🗡️")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>You deal a deadly blow.....to outer space!</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>sidesteps</name>
+				<script>cinsertText("🗡️")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^(.*) sidesteps your poorly planned attack\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Laughs</name>
+				<script>cinsertText("🗡️")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^(.*) laughs at your inept attack\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Dodges</name>
+				<script>cinsertText("🗡️")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^(.*) dodges your inept attack\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>miss</name>
+				<script>cinsertText("🗡️")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^(\w*) misses (\w*) attack on (\w*)\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>New trigger</name>
+				<script>cinsertText("🗡️")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^(\w*) missed you\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Hit_In</name>
+				<script>cinsertText("🗡️")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^(.*) hits you (.*) in the (.*)\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Blast</name>
+				<script>insertText("✨")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^(\w*) thrusts both hands towards (\w*), who staggers backwards in pain\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Blast</name>
+				<script>insertText("✨")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^The energy racing into you reaches a peak</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Casting</name>
+				<script>insertText("✨")</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^You begin to cast </string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>PartyJoin</name>
+			<script>send(matches[2])</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^You have 60 seconds to type \'(.*)\'\.$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>PartyAdd</name>
+			<script>send("party add "..matches[2])</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>\[.* .*\] add (.*)</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>(-)*</name>
+			<script>deleteLine()
+decho("&lt;128,0,128&gt;\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^\(\-\)\*</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>&lt;TRUNCATED&gt;</name>
+			<script>selectString("&lt;TRUNCATED&gt;",1)
+replace("")</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>&lt;TRUNCATED&gt;</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>0</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>roomDesc</name>
+			<script>if getRoomUserData(getRoomIDbyHash(gmcp.Room.Id), "description") == nil then
+  setRoomUserData(getRoomIDbyHash(gmcp.Room.Id), "description",line)
+end
+disableTrigger("roomDesc")</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^(.*)$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>CombatPrompt</name>
+			<script>if brax.target.hp then
+insertText(brax.target.name..":"..math.floor(brax.target.hp * 100).."% ")
+end</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>^Hp: (\d*)    Mp: (\d*)      Sp: (\d*)$</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+	</TriggerPackage>
 	<TimerPackage>
 		<TimerGroup isActive="yes" isFolder="yes" isTempTimer="no" isOffsetTimer="no">
 			<name>AnimatedTimers</name>
@@ -20,46 +568,136 @@
 	</TimerPackage>
 	<AliasPackage>
 		<AliasGroup isActive="yes" isFolder="yes">
+			<name>send-text-to-all-games</name>
+			<script></script>
+			<command></command>
+			<packageName>send-text-to-all-games</packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>Send text to all games with :</name>
+				<script>-- prefix with : to send text or run an alias in all open profiles that have this script installed
+-- for example - :hi or :follow bob
+local matchedText = matches[2]
+expandAlias(matchedText)
+raiseGlobalEvent("sysSendAllProfiles", matchedText)
+</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^:(.*)$</regex>
+			</Alias>
+		</AliasGroup>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>deleteOldProfiles</name>
+			<script></script>
+			<command></command>
+			<packageName>deleteOldProfiles</packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>delete old profiles</name>
+				<script>deleteOldProfiles(matches[3], matches[2]=="maps")
+
+--Syntax examples: "delete old profiles"  -&gt; deletes profiles older than 31 days
+--					"delete old maps 10"	-&gt; deletes maps older than 10 days</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^delete old (profiles|maps)(?: (\d+))?$</regex>
+			</Alias>
+		</AliasGroup>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>echo</name>
+			<script></script>
+			<command></command>
+			<packageName>echo</packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>`echo</name>
+				<script>local s = matches[2]
+
+s = string.gsub(s, "%$", "\n")
+feedTriggers("\n" .. s .. "\n")
+echo("\n")</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>`echo (.+)</regex>
+			</Alias>
+		</AliasGroup>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>run-lua-code-v4</name>
+			<script></script>
+			<command></command>
+			<packageName>run-lua-code-v4</packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>run lua code</name>
+				<script>local f, e = loadstring("return "..matches[2])
+if not f then
+  f, e = assert(loadstring(matches[2]))
+end
+
+local r =
+  function(...)
+    if not table.is_empty({...}) then
+      display(...)
+    end
+  end
+r(f())</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^lua (.*)$</regex>
+			</Alias>
+		</AliasGroup>
+		<AliasGroup isActive="yes" isFolder="yes">
 			<name>UI Aliases</name>
 			<script></script>
 			<command></command>
 			<packageName></packageName>
 			<regex></regex>
 			<Alias isActive="yes" isFolder="no">
-				<name>UISave</name>
-				<script>saveWindows()</script>
+				<name>UI Menu</name>
+				<script>local cmd = matches[2]
+if cmd == "save" then
+  saveWindows()
+elseif cmd == "load" then
+  loadWindows()
+elseif cmd == "config" then
+  toggleBox(configContainer)
+elseif cmd == "installmap" then
+  loadMap(getMudletHomeDir().."/EleUI2/EleUI2Map.dat")
+  find_room()
+elseif cmd == "theme" then
+  ui_Theme(matches[3])
+elseif cmd == "routes" then
+  uiRoutes(matches[3])
+elseif cmd == "stop" then
+  print("STOPPING")
+  brax.STOP = true
+elseif cmd == "mapmode" then
+  if brax.map.mode == "read" then
+    brax.map.mode = "simple"
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;MapMode: Simple&lt;cyan&gt;««&lt;reset&gt;\n")
+  elseif brax.map.mode == "simple" then
+    brax.map.mode = "full"
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;MapMode: Full&lt;cyan&gt;««&lt;reset&gt;\n")
+  elseif brax.map.mode == "full" then
+    brax.map.mode = "read"
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;MapMode: Follow&lt;cyan&gt;««&lt;reset&gt;\n")
+  end
+else
+  decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+  decho("ui help    - this page!\n")
+  decho("ui save    - Saves current window layout!\n")
+  decho("ui load    - Loads current window layout!\n")
+  decho("ui config  - Displays the UI Config window!\n")
+  decho("ui theme x - Changes border colour to x (red|green|purple|#660000|etc)\n")
+  decho("ui routes  - Show speedwalk menu\n")
+  decho("ui routes x- Speedwalk to destination\n")
+  decho("ui stop    - Kills speedwalking instantly\n")
+  decho("ui mapmode - Toggle Mapmode (Follow/Simple/Full) Current:"..brax.map.mode.."\n")
+  decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+end</script>
 				<command></command>
 				<packageName></packageName>
-				<regex>^ui save$</regex>
-			</Alias>
-			<Alias isActive="yes" isFolder="no">
-				<name>UILoad</name>
-				<script>loadWindows()</script>
-				<command></command>
-				<packageName></packageName>
-				<regex>^ui load$</regex>
-			</Alias>
-			<Alias isActive="yes" isFolder="no">
-				<name>uiConfig</name>
-				<script>toggleBox(configContainer)</script>
-				<command></command>
-				<packageName></packageName>
-				<regex>^ui config$</regex>
-			</Alias>
-			<Alias isActive="yes" isFolder="no">
-				<name>LoadMap</name>
-				<script>loadMap(getMudletHomeDir().."/EleUI2/EleUI2Map.dat")
-find_room()</script>
-				<command></command>
-				<packageName></packageName>
-				<regex>^ui installmap$</regex>
-			</Alias>
-			<Alias isActive="yes" isFolder="no">
-				<name>ui theme</name>
-				<script>ui_Theme(matches[2])</script>
-				<command></command>
-				<packageName></packageName>
-				<regex>^ui theme (.*)$</regex>
+				<regex>^ui (\w*) ?(.*)</regex>
 			</Alias>
 		</AliasGroup>
 		<AliasGroup isActive="yes" isFolder="yes">
@@ -76,9 +714,265 @@ find_room()</script>
 				<regex>^anitimer demo$</regex>
 			</Alias>
 		</AliasGroup>
+		<Alias isActive="yes" isFolder="no">
+			<name>ui getdesc</name>
+			<script>enableTrigger("roomDesc")
+send("look")</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^ui getdesc$</regex>
+		</Alias>
 	</AliasPackage>
 	<ActionPackage />
 	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>send-text-to-all-games</name>
+			<packageName>send-text-to-all-games</packageName>
+			<script></script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>sysSendAllProfiles</name>
+				<packageName></packageName>
+				<script>function sysSendAllProfiles(_, text)
+  expandAlias(text)
+end</script>
+				<eventHandlerList>
+					<string>sysSendAllProfiles</string>
+				</eventHandlerList>
+			</Script>
+		</ScriptGroup>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>deleteOldProfiles</name>
+			<packageName>deleteOldProfiles</packageName>
+			<script></script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>deleteOldProfiles script</name>
+				<packageName></packageName>
+				<script>function deleteOldProfiles(keepdays_arg, delete_maps)
+
+--[[
+	Deletes old profiles/maps in the "current"/"map" folders of the Mudlet home directory.
+	The following files are NOT deleted:
+	- Files newer than the amount of days specified as an argument to deleteOldProfiles(), or 31 days if not specified.	
+	- One file for every month before that. Specifically: The first available file of every month prior to this.
+	Setting the second argument to true will delete maps instead of profiles. (e.g. deleteOldProfiles(10, true))
+--]]
+
+	local keepdays = tonumber(keepdays_arg) or 31
+	local profile_table = {}
+	local used_last_mod_months = {}
+	local slash = (string.char(getMudletHomeDir():byte()) == "/") and "/" or "\\"
+	local dirpath = getMudletHomeDir()..slash..(delete_maps and "map" or "current")
+	local delnum = 0
+
+	-- Traverse the profiles folder and create a table of files:
+	for filename in lfs.dir(dirpath) do
+		if filename~="." and filename~=".." then
+			profile_table[#profile_table+1] = {name = filename, last_mod = lfs.attributes(dirpath..slash..filename, "modification")}
+		end
+	end
+
+	-- Sort the table according to last modification date from old to new:
+	table.sort(profile_table, function (a,b) return a.last_mod &lt; b.last_mod end)
+
+	echo(string.format("\nDeleting old %s. Files newer than %d days and one profile for every month before that will be kept.", delete_maps and "maps" or "profiles", keepdays))
+	for i,v in ipairs(profile_table) do
+		local days = math.floor(os.difftime(os.time(), v.last_mod)/86400)
+		local last_mod_month = os.date("%Y/%m", v.last_mod)
+		if days &gt; keepdays then
+			-- For profiles older than X days, check if we already kept a table for this month:
+			if not table.contains(used_last_mod_months, last_mod_month) then
+				-- If not, do nothing and mark this month as "kept".
+				used_last_mod_months[#used_last_mod_months+1] = last_mod_month
+			else
+				-- Otherwise remove the file:
+				local success, errorstring = os.remove(dirpath..slash..v.name)
+				if success then
+					delnum = delnum + 1
+				else
+					cecho("\n&lt;red&gt;ERROR: "..errorstring)
+				end
+			end
+		end
+	end
+	echo(string.format("\nDeletion complete. %d/%d files were removed successfully.", delnum, #profile_table))
+end
+</script>
+				<eventHandlerList />
+			</Script>
+		</ScriptGroup>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>Testing</name>
+			<packageName></packageName>
+			<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external scripts --
+-------------------------------------------------
+</script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>Inventory</name>
+				<packageName></packageName>
+				<script>function charItems()
+--display(gmcp.Char.Items)
+  local id,item = next(gmcp.Char.Items)
+  if item == 0 then
+    brax.items[id] = nil
+  else
+    brax.items = table.update(brax.items,gmcp.Char.Items)
+  end
+end
+
+registerAnonymousEventHandler("gmcp.Char.Items","charItems")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Target</name>
+				<packageName></packageName>
+				<script>function targetHP()
+gmcp.Char.Target.Vitals = gmcp.Char.Target.Vitals or {}
+gmcp.Char.Target.Vitals.hp = gmcp.Char.Target.Vitals.hp or 0
+if gmcp.Char.Target.Vitals.hp then
+  brax.target.hp = gmcp.Char.Target.Vitals.hp
+end
+if gmcp.Char.Target.name then
+  brax.target.name = gmcp.Char.Target.name
+else
+  brax.target.name = ""
+end
+end
+
+registerAnonymousEventHandler("gmcp.Char.Target.Vitals","targetHP")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Skills</name>
+				<packageName></packageName>
+				<script>function skillsChanged()
+--  display(gmcp.Char.Skills['conjuring'])
+end
+registerAnonymousEventHandler("gmcp.Char.Skills","skillsChanged")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>updates</name>
+				<packageName></packageName>
+				<script>function checkUpdates()
+  local filename = getMudletHomeDir() .. "/ELEUI_version.txt"
+  local url = "https://github.com/tdk1069/EleUI2/releases/latest/download/ELEUI_version.txt"
+  downloadFile(filename, url)
+end
+
+function versionCheck(a, filename)
+  if filename:find("EleUI2.mpackage", 1, true) then
+    cecho("\n&lt;cyan&gt;»»&lt;reset&gt;Update ready to install, click or type ")
+    cechoLink("&lt;cyan&gt;ui update&lt;reset&gt;", [[doUpdate()]], "This will start the update", true)
+    cecho(" to install&lt;cyan&gt;««&lt;reset&gt;\n")
+    return
+  elseif not filename:find("ELEUI_version", 1, true) then
+    return echo("Update file not found.")
+  else
+    local f, s, versiontxt = io.open(filename)
+    if f then
+      versiontxt = f:read("*a");
+      io.close(f)
+    end
+    local verNum = tonumber(versiontxt:match("Version: (.*)"))
+    local thisVerNum = tonumber(brax.version:match("Version: (.*)"))
+    if verNum == thisVerNum then
+      cecho(
+        "&lt;cyan&gt;»»&lt;reset&gt;Your EleUI2 package is up-to-date: " ..
+        brax.version ..
+        "&lt;cyan&gt;««&lt;reset&gt;\r\n"
+      )
+      return
+    else
+      downloadFile(
+        getMudletHomeDir() .. "/EleUI2.mpackage",
+        "https://github.com/tdk1069/EleUI2/releases/latest/download/EleUI2.mpackage"
+      )
+    end
+  end
+end
+
+function doUpdate()
+  print("doing update")
+end
+
+function versionCheckError(_, Error)
+  cecho("&lt;red&gt;»»&lt;reset&gt;" .. Error .. "&lt;red&gt;««&lt;reset&gt;\n")
+end
+
+registerAnonymousEventHandler("sysDownloadDone", "versionCheck")
+registerAnonymousEventHandler("sysDownloadError", "versionCheckError")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>hotbar</name>
+				<packageName></packageName>
+				<script>function doHotbar()
+  hotbarContainer = hotbarContainer or Adjustable.Container:new({x=30,y=30,name="hotbarContainer",titleText="hotbar",height="5c",width="100c"})
+  brax.hotbar = brax.hotbar or {}
+  brax.HBox = brax.HBox or Geyser.HBox:new({
+  name="HBox",
+  x=0, y=0,
+  width="100%", height="100%",
+  },hotbarContainer)
+  local loadTable = {}
+  if io.exists(getMudletHomeDir().."/EleUI2/hotbar.lua") then
+      table.load(getMudletHomeDir().."/EleUI2/hotbar.lua", loadTable)
+  end
+  local saveTable = {}
+  for i=1,10 do 
+    brax.hotbar[i] = brax.hotbar[i] or {}
+    brax.hotbar[i].box = brax.hotbar[i].box or Geyser.Label:new({name = "hotbar"..i, color = "black"},brax.HBox)
+    brax.hotbar[i].box:setStyleSheet([[QLabel{background-color: black;border-width: 1px;border-style: solid;border-color: green;border-radius: 3px;}QLabel::hover {background-color:grey;}]])
+    brax.hotbar[i].box:setAlignment("center")
+    brax.hotbar[i].box:setClickCallback("hotbarClick",i)
+    brax.hotbar[i].cmd = brax.hotbar[i].cmd or loadTable[i].cmd
+    brax.hotbar[i].buff = brax.hotbar[i].buff or loadTable[i].buff
+    saveTable[i] = {}
+    saveTable[i].cmd = brax.hotbar[i].cmd
+    saveTable[i].buff = brax.hotbar[i].buff
+    if brax.hotbar[i].cmd then
+      brax.hotbar[i].box:echo(brax.hotbar[i].cmd)
+    end
+    end
+  if not(io.exists(getMudletHomeDir().."/EleUI2/")) then lfs.mkdir(getMudletHomeDir().."/EleUI2/") end
+--  table.save(getMudletHomeDir().."/EleUI2/hotbar.lua", saveTable)
+    
+end
+
+function hotbarClick(button)
+  send(brax.hotbar[button].cmd)
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>newWeights</name>
+				<packageName></packageName>
+				<script>function newWeights()
+-- Paths = 1
+-- Sea = Block
+
+  local rooms = getRooms()
+  for i, v in ipairs(rooms) do
+    if getRoomWeight(i) == 5 then
+      setRoomWeight(i, 1)
+    end
+    if getRoomEnv(i) == 267 then -- Yellow Path
+      setRoomWeight(i, 1)
+    end
+    if getRoomEnv(i) == 260 then -- sea Blue (disable speedwalk)
+      lockRoom(i,true)
+    end
+  end
+end -- getpa getRoomIDbyHash</script>
+				<eventHandlerList />
+			</Script>
+		</ScriptGroup>
 		<ScriptGroup isActive="yes" isFolder="yes">
 			<name>UI</name>
 			<packageName></packageName>
@@ -93,28 +987,26 @@ find_room()</script>
 				<name>vitals</name>
 				<packageName></packageName>
 				<script>function update_statsBox()
-  gmcp = gmcp or {}
-  gmcp.Char = gmcp.Char or {}
-  gmcp.Char.Vitals = gmcp.Char.Vitals or {}
-  gmcp.Char.Status = gmcp.Char.Status or {}
-  gmcp.Char.Status.class = gmcp.Char.Status.class or {}
-  
-  if gmcp.Char.Vitals.exp then
-  local primeClass,secondClass = unpack(gmcp.Char.Status.class)
-  statsDetails:echo(
-  [[&lt;span style="style="font-family: 'Game Played';font-size:15px;"&gt;&lt;center&gt; ]] .. string.upper(primeClass .. "/".. secondClass) ..[[&lt;/span&gt;
-  &lt;br&gt;&lt;span style="font-size:15px"&gt;&lt;centerd&gt;XP ]] .. comma_value(gmcp.Char.Vitals.exp) ..[[&lt;/span&gt;]]
-  )
+    local prime,second = unpack(gmcp.Char.Status.class)
+    brax.class.prime = prime or ""
+    brax.class.second = second or ""
+    if (brax.class.second == "") then brax.class.second = "" else brax.class.second =  "/" .. brax.class.second end
+    brax.xp = gmcp.Char.Vitals.exp
+    if brax.xpType == true then brax.xp = brax.xp - brax.curXP end  
+    statsDetails:echo(
+    [[&lt;span style="style="font-family: 'Game Played';font-size:15px;"&gt;&lt;center&gt; ]] .. string.upper(brax.class.prime .. brax.class.second) ..[[&lt;/span&gt;
+    &lt;br&gt;&lt;span style="font-size:15px"&gt;&lt;centerd&gt;XP ]] .. comma_value(brax.xp) ..[[&lt;/span&gt;]]
+    )
     hpbar.text:echo([[&lt;span style="font-family: 'Game Played';font-size:25px;"&gt;&amp;nbsp;HP:]] .. gmcp.Char.Vitals.hp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxhp ..[[&lt;/span&gt;]])
     mpbar.text:echo([[&lt;span style="font-family: 'Game Played';font-size:25px;"&gt;&amp;nbsp;MP:]] .. gmcp.Char.Vitals.mp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxmp ..[[&lt;/span&gt;]])
     spbar.text:echo([[&lt;span style="font-family: 'Game Played';font-size:25px;"&gt;&amp;nbsp;SP:]] .. gmcp.Char.Vitals.sp .. [[/&lt;span style="font-size:15px"&gt;]] .. gmcp.Char.Vitals.maxsp ..[[&lt;/span&gt;]])
     hpbar:setValue(gmcp.Char.Vitals.hp,gmcp.Char.Vitals.maxhp)
     mpbar:setValue(gmcp.Char.Vitals.mp,gmcp.Char.Vitals.maxmp)
     spbar:setValue(gmcp.Char.Vitals.sp,gmcp.Char.Vitals.maxsp)
-  end
 end
 
 function comma_value(amount)
+if amount then
   local formatted = amount
   while true do  
     formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
@@ -123,9 +1015,46 @@ function comma_value(amount)
     end
   end
   return formatted
+  else
+    return ""
+  end
 end
 
+function toggleXP()
+  brax.xp = gmcp.Char.Vitals.exp
+  brax.curXP = brax.xp
+  brax.xpType = not brax.xpType
+  update_statsBox()
+end
+
+
 registerAnonymousEventHandler("gmcp.Char.Vitals", "update_statsBox")</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>roomItems</name>
+				<packageName></packageName>
+				<script>function roomItems()
+if true then return end
+  --display(gmcp.Room.Items)
+  --print(item)
+  local id, item = next(gmcp.Room.Items)
+--print(id)
+  if item == 9980 then
+    print("Remove")
+    return
+  end
+  if gmcp.Room.Items.All then
+  brax.roomItems = {}
+      brax.roomItems = table.update(brax.roomItems,gmcp.Room.Items.All)
+    for i, v in pairs(gmcp.Room.Items.All) do
+      local _, item = next(v)
+      print(item.name)
+    end
+  end
+end
+
+registerAnonymousEventHandler("gmcp.Room.Items", "roomItems")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -145,14 +1074,16 @@ function incoming_channel()
   local tab = gmcp.Msg.Chat.channel
   local chat_msg = gmcp.Msg.Chat.msg
   local chat_who = gmcp.Msg.Chat.who
+  local ansicol = "&lt;"..string.lower(string.match(gmcp.Msg.Chat.rawmsg,"^%%%^\(%a+)")).."&gt;"
   local boxMsg
   if not table.contains(chatBox.consoles,tab) then
     chatBox:addTab(tab)
   end
   if gmcp.Msg.Chat.emote &gt; 1 then
-    boxMsg = chat_msg.."\n"
+    chat_msg = chat_msg:match("%w*(.*)")
+    boxMsg = ansicol..chat_who.."&lt;reset&gt;"..chat_msg.."\n"
   else
-    boxMsg = "&lt;cyan&gt;["..chat_who.."]&lt;reset&gt; "..chat_msg.."\n"
+    boxMsg = ansicol.."["..chat_who.."]&lt;reset&gt; "..chat_msg.."\n"
   end
   chatBox:cecho(tab,boxMsg)
 end
@@ -167,43 +1098,94 @@ registerAnonymousEventHandler("gmcp.Msg.Tell", "incoming_tell")
 				<packageName></packageName>
 				<script>function get_Buffs()
   myBuffs = myBuffs or {}
-  myBuffsTotal =   myBuffsTotal or 0
-
-  for spell,dur in pairs(gmcp.Char.Buffs) do
+  myBuffsTotal = myBuffsTotal or 0
+  --display(gmcp.Char.Buffs)
+  for spell, dur in pairs(gmcp.Char.Buffs) do
     if dur ~= 0 then
+      local debuff = gmcp.Char.Buffs[spell][3]
       local count = 0
-      for _ in pairs(myBuffs) do count = count + 1 end
-        myBuffsTotal = count -1
-        demonnic.anitimer:new(spell, {x = 0, y=myBuffsTotal*25, height = 20, width = "100%"}, dur[1], {container = buffBoxContainer, showTime = true, timerCaption = spell})
-        myBuffs[spell] = demonnic.anitimer.timers[spell].current
-      else 
-        demonnic.anitimer.timers[spell].gauge:hide()
-        myBuffs[spell] = null
-        demonnic.anitimer:destroy(spell)
+      local frontCSS =
+        [[
+        border-style: outset;
+        border-color: gray;
+        border-width: 1px;
+        border-radius: 4px;
+        margin: 0px;
+        padding: 0px;
+        background-color: #1f6140;
+]]
+      if debuff == 1 then
+        frontCSS =
+          [[
+    border-style: outset;
+    border-color: gray;
+    border-width: 1px;
+    border-radius: 4px;
+    margin: 0px;
+    padding: 0px;
+    background-color: #800000;
+]]
+      end
+      for _ in pairs(myBuffs) do
+        count = count + 1
+      end
+      myBuffsTotal = count - 1
+      demonnic.anitimer:new(
+        spell,
+        {x = 0, y = myBuffsTotal * 25, height = 20, width = "100%"},
+        dur[1],
+        {container = buffBoxContainer, showTime = true, timerCaption = spell, cssFront = frontCSS}
+      )
+      demonnic.anitimer.timers[spell].gauge.text:setStyleSheet([[padding-left:2px]])
+      demonnic.anitimer.timers[spell].gauge.text:setToolTip(dur[2])
+      myBuffs[spell] = demonnic.anitimer.timers[spell].current
+--hotbar
+      for i = 1, 10 do
+      brax.hotbar[i] = brax.hotbar[i] or {}
+        if brax.hotbar[i].buff == spell then
+          brax.hotbar[i].box:setStyleSheet(
+            [[QLabel{background-color: red;border-width: 1px;border-style: solid;border-color: green;border-radius: 3px;}QLabel::hover {background-color:grey;}]]
+          )
+          --local css = [[QLabel{background-color: red;border-width: 1px;border-style: solid;border-color: green;border-radius: 3px;}]]
+          tempTimer(
+            dur[1],
+            function()
+              brax.hotbar[i].box:setStyleSheet(
+                [[QLabel{background-color: black;border-width: 1px;border-style: solid;border-color: green;border-radius: 3px;}]]
+              )
+            end
+          )
+        end
+      end
+--end hotbar
+    else
+      demonnic.anitimer.timers[spell].gauge:hide()
+      myBuffs[spell] = null
+      demonnic.anitimer:destroy(spell)
       local count = 0
-      for _ in pairs(myBuffs) do count = count + 1 end
+      for _ in pairs(myBuffs) do
+        count = count + 1
+      end
       myBuffsTotal = count
     end
   end
-
   local tBuff = {}
   local tName = {}
   local pos = 0
   local timeLeft = 0
-  for i,v in pairs(myBuffs) do 
+  for i, v in pairs(myBuffs) do
     timeLeft = demonnic.anitimer.timers[i].current
-    table.insert(tBuff,timeLeft)
-    tName[timeLeft]=i
+    table.insert(tBuff, timeLeft)
+    tName[timeLeft] = i
   end
   table.sort(tBuff)
-  for i,v in pairs(tBuff) do 
-    demonnic.anitimer.timers[tName[v]].gauge:move(0,pos*25)
-    pos = pos +1
+  for i, v in pairs(tBuff) do
+    demonnic.anitimer.timers[tName[v]].gauge:move(0, pos * 25)
+    pos = pos + 1
   end
-
 end
 
-registerAnonymousEventHandler("gmcp.Char.Buffs","get_Buffs")</script>
+registerAnonymousEventHandler("gmcp.Char.Buffs", "get_Buffs")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -220,9 +1202,21 @@ registerAnonymousEventHandler("gmcp.Char.Buffs","get_Buffs")</script>
   for spell,dur in pairs(gmcp.Char.Cooldowns) do
     if dur ~= 0 then
       local count = 0
+      local frontCSS = [[
+        border-style: outset;
+        border-color: gray;
+        border-width: 1px;
+        border-radius: 4px;
+        margin: 0px;
+        padding: 0px;
+        background-color: #1f6140;
+]]
       for _ in pairs(myCooldowns) do count = count + 1 end
       myCooldownsTotal = count -1
-      demonnic.anitimer:new("cd"..spell, {x = 0, y=myCooldownsTotal*25, height = 20, width = "100%"}, dur, {container = cooldownBox, showTime = true, timerCaption = spell,hook = "aTimerEnd(\""..spell.."\")"})
+      demonnic.anitimer:new("cd"..spell, {x = 0, y=myCooldownsTotal*25, height = 20, width = "100%"}, dur, {container = cooldownBox, showTime = true, timerCaption = spell,cssFront=frontCSS,hook = "aTimerEnd(\""..spell.."\")"})
+if cooldownBoxContainer.hidden == true then 
+  demonnic.anitimer.timers["cd"..spell].gauge:hide() 
+end
       myCooldowns[spell] = demonnic.anitimer.timers["cd"..spell].current
     else 
       if demonnic.anitimer.timers["cd"..spell] then demonnic.anitimer.timers["cd"..spell].gauge:hide() end
@@ -285,7 +1279,7 @@ registerAnonymousEventHandler("gmcp.Char.Cooldowns","get_Cooldowns")</script>
   table.sort(list,byval)
   local bodyString = "&lt;table&gt;"
   for k=1,#list do
-        bodyString = bodyString .. "&lt;tr&gt;&lt;td width='50%'&gt;".. list[k] .. "&lt;/td&gt;&lt;td&gt;" .. tempLimb[list[k]] .. "&lt;/td&gt;&lt;/tr&gt;"
+        bodyString = bodyString .. "&lt;tr&gt;&lt;td width='50%'&gt;".. list[k] .. "&lt;/td&gt;&lt;td&gt;" .. tempLimb[list[k]] .. ("#"):rep(math.ceil(tempLimb[list[k]]/10)).."&lt;/td&gt;&lt;/tr&gt;"
   end
   bodyBox:echo(bodyString)
 end
@@ -373,30 +1367,75 @@ function ui_Theme(theme)
   end
 
 end
-</script>
+
+function Geyser.Container:raiseAll(container)
+  container = container or self
+  for i=1,#container.windows do
+    local v = container.windows[i]
+    container.windowList[v]:raise()
+    container.windowList[v]:raiseAll(container.windowList[v])
+  end
+end
+
+function Geyser.Container:lowerAll(container)
+  container = container or self
+  for i=#container.windows,1,-1 do
+    local v = container.windows[i]
+    container.windowList[v]:lower()
+    container.windowList[v]:lowerAll(container.windowList[v])
+  end
+end</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
 				<name>PartyStuff</name>
 				<packageName></packageName>
 				<script>function do_Party()
-  local who = next(gmcp.Party.Members)
-  partyList = partyList or {}
-  partyList[who] = gmcp.Party.Members[who] or {}
-  partyList[who].Vitals = gmcp.Party.Vitals[who] or {}
+  if gmcp.Party.Members == {} then 
+    brax.party.Members = {}
+  else
+    brax.party.Members = table.update(brax.party.Members,gmcp.Party.Members)
+  end
+  if next(gmcp.Party.Members) == {} then brax.party.Members[next(gmcp.Party.Members)] = nil end
+  getParty()
 end
 
 function do_Party_Vitals()
-  local who = next(gmcp.Party.Members)
-  partyList[who].Vitals = gmcp.Party.Vitals[who]
+  brax.party.Vitals = table.update(brax.party.Vitals,gmcp.Party.Vitals)
+  getParty()
 end
 
 function testParty()
+--display(gmcp.Party)
+end
+
+function getParty()
+  local details = "&lt;table&gt;&lt;tr&gt;&lt;th align='left'&gt;&lt;/th&gt;&lt;th align='left'&gt;HP&lt;/th&gt;&lt;th align='left'&gt;MP&lt;/th&gt;&lt;th align='left'&gt;SP&lt;/th&gt;&lt;/tr&gt;"
+  for i,v in pairs(brax.party.Members) do 
+    brax.party.Vitals[i] = brax.party.Vitals[i] or {}
+    brax.party.Vitals[i].hp = brax.party.Vitals[i].hp or ""
+    brax.party.Vitals[i].mp = brax.party.Vitals[i].mp or ""
+    brax.party.Vitals[i].sp = brax.party.Vitals[i].sp or ""
+    details = details.."&lt;tr&gt;&lt;td width='25%'&gt;"..properCase(i).."&lt;/td&gt;&lt;td width='25%'&gt;"..colStat(brax.party.Vitals[i].hp).."&lt;/td&gt;&lt;td width='25%'&gt;"..colStat(brax.party.Vitals[i].mp).."&lt;/td&gt;&lt;td width='25%'&gt;"..colStat(brax.party.Vitals[i].sp).."&lt;/td&gt;&lt;/tr&gt;"
+  end
+  partyBox:echo(details)
+end
+
+function colStat(value)
+  local stat = math.floor(value*100)
+  local colour = ""
+  if stat &lt; 33 then
+    colour = "red"
+  elseif stat &lt; 66 then
+    colour = "yellow"
+  else
+    colour = "lightgreen"
+  end
+  return "&lt;span style='color:"..colour..";'&gt;"..stat.."%&lt;/span&gt;"
 end
 
 registerAnonymousEventHandler("gmcp.Party.Members","do_Party")
 registerAnonymousEventHandler("gmcp.Party.Vitals","do_Party_Vitals")
-registerAnonymousEventHandler("gmcp.Party","testParty")
 </script>
 				<eventHandlerList />
 			</Script>
@@ -405,13 +1444,41 @@ registerAnonymousEventHandler("gmcp.Party","testParty")
 				<packageName></packageName>
 				<script>function get_Ready()
   print(":: Getting stuff ready....")
+  gmcp = gmcp or {}
+  gmcp.Char = gmcp.Char or {}
+  gmcp.Char.Vitals = gmcp.Char.Vitals or {}
+  gmcp.Char.Vitals.hp = gmcp.Char.Vitals.hp or 0
+  gmcp.Char.Vitals.mp = gmcp.Char.Vitals.mp or 0
+  gmcp.Char.Vitals.sp = gmcp.Char.Vitals.sp or 0
+  gmcp.Char.Vitals.maxhp = gmcp.Char.Vitals.maxhp or 1
+  gmcp.Char.Vitals.maxmp = gmcp.Char.Vitals.maxmp or 1
+  gmcp.Char.Vitals.maxsp = gmcp.Char.Vitals.maxsp or 1
+  gmcp.Char.Status = gmcp.Char.Status or {}
+  gmcp.Char.Status.class = gmcp.Char.Status.class or {}
+  
+  brax = brax or {}
+  brax.map = brax.map or {}
+  brax.map.mode = brax.map.mode or "read"
+  brax.version = "Version: 1.5"
+  brax.xp = brax.xp or 0
+  brax.class = brax.class or {}
+  brax.class.prime = brax.class.prime or ""
+  brax.class.second = brax.class.second or ""
+  brax.party = brax.party or {}
+  brax.party.Members = brax.party.Members or {}
+  brax.party.Vitals = brax.party.Vitals or {}
+  brax.items = brax.items or {}
+  brax.target = brax.target or {}  
+  brax.hotbar = brax.hotbar or {}
   setDiscordApplicationID("689229426529140740")
   setDiscordLargeIcon("server-icon")
+  setDiscordLargeIconText("Elephant MUD")
   setDiscordElapsedStartTime(os.time(os.date("*t")))
 
-statBoxContainer = statBoxContainer or Adjustable.Container:new({name="statBoxContainer",titleText="Vitals"})
+statBoxContainer = statBoxContainer or Adjustable.Container:new({x=10,y=10,name="statBoxContainer",titleText="Vitals"})
   statsBox = Geyser.Label:new({name = "Stats", color = "black", x = 0, y = 0, width = "100%", height = "100%"},statBoxContainer)
   statsDetails = Geyser.Label:new({name = "Details", color = "black", x = 0, y = 125, width = "100%", height = "40px"},statsBox)  hpbar = Geyser.Gauge:new({name="hpbar",x="0%", y="5px",width="100%", height="35px"},statsBox)
+  statsDetails:setClickCallback("toggleXP")
   hpbar:setStyleSheet([[qproperty-alignment: 'AlignBottom';]])
   hpbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #f04141, stop: 0.1 #ef2929, stop: 0.49 #cc0000, stop: 0.5 #a40000, stop: 1 #cc0000);
       border-top: 1px black solid;
@@ -419,9 +1486,9 @@ statBoxContainer = statBoxContainer or Adjustable.Container:new({name="statBoxCo
       border-bottom: 1px black solid;
       border-radius: 7;
       padding: 3px;]])
-  hpbar.back:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #bd3333, stop: 0.1 #bd2020, stop: 0.49 #990000, stop: 0.5 #700000, stop: 1 #990000);
+  hpbar.back:setStyleSheet([[background-color: black;
       border-width: 1px;
-      border-color: black;
+      border-color: #f04141;
       border-style: solid;
       border-radius: 7;
       padding: 3px;]])
@@ -432,9 +1499,9 @@ statBoxContainer = statBoxContainer or Adjustable.Container:new({name="statBoxCo
       border-bottom: 1px black solid;
       border-radius: 7;
       padding: 3px;]])
-  mpbar.back:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #7833bd, stop: 0.1 #6e20bd, stop: 0.49 #4c0099, stop: 0.5 #380070, stop: 1 #4c0099);
+  mpbar.back:setStyleSheet([[background-color: black;
       border-width: 1px;
-      border-color: black;
+      border-color: #9841f0;
       border-style: solid;
       border-radius: 7;
       padding: 3px;]])
@@ -445,44 +1512,55 @@ statBoxContainer = statBoxContainer or Adjustable.Container:new({name="statBoxCo
       border-bottom: 1px black solid;
       border-radius: 7;
       padding: 3px;]])
-  spbar.back:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #78bd33, stop: 0.1 #6ebd20, stop: 0.49 #4c9900, stop: 0.5 #387000, stop: 1 #4c9900);
+  spbar.back:setStyleSheet([[background-color: black;
       border-width: 1px;
-      border-color: black;
+      border-color: #98f041;
       border-style: solid;
       border-radius: 7;
       padding: 3px;]])
+statBoxContainer:hide()
 
-buffBoxContainer = buffBoxContainer or Adjustable.Container:new({name="buffBoxContainer",titleText="Buff Status"})
+buffBoxContainer = buffBoxContainer or Adjustable.Container:new({x=20,y=20,name="buffBoxContainer",titleText="Buffs / Debuffs Status"})
   buffBox = Geyser.Label:new({name = "Buffs", color = "black", x = 0, y = 0, width = "100%", height = "100%"},buffBoxContainer)
   buffBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+buffBoxContainer:hide()
 
 bodyBoxContainer = bodyBoxContainer or Adjustable.Container:new({name="bodyBoxContainer",titleText="Body Damage"})
   bodyBox = Geyser.Label:new({name = "Body", color = "black", x = 0, y = 0, width = "100%", height = "100%"},bodyBoxContainer)
   bodyBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+bodyBoxContainer:hide()
 
-cooldownBoxContainer = cooldownBoxContainer or Adjustable.Container:new({name="cooldownBoxContainer",titleText="Cooldown Status"})
+cooldownBoxContainer = cooldownBoxContainer or Adjustable.Container:new({x=30,y=30,name="cooldownBoxContainer",titleText="Outstanding Cooldowns"})
   cooldownBox = Geyser.Label:new({name = "Cooldowns", color = "black", x = 0, y = 0, width = "100%", height = "100%"},cooldownBoxContainer)
   cooldownBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+cooldownBoxContainer:hide()
 
-mapBoxContainer = mapBoxContainer or Adjustable.Container:new({name="mapBoxContainer",titleText="You Are Here!"})
+mapBoxContainer = mapBoxContainer or Adjustable.Container:new({x=40,y=40,name="mapBoxContainer",titleText="You Are Here!"})
+mapBoxContainer:hide()
 
-chatBoxContainer = chatBoxContainer or Adjustable.Container:new({name="chatBoxContainer",titleText="Chat"})
+chatBoxContainer = chatBoxContainer or Adjustable.Container:new({x=50,y=50,name="chatBoxContainer",titleText="Chat"})
   local stylesheet = [[background-color: rgb(0,0,0,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
   local istylesheet = [[background-color: rgb(60,60,60,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
   chatBox = EMCO:new({ x = "0", y = "0", width = "100%", height = "100%", gap = 2, consoles = {"Tell"},activeTabCSS = stylesheet, inactiveTabCSS = istylesheet},chatBoxContainer)
   chatBox:enableScrollbars()
   chatBox:enableBlink()
+chatBoxContainer:hide()
   
-castbarBoxContainer = castbarBoxContainer or Adjustable.Container:new({name="castbarBoxContainer",titleText="Casting"})
+castbarBoxContainer = castbarBoxContainer or Adjustable.Container:new({x=60,y=60,name="castbarBoxContainer",titleText="Casting"})
   castbarBox = Geyser.Label:new({name = "Casting", color = "black", x = 0, y = 0, width = "100%", height = "100%"},cooldownBoxContainer)
   castbarBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
   castbarBoxContainer:resize(300,50)
+castbarBoxContainer:hide()
 
-do_Config()
+partyContainer = partyContainer or Adjustable.Container:new({x=10,y=10,name="partyContainer",titleText="Party"})
+  partyBox = Geyser.Label:new({name = "Party", color = "black", x = 0, y = 0, width = "100%", height = "100%"},partyContainer)
+
+  do_Config()
 -- 💾
 
 Adjustable.Container.loadAll()
 
+uninstallPackage("generic_mapper")
 mudlet = mudlet or {}; mudlet.mapper_script = true
 eleMap = eleMap or {}
 eleMap.mode = 0 				-- 1 = edit, 0=follow
@@ -497,7 +1575,7 @@ eleMap = Geyser.Mapper:new({
 end
 
 function do_Config()
-local configCSS = [[QLabel{padding-left:25px;}QLabel::hover {background-image : url("]]..getMudletHomeDir()..[[/imgs/FF7Cursor.png"); background-repeat:no-repeat;};]]
+local configCSS = [[QLabel{padding-left:25px;}QLabel::hover {background-image : url("]]..getMudletHomeDir()..[[/EleUI2/imgs/FF7Cursor.png"); background-repeat:no-repeat;};]]
 configContainer = configContainer or Adjustable.Container:new({name="configContainer",titleText="Config"})
   configStats = configStats or Geyser.Label:new({name = "configStats", color = "black", x = 0, y = 0, width = "100%", height = "20"},configContainer)
   configStats:setStyleSheet(configCSS)
@@ -562,6 +1640,8 @@ end
 
 function first_Install(_, pkg)
   if pkg == "EleUI2" then
+    uninstallPackage("generic_mapper")
+    mapper_Installed()
     cecho("&lt;cyan&gt;»»&lt;reset&gt;Ele Drag and Drop UI Installed&lt;cyan&gt;««&lt;reset&gt;\n")
     cecho("&lt;cyan&gt;»»&lt;reset&gt;Commands: &lt;cyan&gt;««&lt;reset&gt;\n")
     cecho("&lt;cyan&gt;»»&lt;reset&gt;ui config - shows config window&lt;cyan&gt;««&lt;reset&gt;\n")
@@ -575,8 +1655,20 @@ function first_Install(_, pkg)
   end
 end
 
+function getName()
+  brax.name = gmcp.Char.Status.fullname
+end
+function getLevel()
+  brax.level = gmcp.Char.Status.level
+  if brax.name and brax.level then
+    setDiscordDetail(brax.name.." ("..brax.level..")")
+  end
+end
+
 registerAnonymousEventHandler("sysLoadEvent", "get_Ready")
 registerAnonymousEventHandler("sysInstallPackage", "first_Install")
+registerAnonymousEventHandler("gmcp.Char.Status.level", "getLevel")
+registerAnonymousEventHandler("gmcp.Char.Status.fullname", "getName")
 </script>
 				<eventHandlerList />
 			</Script>
@@ -595,6 +1687,112 @@ registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
+				<name>Routes</name>
+				<packageName></packageName>
+				<script>function uiRoutes(index)
+  local path = ""
+  local route = {}
+  table.insert(route, {id = "aerdy.144.37211", name = "High Pass North Gate"})
+  table.insert(route, {id = "aerdy.179.461053", name = "High Pass - Communual Stores"})
+  table.insert(route, {id = "aerdy.177.145107", name = "Erindar Stagecoach Office"})
+  table.insert(route, {id = "aerdy.25.28344", name = "South Entrance to Sterford"})
+  table.insert(route, {id = "aerdy.36.34523", name = "Nenrephi Fortress"})
+  table.insert(route, {id = "aerdy.127.31021", name = "Moratherin - East Gate"})
+  table.insert(route, {id = "aerdy.127.33012", name = "Moratherin - SouthEast Gate"})
+  table.insert(route, {id = "aerdy.127.37304", name = "Grazendale - East Gate"})
+  table.insert(route, {id = "aerdy.127.327007", name = "Dark and Twisted Forest"})
+  table.insert(route, {id = "aerdy.136.37577", name = "Myconids"})
+  table.insert(route, {id = "aerdy.144.41005", name = "Aerdy Entrance"})
+  table.insert(route, {id = "valena.108.34030", name = "Brenhaven East Gate"})
+  table.insert(route, {id = "drakenwood.104.748829", name = "The First Bank of Mirror Town"})
+  local menuIndex = tonumber(index)
+  if menuIndex == nil then
+    decho(
+      "&lt;128,0,128&gt;\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"
+    )
+    for i, v in pairs(route) do
+      path = getPath(getRoomIDbyHash(gmcp.Room.Id), getRoomIDbyHash(v.id))
+      print(i .. ") " .. v.name .. " [" .. #speedWalkDir .. " steps]")
+    end
+    decho(
+      "&lt;128,0,128&gt;\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"
+    )
+  else
+    if route[tonumber(index)].id then
+      if
+        getPath(getRoomIDbyHash(gmcp.Room.Id), getRoomIDbyHash(route[tonumber(index)].id))
+      then
+        brax.STOP = false
+        speedwalk(table.concat(speedWalkDir, ", "), false, 0.4)
+      end
+    end
+  end
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>setBorders</name>
+				<packageName></packageName>
+				<script>function setBorders(type)
+  type = type:lower() or ""
+  brax.left_container = brax.left_container or Geyser.Container:new({
+    name = "brax.left_container",
+    x=0, y=0,
+    width = 0, height="100%",
+  })
+  brax.left_image = brax.left_image or Geyser.Label:new({
+    name = "brax.left_image",
+    x = "0%", y = "0%",
+    width = "100%", height = "100%",
+  },brax.left_container)
+  brax.left_image:setBackgroundImage(getMudletHomeDir().."/imgs/texture.jpg")
+  brax.left_container:hide()
+  brax.right_container = brax.right_container or Geyser.Container:new({
+    name = "brax.right_container",
+    x=0, y=0,
+    width = 0, height="100%",
+  })
+  brax.right_image = brax.right_image or Geyser.Label:new({
+    name = "brax.right_image",
+    x = "0%", y = "0%",
+    width = "100%", height = "100%",
+  },brax.right_container)
+  brax.right_image:setBackgroundImage(getMudletHomeDir().."/imgs/texture.jpg")
+  brax.right_container:hide()
+  
+  local fx, fy = calcFontSize()
+  local winx, winy = getMainWindowSize()
+  local newBorder = winx - fx*80
+  if type == "right" then 
+    brax.right_container:hide()
+    brax.left_container:show()
+    brax.left_container:resize(newBorder,nil)
+    brax.left_container:move(winx-newBorder,nil)
+    brax.left_image:lower()
+    setBorderRight(newBorder) 
+    setBorderLeft(0) 
+  elseif type == "left" then 
+    brax.left_container:hide()
+    brax.right_container:show()
+    brax.right_container:resize(newBorder,nil)
+    brax.right_container:move(0,nil)
+    brax.right_image:lower()
+    setBorderLeft(newBorder) 
+    setBorderRight(0) 
+  elseif type == "center" then 
+    setBorderLeft(newBorder/2) 
+    setBorderRight(newBorder/2) 
+    brax.right_container:resize(newBorder/2,nil)
+    brax.right_container:move(0,nil)
+    brax.left_container:resize(winx-newBorder + (newBorder/2),nil)
+    brax.left_container:move(0,nil)
+    brax.right_container:show()
+    brax.left_container:show()
+  end
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
 				<name>overrides</name>
 				<packageName></packageName>
 				<script>function json_to_value(eledata)
@@ -602,7 +1800,7 @@ registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")</script>
   if string.find(eledata,"^%d*$") then
     return tonumber(eledata)
   elseif eledata:sub(3,5) == "msg" then
-    msg = {string.match(eledata,'{\"(%a-)\": \"(.-)\", \"(%a-)\": \"(.-)\", \"(%a-)\": \"(.-)\", \"(%a-)\": \"(.-)\", \"(%a-)\": \"(%a-)\"}')}
+    msg = {string.match(eledata,'{\"(.-)\": \"(.-)\", \"(.-)\": \"(.-)\", \"(.-)\": \"(.-)\", \"(.-)\": \"(.-)\", \"(%a-)\": \"(.-)\"}')}
     return yajl.to_value((string.format("{\"%s\": %q, \"%s\": \"%s\", \"%s\": \"%s\", \"%s\": %q, \"%s\": \"%s\" }",msg[1],msg[2],msg[3],msg[4],msg[5],msg[6],msg[7],msg[8],msg[9],msg[10])))
   elseif eledata:sub(3,7) == "emote" then
     msg = {string.match(eledata,'{\"(%a-)\": (%d-), \"(%a-)\": \" (.-)\", \"(%a-)\": \"(%a-)\", \"(%a-)\": \"(.-)\", \"rawmsg\": \"(.*)\"')}
@@ -612,7 +1810,7 @@ registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")</script>
   end
 end
 
-function Geyser.Container:show (auto)
+function Geyser.Container:_show (auto)
   auto = auto or false
   if auto then
     self.auto_hidden = false
@@ -627,7 +1825,17 @@ function Geyser.Container:show (auto)
   end
 end
 
---registerAnonymousEventHandler("sysConnectionEvent", "json_to_value")</script>
+function speedwalktimer(walklist, walkdelay, show)
+  send(walklist[1], show)
+  table.remove(walklist, 1)
+  if brax.STOP == true then walklist = {} end
+  if #walklist &gt; 0 then
+    local spFudge = 1-(gmcp.Char.Vitals.sp/gmcp.Char.Vitals.maxsp)
+    tempTimer(walkdelay+spFudge, function()
+      speedwalktimer(walklist, walkdelay, show)
+    end)
+  end
+end</script>
 				<eventHandlerList />
 			</Script>
 			<ScriptGroup isActive="yes" isFolder="yes">
@@ -688,6 +1896,7 @@ function Adjustable.Container:finishPercent (size_as_percent, position_as_percen
 end
 
 function Adjustable.Container:onClick(event)
+--Geyser.Container:raiseAll(self)
  self.rCLabel:hide()
   if event.button == "LeftButton" and not(self.locked) then
       local x, y = getMousePosition()
@@ -1350,6 +2559,7 @@ function demonnic.anitimer:update(name)
   demonnic.anitimer.timers[name].current = demonnic.anitimer:getTime(name)
   local time = demonnic.anitimer.timers[name].current
   demonnic.anitimer.timers[name].text = [[&lt;span style="font-family: 'Game Pldayed';"&gt;]]..(demonnic.anitimer.timers[name].showTime and string.format("%.0f %s", time, demonnic.anitimer.timers[name].timerCaption or "")) or (demonnic.anitimer.timers[name].timerCaption or "")
+  demonnic.anitimer.timers[name].text = [[&lt;span style="font-family: 'Game _Played';"&gt;]]..(demonnic.anitimer.timers[name].showTime and string.format("%s %s", SecondsToClock(time), demonnic.anitimer.timers[name].timerCaption or "")) or (demonnic.anitimer.timers[name].timerCaption or "")
   demonnic.anitimer.timers[name].gauge:setValue(demonnic.anitimer.timers[name].current, demonnic.anitimer.timers[name].max, demonnic.anitimer.timers[name].text)
 end
 
@@ -2657,12 +3867,22 @@ end
 
 
 function add_room_neighbours(realID,exits)
+if brax.map.mode == "read" then return end
+if brax.map.mode == "simple" then
+  for dir, exitHash in pairs(exits) do
+    if not getRoomExits(realID)[dir] then
+      setExitStub(realID,dir,true)
+    end
+  end
+ return 
+end
 	local x,y,z = getRoomCoordinates(realID)
   for dir, exitHash in pairs(exits) do
 		if not roomExists(getRoomIDbyHash(exitHash)) then
 			local newx,newy,newz = calculate_Coordinates(x,y,z,dir)
 			local newID = createRoomID()
       addRoom(newID)
+      setRoomWeight(newID,10)
   		setRoomCoordinates(newID,newx,newy,newz)
   		setRoomArea(newID,getRoomArea(realID))
 			setRoomIDbyHash(newID,exitHash)
@@ -2749,11 +3969,17 @@ function find_room()
 	if roomExists(eleMap.currentRoom) then
 		centerview(eleMap.currentRoom)
 	else 
-		cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; No Room found for &lt;red&gt;"..gmcp.Room.Id.."&lt;reset&gt;\n")
+--		cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; No Room found for &lt;red&gt;"..gmcp.Room.Id.."&lt;reset&gt;\n")
 	end
 end
 
 function add_exits()
+  if mapBoxContainer then 
+    local mTitle = properCase((gmcp.Room.Id):match("%w*"))
+    if gmcp.Room.Terrain ~= 0  then mTitle = mTitle.." - "..properCase(gmcp.Room.Terrain) end
+    mapBoxContainer:setTitle(mTitle) 
+  end
+  if brax.map.mode == "read" then return end
 	local startMatrix = getStopWatchTime(mapMatrix)	
 	local newID = createRoomID()
 	if roomExists(eleMap.currentRoom) then
@@ -2767,11 +3993,17 @@ function find_link(exits)
   for dir, id in pairs(exits) do
 		local roomID = getRoomIDbyHash(id)
 		if roomExists(roomID) then
-			cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Found adjoining room =&gt;&lt;red&gt;"..id.."&lt;reset&gt; "..exitmap[reversemap[dir]].."\n")
+--			cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Found adjoining room =&gt;&lt;red&gt;"..id.."&lt;reset&gt; "..exitmap[reversemap[dir]].."\n")
 			local x,y,z = getRoomCoordinates(roomID)
 			local newx,newy,newz = calculate_Coordinates(x,y,z,exitmap[reversemap[dir]])
 --			add_room(eleMap.currentRoom,newx,newy,newz,getRoomArea(eleMap.lastRoom))
-			add_room(gmcp.Room.Id,newx,newy,newz,getRoomArea(eleMap.lastRoom))
+			add_room(gmcp.Room.Id,newx,newy,newz,getRoomArea(roomID))
+      local stubs = getExitStubs(roomID)
+      if stubs then
+        for i,v in pairs(stubs) do
+          connectExitStub(roomID, v)
+        end
+      end
 			break
 		end
 	end
@@ -2787,6 +4019,7 @@ function add_room(hashID,x,y,z,area)
 --print("Adding room id "..newID.." Hash:"..hashID)
 	if hashId ~= -1 then
   	addRoom(newID)
+    setRoomWeight(newID,10)
   	setRoomCoordinates(newID,x,y,z)
   	setRoomArea(newID,area)
   	setRoomIDbyHash(newID,hashID)
@@ -2863,8 +4096,10 @@ exitmap = {
 }	
 
 function mapper_Installed(_, name)
-	if name ~= "EleUI2" then return end
   if next(getRooms()) == nil then
+    gmcp = gmcp or {}
+    gmcp.Room = gmcp.Room or {}
+    gmcp.Room.Id = gmcp.Room.Id or ""
   	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; NEW MAP STARTED\n")
   	cecho("&lt;cyan&lt;[  MAP  ]&lt;reset&gt; Adding first room "..gmcp.Room.Id.." Assuming your in Drakenwood, Manually move to new zone if not!\n")
   	setAreaName(1,"Drakenwood")
@@ -2874,17 +4109,19 @@ function mapper_Installed(_, name)
 		setAreaName(5,"Dun Glenderry")
 		local newID = createRoomID()
   	addRoom(newID)
+    setRoomWeight(newID,10)
   	setRoomCoordinates(newID,0,0,0)
   	setRoomArea(newID,1)
 		setRoomIDbyHash(newID,gmcp.Room.Id)
   	centerview(newID)
-  	add_room_neighbours(getRoomIDbyHash(gmcp.Room.Id),gmcp.Room.Exits)
+--  	add_room_neighbours(getRoomIDbyHash(gmcp.Room.Id),gmcp.Room.Exits)
   	updateMap()
   end
 end
 
 function doSpeedWalk()
-		speedwalk(table.concat(speedWalkDir, ", "),false,0.36)
+    brax.STOP = false
+		speedwalk(table.concat(speedWalkDir, ", "),false,0.3)
 end
 
 function onSymbol(...)
@@ -2930,17 +4167,6 @@ function onSymbol(...)
 end
 
 function convert_map_to_hash()
-	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Checking if map needs converting to GUID\n")
-	local converted = 0
-	for id, room in pairs(getRooms()) do
-		if getRoomIDbyHash(id) == -1 then
-			setRoomIDbyHash(id, id)		
-			converted = converted + 1
-		end
-	end
-	if converted&gt;0 then
-	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Converted "..converted.." rooms\n")
-	end
 end
 
 function mapWindowOpen()
@@ -2965,14 +4191,30 @@ registerAnonymousEventHandler("mapOpenEvent", "mapWindowOpen")
 registerAnonymousEventHandler("onSymbol", "onSymbol")
 registerAnonymousEventHandler("gmcp.Room.Id", "find_room")
 registerAnonymousEventHandler("gmcp.Room.Exits", "add_exits")
-registerAnonymousEventHandler("sysInstall", "mapper_Installed")
 </script>
 					<eventHandlerList />
 				</Script>
 			</ScriptGroup>
 		</ScriptGroup>
 	</ScriptPackage>
-	<KeyPackage />
+	<KeyPackage>
+		<Key isActive="yes" isFolder="no">
+			<name>F1</name>
+			<packageName></packageName>
+			<script></script>
+			<command>grary</command>
+			<keyCode>16777264</keyCode>
+			<keyModifier>0</keyModifier>
+		</Key>
+		<Key isActive="yes" isFolder="no">
+			<name>F2</name>
+			<packageName></packageName>
+			<script></script>
+			<command>blast</command>
+			<keyCode>16777265</keyCode>
+			<keyModifier>0</keyModifier>
+		</Key>
+	</KeyPackage>
 	<VariablePackage>
 		<HiddenVariables />
 	</VariablePackage>
