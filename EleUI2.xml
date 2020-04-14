@@ -2,7 +2,7 @@
 <!DOCTYPE MudletPackage>
 <MudletPackage version="1.001">
 	<HostPackage>
-		<Host autoClearCommandLineAfterSend="yes" printCommand="no" USE_IRE_DRIVER_BUGFIX="yes" mUSE_FORCE_LF_AFTER_PROMPT="no" mUSE_UNIX_EOL="no" mNoAntiAlias="no" mEchoLuaErrors="yes" runAllKeyMatches="no" AmbigousWidthGlyphsToBeWide="auto" mRawStreamDump="no" mIsLoggingTimestamps="no" logDirectory="" logFileName="" logFileNameFormat="yyyy-MM-dd#HH-mm-ss" mAlertOnNewData="yes" mFORCE_NO_COMPRESSION="no" mFORCE_GA_OFF="no" mFORCE_SAVE_ON_EXIT="no" mEnableGMCP="yes" mEnableMSSP="yes" mEnableMSP="yes" mEnableMSDP="no" mMapStrongHighlight="no" mLogStatus="no" mEnableSpellCheck="yes" mEnableUserDictionary="yes" mUseSharedDictionary="no" mShowInfo="no" mAcceptServerGUI="yes" mAcceptServerMedia="yes" mMapperUseAntiAlias="yes" mFORCE_MXP_NEGOTIATION_OFF="no" enableTextAnalyzer="no" mRoomSize="1.1" mLineSize="13.0" mBubbleMode="no" mShowRoomIDs="no" mShowPanel="no" mHaveMapperScript="yes" mEditorAutoComplete="yes" mEditorTheme="Mudlet" mEditorThemeFile="Mudlet.tmTheme" mThemePreviewItemID="2" mThemePreviewType="trigger" mSearchEngineName="Google" mTimerSupressionInterval="00:00:10.000" mUseProxy="no" mProxyAddress="" mProxyPort="0" mProxyUsername="" mProxyPassword="" mAutoReconnect="yes" mSslTsl="no" mSslIgnoreExpired="yes" mSslIgnoreSelfSigned="yes" mSslIgnoreAll="yes" mDiscordAccessFlags="2495" mRequiredDiscordUserName="" mRequiredDiscordUserDiscriminator="" mSGRCodeHasColSpaceId="no" mServerMayRedefineColors="no" playerRoomPrimaryColor="#ffff0000" playerRoomSecondaryColor="#ffffffff" playerRoomStyle="0" playerRoomOuterDiameter="120" playerRoomInnerDiameter="70" mDoubleClickIgnore="&quot;'">
+		<Host autoClearCommandLineAfterSend="yes" printCommand="no" USE_IRE_DRIVER_BUGFIX="yes" mUSE_FORCE_LF_AFTER_PROMPT="no" mUSE_UNIX_EOL="no" mNoAntiAlias="no" mEchoLuaErrors="yes" runAllKeyMatches="no" AmbigousWidthGlyphsToBeWide="auto" mRawStreamDump="no" mIsLoggingTimestamps="no" logDirectory="" logFileName="" logFileNameFormat="yyyy-MM-dd#HH-mm-ss" mAlertOnNewData="yes" mFORCE_NO_COMPRESSION="no" mFORCE_GA_OFF="no" mFORCE_SAVE_ON_EXIT="yes" mEnableGMCP="yes" mEnableMSSP="yes" mEnableMSP="yes" mEnableMSDP="no" mMapStrongHighlight="no" mLogStatus="no" mEnableSpellCheck="yes" mEnableUserDictionary="yes" mUseSharedDictionary="no" mShowInfo="no" mAcceptServerGUI="yes" mAcceptServerMedia="yes" mMapperUseAntiAlias="yes" mFORCE_MXP_NEGOTIATION_OFF="no" enableTextAnalyzer="yes" mRoomSize="1.1" mLineSize="13.0" mBubbleMode="no" mShowRoomIDs="no" mShowPanel="no" mHaveMapperScript="yes" mEditorAutoComplete="yes" mEditorTheme="Mudlet" mEditorThemeFile="Mudlet.tmTheme" mThemePreviewItemID="2" mThemePreviewType="trigger" mSearchEngineName="Google" mTimerSupressionInterval="00:00:10.000" mUseProxy="no" mProxyAddress="" mProxyPort="0" mProxyUsername="" mProxyPassword="" mAutoReconnect="yes" mSslTsl="no" mSslIgnoreExpired="yes" mSslIgnoreSelfSigned="yes" mSslIgnoreAll="yes" mDiscordAccessFlags="2495" mRequiredDiscordUserName="" mRequiredDiscordUserDiscriminator="" mSGRCodeHasColSpaceId="no" mServerMayRedefineColors="no" playerRoomPrimaryColor="#ff000000" playerRoomSecondaryColor="#ffffffff" playerRoomStyle="0" playerRoomOuterDiameter="120" playerRoomInnerDiameter="70" mDoubleClickIgnore="'&quot;">
 			<name>Brax</name>
 			<mInstalledPackages>
 				<string>send-text-to-all-games</string>
@@ -17,7 +17,7 @@
 			<serverPackageName>nothing</serverPackageName>
 			<serverPackageVersion>-1</serverPackageVersion>
 			<port>4444</port>
-			<borderTopHeight>63</borderTopHeight>
+			<borderTopHeight>0</borderTopHeight>
 			<borderBottomHeight>55</borderBottomHeight>
 			<borderLeftWidth>0</borderLeftWidth>
 			<borderRightWidth>0</borderRightWidth>
@@ -74,57 +74,6 @@
 		</Host>
 	</HostPackage>
 	<TriggerPackage>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>Confuse</name>
-			<script>brax = brax or {}
-brax.wimpy = brax.wimpy or {}
-local avoid = {"Confusion","Force Cage"}
-if table.contains(avoid,matches[2]) then
-  send(brax.wimpy)
-end
-</script>
-			<triggerType>0</triggerType>
-			<conditonLineDelta>0</conditonLineDelta>
-			<mStayOpen>0</mStayOpen>
-			<mCommand></mCommand>
-			<packageName></packageName>
-			<mFgColor>#ff0000</mFgColor>
-			<mBgColor>#ffff00</mBgColor>
-			<mSoundFile></mSoundFile>
-			<colorTriggerFgColor>#000000</colorTriggerFgColor>
-			<colorTriggerBgColor>#000000</colorTriggerBgColor>
-			<regexCodeList>
-				<string>^.* begins to cast (.*) at you\!\!$</string>
-			</regexCodeList>
-			<regexCodePropertyList>
-				<integer>1</integer>
-			</regexCodePropertyList>
-		</Trigger>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>pspray</name>
-			<script>brax = brax or {}
-brax.wimpy = brax.wimpy or {}
-if matches[2] ~= "Demon" then
-  send(brax.wimpy)
-end
-</script>
-			<triggerType>0</triggerType>
-			<conditonLineDelta>0</conditonLineDelta>
-			<mStayOpen>0</mStayOpen>
-			<mCommand></mCommand>
-			<packageName></packageName>
-			<mFgColor>#ff0000</mFgColor>
-			<mBgColor>#ffff00</mBgColor>
-			<mSoundFile></mSoundFile>
-			<colorTriggerFgColor>#000000</colorTriggerFgColor>
-			<colorTriggerBgColor>#000000</colorTriggerBgColor>
-			<regexCodeList>
-				<string>^(.*) begins to cast (.*)\.$</string>
-			</regexCodeList>
-			<regexCodePropertyList>
-				<integer>1</integer>
-			</regexCodePropertyList>
-		</Trigger>
 		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 			<name>UI</name>
 			<script></script>
@@ -180,6 +129,73 @@ brax.wimpy = matches[2]</script>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
 					<string>^Wimpydir now set to (.*).$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Wimpy</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>pspray</name>
+				<script>brax = brax or {}
+brax.wimpy = brax.wimpy or {}
+if matches[2] ~= "Demon" then
+  send(brax.wimpy)
+end
+</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^(\w*) begins to cast (.*)\.$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Confuse</name>
+				<script>brax = brax or {}
+brax.wimpy = brax.wimpy or {}
+local avoid = {"Confusion","Force Cage"}
+if table.contains(avoid,matches[2]) then
+  send(brax.wimpy)
+end
+</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^.* begins to cast (.*) at you\!\!$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -527,7 +543,7 @@ disableTrigger("roomDesc")</script>
 				<integer>1</integer>
 			</regexCodePropertyList>
 		</Trigger>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 			<name>CombatPrompt</name>
 			<script>if brax.target.hp then
 insertText(brax.target.name..":"..math.floor(brax.target.hp * 100).."% ")
@@ -832,19 +848,72 @@ registerAnonymousEventHandler("gmcp.Char.Items","charItems")</script>
 				<name>Target</name>
 				<packageName></packageName>
 				<script>function targetHP()
-gmcp.Char.Target.Vitals = gmcp.Char.Target.Vitals or {}
-gmcp.Char.Target.Vitals.hp = gmcp.Char.Target.Vitals.hp or 0
-if gmcp.Char.Target.Vitals.hp then
-  brax.target.hp = gmcp.Char.Target.Vitals.hp
-end
-if gmcp.Char.Target.name then
-  brax.target.name = gmcp.Char.Target.name
-else
-  brax.target.name = ""
-end
+  gmcp.Char.Target = gmcp.Char.Target or {}
+  gmcp.Char.Target.Vitals = gmcp.Char.Target.Vitals or {}
+  gmcp.Char.Target.Vitals.hp = gmcp.Char.Target.Vitals.hp or brax.target.hp
+  gmcp.Char.Attackers = gmcp.Char.Attackers or {}
+  gmcp.Char.Attackers.Attack = gmcp.Char.Attackers.Attack or {}
+  gmcp.Char.Attackers.Hunt = gmcp.Char.Attackers.Hunt or {}
+  local info = ""
+  targetContainer =
+    targetContainer or
+    Adjustable.Container:new({name = "targetContainer", titleText = "Target Info"})
+  targetBox =
+    Geyser.Label:new(
+      {name = "Target", color = "black", x = 0, y = 0, width = "100%", height = "100%"},
+      targetContainer
+    )
+  targetBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+  --bodyBoxContainer:hide()
+  if next(gmcp.Char.Attackers.Attack) ~= nil then
+    info = info.."&lt;b&gt;*Attackers&lt;/b&gt;&lt;br&gt;"
+    for i, who in pairs(gmcp.Char.Attackers.Attack) do
+      info = info .. who .. "&lt;br&gt;"
+    end
+  end
+  if next(gmcp.Char.Attackers.Hunt) ~= nil then
+    info = info.."&lt;b&gt;Hunters&lt;/b&gt;&lt;br&gt;"
+    for i, who in pairs(gmcp.Char.Attackers.Hunt) do
+      info = info .. who .. "&lt;br&gt;"
+    end
+  end
+  if gmcp.Char.Target.Vitals.hp then
+    brax.target.hp = string.format("%.1f",gmcp.Char.Target.Vitals.hp*100)
+  end
+  if gmcp.Char.Target.name then
+    brax.target.name = gmcp.Char.Target.name
+  else
+    brax.target.name = ""
+  end
+
+  local ToTCast = ""
+  if gmcp.Char.Target.Cast ~= nil then
+  gmcp.Char.Target.Cast = gmcp.Char.Target.Cast or {}
+  gmcp.Char.Target.Cast.spell = gmcp.Char.Target.Cast.spell or ""
+  gmcp.Char.Target.Cast.target = gmcp.Char.Target.Cast.target or ""
+--    display(gmcp.Char.Target.Cast)
+      if gmcp.Char.Target.Cast.spell ~= "" then
+    ToTCast = gmcp.Char.Target.Cast.spell.." at "..gmcp.Char.Target.Cast.target.."&lt;br&gt;"
+      end
+  end
+
+  local targetInfo = ""
+  if gmcp.Char.Target.name ~= nil then 
+    targetInfo = "&lt;red&gt;"..brax.target.name.."&lt;white&gt; :"..brax.target.hp.."%&lt;br&gt; "..ToTCast
+  end
+  --if gmcp.Char.Target then display(gmcp.Char.Target) end
+  targetBox:echo(targetInfo..info)
 end
 
-registerAnonymousEventHandler("gmcp.Char.Target.Vitals","targetHP")</script>
+function castT()
+--display(gmcp.Char.Target.Cast)
+end
+
+registerAnonymousEventHandler("gmcp.Char.Target.Vitals", "targetHP")
+registerAnonymousEventHandler("gmcp.Char.Attackers", "targetHP")
+registerAnonymousEventHandler("gmcp.Char.Target.Cast", "targetHP")
+
+</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -888,10 +957,14 @@ function versionCheck(a, filename)
         "&lt;cyan&gt;««&lt;reset&gt;\r\n"
       )
       return
-    else
+    elseif thisVerNum &lt; verNum then
       downloadFile(
         getMudletHomeDir() .. "/EleUI2.mpackage",
         "https://github.com/tdk1069/EleUI2/releases/latest/download/EleUI2.mpackage"
+      )
+    elseif thisVerNum &gt; verNum then
+      cecho(
+        "&lt;cyan&gt;»»&lt;reset&gt;Your EleUI2 package is More up-to-date than the one online! :o &lt;cyan&gt;««&lt;reset&gt;\r\n"
       )
     end
   end
@@ -1099,7 +1172,7 @@ registerAnonymousEventHandler("gmcp.Msg.Tell", "incoming_tell")
 				<script>function get_Buffs()
   myBuffs = myBuffs or {}
   myBuffsTotal = myBuffsTotal or 0
-  --display(gmcp.Char.Buffs)
+--  display(gmcp.Char.Buffs)
   for spell, dur in pairs(gmcp.Char.Buffs) do
     if dur ~= 0 then
       local debuff = gmcp.Char.Buffs[spell][3]
@@ -1126,16 +1199,25 @@ registerAnonymousEventHandler("gmcp.Msg.Tell", "incoming_tell")
     background-color: #800000;
 ]]
       end
-      for _ in pairs(myBuffs) do
+      local dupeFix = 99999
+      for spell,dupecheck in pairs(myBuffs) do
         count = count + 1
+        if dupecheck &gt;= dupeFix then dupeFix = dupecheck+1 end
       end
       myBuffsTotal = count - 1
+      if dur[1] == 0 then 
+        dur[1]=dupeFix
+      end
       demonnic.anitimer:new(
         spell,
         {x = 0, y = myBuffsTotal * 25, height = 20, width = "100%"},
         dur[1],
         {container = buffBoxContainer, showTime = true, timerCaption = spell, cssFront = frontCSS}
       )
+if dur[1] &gt;= 99999 then 
+  demonnic.anitimer:pause(spell)
+  demonnic.anitimer.timers[spell].gauge.text:echo([[&lt;span style="font-family: 'Game _Played';"&gt;]]..spell)
+end
       demonnic.anitimer.timers[spell].gauge.text:setStyleSheet([[padding-left:2px]])
       demonnic.anitimer.timers[spell].gauge.text:setToolTip(dur[2])
       myBuffs[spell] = demonnic.anitimer.timers[spell].current
@@ -1214,9 +1296,9 @@ registerAnonymousEventHandler("gmcp.Char.Buffs", "get_Buffs")</script>
       for _ in pairs(myCooldowns) do count = count + 1 end
       myCooldownsTotal = count -1
       demonnic.anitimer:new("cd"..spell, {x = 0, y=myCooldownsTotal*25, height = 20, width = "100%"}, dur, {container = cooldownBox, showTime = true, timerCaption = spell,cssFront=frontCSS,hook = "aTimerEnd(\""..spell.."\")"})
-if cooldownBoxContainer.hidden == true then 
-  demonnic.anitimer.timers["cd"..spell].gauge:hide() 
-end
+      if cooldownBoxContainer.hidden == true then 
+        demonnic.anitimer.timers["cd"..spell].gauge:hide(true) 
+      end
       myCooldowns[spell] = demonnic.anitimer.timers["cd"..spell].current
     else 
       if demonnic.anitimer.timers["cd"..spell] then demonnic.anitimer.timers["cd"..spell].gauge:hide() end
@@ -1413,9 +1495,9 @@ function getParty()
   local details = "&lt;table&gt;&lt;tr&gt;&lt;th align='left'&gt;&lt;/th&gt;&lt;th align='left'&gt;HP&lt;/th&gt;&lt;th align='left'&gt;MP&lt;/th&gt;&lt;th align='left'&gt;SP&lt;/th&gt;&lt;/tr&gt;"
   for i,v in pairs(brax.party.Members) do 
     brax.party.Vitals[i] = brax.party.Vitals[i] or {}
-    brax.party.Vitals[i].hp = brax.party.Vitals[i].hp or ""
-    brax.party.Vitals[i].mp = brax.party.Vitals[i].mp or ""
-    brax.party.Vitals[i].sp = brax.party.Vitals[i].sp or ""
+    brax.party.Vitals[i].hp = brax.party.Vitals[i].hp or 0
+    brax.party.Vitals[i].mp = brax.party.Vitals[i].mp or 0
+    brax.party.Vitals[i].sp = brax.party.Vitals[i].sp or 0
     details = details.."&lt;tr&gt;&lt;td width='25%'&gt;"..properCase(i).."&lt;/td&gt;&lt;td width='25%'&gt;"..colStat(brax.party.Vitals[i].hp).."&lt;/td&gt;&lt;td width='25%'&gt;"..colStat(brax.party.Vitals[i].mp).."&lt;/td&gt;&lt;td width='25%'&gt;"..colStat(brax.party.Vitals[i].sp).."&lt;/td&gt;&lt;/tr&gt;"
   end
   partyBox:echo(details)
@@ -1678,6 +1760,9 @@ registerAnonymousEventHandler("gmcp.Char.Status.fullname", "getName")
 				<script>function castBar()
   if gmcp.Char.Cast.cast_time &gt; 0 then
     demonnic.anitimer:new("cast"..gmcp.Char.Cast.spell, {x = 0, y=0, height = "100%", width = "100%"}, gmcp.Char.Cast.cast_time, {container = castbarBoxContainer, showTime = true, timerCaption = gmcp.Char.Cast.spell})
+      if castbarBoxContainer.hidden == true then 
+        demonnic.anitimer.timers["cast"..gmcp.Char.Cast.spell].gauge:hide(true) 
+      end
   else
     demonnic.anitimer:destroy("cast"..gmcp.Char.Cast.spell)
   end
@@ -3984,6 +4069,12 @@ function add_exits()
 	local newID = createRoomID()
 	if roomExists(eleMap.currentRoom) then
 		add_room_neighbours(eleMap.currentRoom,gmcp.Room.Exits)
+      local stubs = getExitStubs(eleMap.currentRoom)
+      if stubs then
+        for i,v in pairs(stubs) do
+          connectExitStub(eleMap.currentRoom, v)
+        end
+      end
 	else
 		find_link(gmcp.Room.Exits)
 	end
