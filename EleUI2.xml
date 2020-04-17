@@ -2,7 +2,7 @@
 <!DOCTYPE MudletPackage>
 <MudletPackage version="1.001">
 	<HostPackage>
-		<Host autoClearCommandLineAfterSend="yes" printCommand="no" USE_IRE_DRIVER_BUGFIX="yes" mUSE_FORCE_LF_AFTER_PROMPT="no" mUSE_UNIX_EOL="no" mNoAntiAlias="no" mEchoLuaErrors="yes" runAllKeyMatches="no" AmbigousWidthGlyphsToBeWide="auto" mRawStreamDump="no" mIsLoggingTimestamps="no" logDirectory="" logFileName="" logFileNameFormat="yyyy-MM-dd#HH-mm-ss" mAlertOnNewData="yes" mFORCE_NO_COMPRESSION="no" mFORCE_GA_OFF="no" mFORCE_SAVE_ON_EXIT="yes" mEnableGMCP="yes" mEnableMSSP="yes" mEnableMSP="yes" mEnableMSDP="no" mMapStrongHighlight="no" mLogStatus="no" mEnableSpellCheck="yes" mEnableUserDictionary="yes" mUseSharedDictionary="no" mShowInfo="no" mAcceptServerGUI="yes" mAcceptServerMedia="yes" mMapperUseAntiAlias="yes" mFORCE_MXP_NEGOTIATION_OFF="no" enableTextAnalyzer="yes" mRoomSize="1.1" mLineSize="13.0" mBubbleMode="no" mShowRoomIDs="no" mShowPanel="no" mHaveMapperScript="yes" mEditorAutoComplete="yes" mEditorTheme="Mudlet" mEditorThemeFile="Mudlet.tmTheme" mThemePreviewItemID="2" mThemePreviewType="trigger" mSearchEngineName="Google" mTimerSupressionInterval="00:00:10.000" mUseProxy="no" mProxyAddress="" mProxyPort="0" mProxyUsername="" mProxyPassword="" mAutoReconnect="yes" mSslTsl="no" mSslIgnoreExpired="yes" mSslIgnoreSelfSigned="yes" mSslIgnoreAll="yes" mDiscordAccessFlags="2495" mRequiredDiscordUserName="" mRequiredDiscordUserDiscriminator="" mSGRCodeHasColSpaceId="no" mServerMayRedefineColors="no" playerRoomPrimaryColor="#ff000000" playerRoomSecondaryColor="#ffffffff" playerRoomStyle="0" playerRoomOuterDiameter="120" playerRoomInnerDiameter="70" mDoubleClickIgnore="'&quot;">
+		<Host autoClearCommandLineAfterSend="yes" printCommand="no" USE_IRE_DRIVER_BUGFIX="yes" mUSE_FORCE_LF_AFTER_PROMPT="no" mUSE_UNIX_EOL="no" mNoAntiAlias="no" mEchoLuaErrors="no" runAllKeyMatches="no" AmbigousWidthGlyphsToBeWide="auto" mRawStreamDump="no" mIsLoggingTimestamps="no" logDirectory="" logFileName="" logFileNameFormat="yyyy-MM-dd#HH-mm-ss" mAlertOnNewData="yes" mFORCE_NO_COMPRESSION="no" mFORCE_GA_OFF="no" mFORCE_SAVE_ON_EXIT="no" mEnableGMCP="yes" mEnableMSSP="yes" mEnableMSP="yes" mEnableMSDP="no" mMapStrongHighlight="no" mLogStatus="no" mEnableSpellCheck="yes" mEnableUserDictionary="yes" mUseSharedDictionary="no" mShowInfo="no" mAcceptServerGUI="yes" mAcceptServerMedia="yes" mMapperUseAntiAlias="yes" mFORCE_MXP_NEGOTIATION_OFF="no" enableTextAnalyzer="yes" mRoomSize="1.1" mLineSize="13.0" mBubbleMode="no" mShowRoomIDs="no" mShowPanel="no" mHaveMapperScript="yes" mEditorAutoComplete="yes" mEditorTheme="Mudlet" mEditorThemeFile="Mudlet.tmTheme" mThemePreviewItemID="3" mThemePreviewType="trigger" mSearchEngineName="Google" mTimerSupressionInterval="00:00:10.000" mUseProxy="no" mProxyAddress="" mProxyPort="0" mProxyUsername="" mProxyPassword="" mAutoReconnect="yes" mSslTsl="no" mSslIgnoreExpired="yes" mSslIgnoreSelfSigned="yes" mSslIgnoreAll="yes" mDiscordAccessFlags="2495" mRequiredDiscordUserName="" mRequiredDiscordUserDiscriminator="" mSGRCodeHasColSpaceId="no" mServerMayRedefineColors="no" playerRoomPrimaryColor="#ff000000" playerRoomSecondaryColor="#ffffffff" playerRoomStyle="0" playerRoomOuterDiameter="120" playerRoomInnerDiameter="70" mDoubleClickIgnore="'&quot;">
 			<name>Brax</name>
 			<mInstalledPackages>
 				<string>send-text-to-all-games</string>
@@ -565,6 +565,26 @@ end</script>
 				<integer>1</integer>
 			</regexCodePropertyList>
 		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>New trigger</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>slab</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>0</integer>
+			</regexCodePropertyList>
+		</Trigger>
 	</TriggerPackage>
 	<TimerPackage>
 		<TimerGroup isActive="yes" isFolder="yes" isTempTimer="no" isOffsetTimer="no">
@@ -698,6 +718,8 @@ elseif cmd == "mapmode" then
     brax.map.mode = "read"
     cecho("&lt;cyan&gt;»»&lt;reset&gt;MapMode: Follow&lt;cyan&gt;««&lt;reset&gt;\n")
   end
+elseif cmd == "update" then
+  GitUpdater()
 else
   decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
   decho("ui help    - this page!\n")
@@ -709,6 +731,8 @@ else
   decho("ui routes x- Speedwalk to destination\n")
   decho("ui stop    - Kills speedwalking instantly\n")
   decho("ui mapmode - Toggle Mapmode (Follow/Simple/Full) Current:"..brax.map.mode.."\n")
+  decho("ui update  - Check for updates\n")
+  decho("             UI "..brax.version.."\n")
   decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
 end</script>
 				<command></command>
@@ -850,21 +874,23 @@ registerAnonymousEventHandler("gmcp.Char.Items","charItems")</script>
 				<script>function targetHP()
   gmcp.Char.Target = gmcp.Char.Target or {}
   gmcp.Char.Target.Vitals = gmcp.Char.Target.Vitals or {}
-  gmcp.Char.Target.Vitals.hp = gmcp.Char.Target.Vitals.hp or brax.target.hp
+  gmcp.Char.Target.Vitals.hp = gmcp.Char.Target.Vitals.hp or nil
+  
   gmcp.Char.Attackers = gmcp.Char.Attackers or {}
   gmcp.Char.Attackers.Attack = gmcp.Char.Attackers.Attack or {}
   gmcp.Char.Attackers.Hunt = gmcp.Char.Attackers.Hunt or {}
+
   local info = ""
   targetContainer =
     targetContainer or
     Adjustable.Container:new({name = "targetContainer", titleText = "Target Info"})
   targetBox =
-    Geyser.Label:new(
+    targetBox or Geyser.Label:new(
       {name = "Target", color = "black", x = 0, y = 0, width = "100%", height = "100%"},
       targetContainer
     )
+  targetBar = targetBar or Geyser.Gauge:new({name="targetBar",x="0%", y="5px",width="100%", height="15px"},targetContainer)
   targetBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
-  --bodyBoxContainer:hide()
   if next(gmcp.Char.Attackers.Attack) ~= nil then
     info = info.."&lt;b&gt;*Attackers&lt;/b&gt;&lt;br&gt;"
     for i, who in pairs(gmcp.Char.Attackers.Attack) do
@@ -878,11 +904,21 @@ registerAnonymousEventHandler("gmcp.Char.Items","charItems")</script>
     end
   end
   if gmcp.Char.Target.Vitals.hp then
+    targetBar:setValue(gmcp.Char.Target.Vitals.hp,1,gmcp.Char.Target.name)
     brax.target.hp = string.format("%.1f",gmcp.Char.Target.Vitals.hp*100)
+  else
+    brax.target.hp = ""
+  end
+  if gmcp.Char.Target.target ~= gmcp.Char.Status.name then
+  targetBar:show()
+    --display(gmcp.Char.Target)
+  else
+    targetBar:hide()  
   end
   if gmcp.Char.Target.name then
     brax.target.name = gmcp.Char.Target.name
   else
+    targetBar:hide()
     brax.target.name = ""
   end
 
@@ -891,18 +927,29 @@ registerAnonymousEventHandler("gmcp.Char.Items","charItems")</script>
   gmcp.Char.Target.Cast = gmcp.Char.Target.Cast or {}
   gmcp.Char.Target.Cast.spell = gmcp.Char.Target.Cast.spell or ""
   gmcp.Char.Target.Cast.target = gmcp.Char.Target.Cast.target or ""
+      
 --    display(gmcp.Char.Target.Cast)
-      if gmcp.Char.Target.Cast.spell ~= "" then
+  if gmcp.Char.Target.Cast.spell ~= "" then
+if gmcp.Char.Target.Cast.cast_time &gt; 0 then
+demonnic.anitimer:new(
+        "T"..gmcp.Char.Target.Cast.spell,
+        {x = 0, y = 17, height = 15, width = "100%"},
+        gmcp.Char.Target.Cast.cast_time,
+        {container = targetContainer, showTime = true, timerCaption = gmcp.Char.Target.Cast.spell, cssFront = frontCSS}
+      )
+    end
     ToTCast = gmcp.Char.Target.Cast.spell.." at "..gmcp.Char.Target.Cast.target.."&lt;br&gt;"
-      end
+  end
   end
 
   local targetInfo = ""
   if gmcp.Char.Target.name ~= nil then 
     targetInfo = "&lt;red&gt;"..brax.target.name.."&lt;white&gt; :"..brax.target.hp.."%&lt;br&gt; "..ToTCast
+  else 
+    targetInfo = ""
   end
   --if gmcp.Char.Target then display(gmcp.Char.Target) end
-  targetBox:echo(targetInfo..info)
+  targetBox:echo("&lt;br&gt;&lt;br&gt;&lt;br&gt;"..info)
 end
 
 function castT()
@@ -910,6 +957,7 @@ function castT()
 end
 
 registerAnonymousEventHandler("gmcp.Char.Target.Vitals", "targetHP")
+registerAnonymousEventHandler("gmcp.Char.Target", "targetHP")
 registerAnonymousEventHandler("gmcp.Char.Attackers", "targetHP")
 registerAnonymousEventHandler("gmcp.Char.Target.Cast", "targetHP")
 
@@ -923,63 +971,6 @@ registerAnonymousEventHandler("gmcp.Char.Target.Cast", "targetHP")
 --  display(gmcp.Char.Skills['conjuring'])
 end
 registerAnonymousEventHandler("gmcp.Char.Skills","skillsChanged")</script>
-				<eventHandlerList />
-			</Script>
-			<Script isActive="yes" isFolder="no">
-				<name>updates</name>
-				<packageName></packageName>
-				<script>function checkUpdates()
-  local filename = getMudletHomeDir() .. "/ELEUI_version.txt"
-  local url = "https://github.com/tdk1069/EleUI2/releases/latest/download/ELEUI_version.txt"
-  downloadFile(filename, url)
-end
-
-function versionCheck(a, filename)
-  if filename:find("EleUI2.mpackage", 1, true) then
-    cecho("\n&lt;cyan&gt;»»&lt;reset&gt;Update ready to install, click or type ")
-    cechoLink("&lt;cyan&gt;ui update&lt;reset&gt;", [[doUpdate()]], "This will start the update", true)
-    cecho(" to install&lt;cyan&gt;««&lt;reset&gt;\n")
-    return
-  elseif not filename:find("ELEUI_version", 1, true) then
-    return echo("Update file not found.")
-  else
-    local f, s, versiontxt = io.open(filename)
-    if f then
-      versiontxt = f:read("*a");
-      io.close(f)
-    end
-    local verNum = tonumber(versiontxt:match("Version: (.*)"))
-    local thisVerNum = tonumber(brax.version:match("Version: (.*)"))
-    if verNum == thisVerNum then
-      cecho(
-        "&lt;cyan&gt;»»&lt;reset&gt;Your EleUI2 package is up-to-date: " ..
-        brax.version ..
-        "&lt;cyan&gt;««&lt;reset&gt;\r\n"
-      )
-      return
-    elseif thisVerNum &lt; verNum then
-      downloadFile(
-        getMudletHomeDir() .. "/EleUI2.mpackage",
-        "https://github.com/tdk1069/EleUI2/releases/latest/download/EleUI2.mpackage"
-      )
-    elseif thisVerNum &gt; verNum then
-      cecho(
-        "&lt;cyan&gt;»»&lt;reset&gt;Your EleUI2 package is More up-to-date than the one online! :o &lt;cyan&gt;««&lt;reset&gt;\r\n"
-      )
-    end
-  end
-end
-
-function doUpdate()
-  print("doing update")
-end
-
-function versionCheckError(_, Error)
-  cecho("&lt;red&gt;»»&lt;reset&gt;" .. Error .. "&lt;red&gt;««&lt;reset&gt;\n")
-end
-
-registerAnonymousEventHandler("sysDownloadDone", "versionCheck")
-registerAnonymousEventHandler("sysDownloadError", "versionCheckError")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -1033,13 +1024,16 @@ end</script>
   local rooms = getRooms()
   for i, v in ipairs(rooms) do
     if getRoomWeight(i) == 5 then
-      setRoomWeight(i, 1)
+--      setRoomWeight(i, 1)
     end
     if getRoomEnv(i) == 267 then -- Yellow Path
-      setRoomWeight(i, 1)
+--      setRoomWeight(i, 1)
     end
     if getRoomEnv(i) == 260 then -- sea Blue (disable speedwalk)
-      lockRoom(i,true)
+--      lockRoom(i,true)
+    end
+    if getRoomEnv(i) == 296 then -- sea Blue (disable speedwalk)
+--     lockRoom(i,false)
     end
   end
 end -- getpa getRoomIDbyHash</script>
@@ -1131,6 +1125,71 @@ registerAnonymousEventHandler("gmcp.Room.Items", "roomItems")</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
+				<name>GitUpdater</name>
+				<packageName></packageName>
+				<script>function GitUpdater(event, ...)
+  GitUpdate = GitUpdate or {}
+  GitUpdate.repo = "https://github.com/tdk1069/EleUI2/releases/latest/download/"
+  GitUpdate.versionFile = "version.txt"
+  GitUpdate.packageFile = "EleUI2.mpackage"
+  GitUpdate.downloadDoneID = registerAnonymousEventHandler("sysDownloadDone", "GitUpdater")
+  GitUpdate.downloadErrorID = registerAnonymousEventHandler("sysDownloadError", "GitUpdater")
+  GitUpdate.uninstallPackageID = registerAnonymousEventHandler("sysUninstallPackage", "GitUpdater")
+  GitUpdate.localPath = getMudletHomeDir().."/settings/"
+
+  if not io.exists(GitUpdate.localPath) then
+    lfs.mkdir(GitUpdate.localPath)
+  end
+
+  if event == "sysDownloadDone" then
+    local downloadFullFile = arg[1]
+    local vFile = arg[1]:match(".*%/(.*%..*)$")
+
+    if vFile == "version.txt" then
+      local f, error, versiontxt = io.open(downloadFullFile)
+      if f then
+        versiontxt = f:read("*a");
+        io.close(f)
+      end
+      local verNum = tonumber(versiontxt:match("Version: (.*)"))
+      local thisVerNum = tonumber(brax.version:match("Version: (.*)"))
+      print("Online Version: "..verNum)
+      print("Installed Version: "..thisVerNum)
+      
+      if verNum &gt; thisVerNum then
+        print("Update Available ("..versiontxt..").. Downloading")
+        if gmcp.Char.Status.name == "Brax" then
+          print("Blocking Update on dev profile!")
+          return
+        else
+          downloadFile(GitUpdate.localPath..GitUpdate.packageFile,GitUpdate.repo..GitUpdate.packageFile)
+        end
+      else
+        print("No update available")
+      end
+    elseif vFile == "EleUI2.mpackage" then -- end EleUI_version.txt download
+      print("Update downloaded - Start uninstall")
+      uninstallPackage("EleUI2")
+    end 
+
+  elseif event == "sysUninstallPackage" then
+    if arg[1] == "EleUI2" then
+      print("Uninstalled:"..arg[1])
+      
+      print(GitUpdate.localPath..GitUpdate.packageFile)
+      installPackage(GitUpdate.localPath..GitUpdate.packageFile)
+      tempTimer(3, [[ installPackage(GitUpdate.localPath..GitUpdate.packageFile) ]])
+    end
+  elseif event == "sysDownloadError" then
+   print("Download Error:"..arg[1])
+  else
+    print("Checking for update")
+    downloadFile(GitUpdate.localPath..GitUpdate.versionFile,GitUpdate.repo..GitUpdate.versionFile)
+  end
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
 				<name>chatBox</name>
 				<packageName></packageName>
 				<script>function incoming_tell()
@@ -1154,9 +1213,9 @@ function incoming_channel()
   end
   if gmcp.Msg.Chat.emote &gt; 1 then
     chat_msg = chat_msg:match("%w*(.*)")
-    boxMsg = ansicol..chat_who.."&lt;reset&gt;"..chat_msg.."\n"
+    boxMsg = ansicol.."["..chat_who.."]&lt;reset&gt;"..chat_msg:gsub("%%^.-%%^","").."\n"
   else
-    boxMsg = ansicol.."["..chat_who.."]&lt;reset&gt; "..chat_msg.."\n"
+    boxMsg = ansicol.."["..chat_who.."]&lt;reset&gt; "..chat_msg:gsub("%%^.-%%^","").."\n"
   end
   chatBox:cecho(tab,boxMsg)
 end
@@ -1338,6 +1397,7 @@ registerAnonymousEventHandler("gmcp.Char.Cooldowns","get_Cooldowns")</script>
   myLimbs = myLimbs or {}
   for limb,details in pairs(gmcp.Char.Limbs) do
     myLimbs[limb] = myLimbs[limb] or {}
+    gmcp.Char.Limbs = gmcp.Char.Limbs or {}
     if gmcp.Char.Limbs[limb].hp then myLimbs[limb].hp = gmcp.Char.Limbs[limb].hp or details.hp end
     if gmcp.Char.Limbs[limb].maxhp then myLimbs[limb].maxhp = gmcp.Char.Limbs[limb].maxhp or details.maxhp end
     if gmcp.Char.Limbs[limb].severed then myLimbs[limb].severed = gmcp.Char.Limbs[limb].severed or details.severed end
@@ -1541,7 +1601,7 @@ registerAnonymousEventHandler("gmcp.Party.Vitals","do_Party_Vitals")
   brax = brax or {}
   brax.map = brax.map or {}
   brax.map.mode = brax.map.mode or "read"
-  brax.version = "Version: 1.5"
+  brax.version = "Version: 1.53"
   brax.xp = brax.xp or 0
   brax.class = brax.class or {}
   brax.class.prime = brax.class.prime or ""
@@ -1559,7 +1619,8 @@ registerAnonymousEventHandler("gmcp.Party.Vitals","do_Party_Vitals")
 
 statBoxContainer = statBoxContainer or Adjustable.Container:new({x=10,y=10,name="statBoxContainer",titleText="Vitals"})
   statsBox = Geyser.Label:new({name = "Stats", color = "black", x = 0, y = 0, width = "100%", height = "100%"},statBoxContainer)
-  statsDetails = Geyser.Label:new({name = "Details", color = "black", x = 0, y = 125, width = "100%", height = "40px"},statsBox)  hpbar = Geyser.Gauge:new({name="hpbar",x="0%", y="5px",width="100%", height="35px"},statsBox)
+  statsDetails = Geyser.Label:new({name = "Details", color = "black", x = 0, y = 125, width = "100%", height = "40px"},statsBox)  
+  hpbar = Geyser.Gauge:new({name="hpbar",x="0%", y="5px",width="100%", height="39px"},statsBox)
   statsDetails:setClickCallback("toggleXP")
   hpbar:setStyleSheet([[qproperty-alignment: 'AlignBottom';]])
   hpbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #f04141, stop: 0.1 #ef2929, stop: 0.49 #cc0000, stop: 0.5 #a40000, stop: 1 #cc0000);
@@ -1623,7 +1684,55 @@ mapBoxContainer:hide()
 chatBoxContainer = chatBoxContainer or Adjustable.Container:new({x=50,y=50,name="chatBoxContainer",titleText="Chat"})
   local stylesheet = [[background-color: rgb(0,0,0,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
   local istylesheet = [[background-color: rgb(60,60,60,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
-  chatBox = EMCO:new({ x = "0", y = "0", width = "100%", height = "100%", gap = 2, consoles = {"Tell"},activeTabCSS = stylesheet, inactiveTabCSS = istylesheet},chatBoxContainer)
+  local _stylesheet = [[
+        QLabel{
+				background-color: #4d0000;
+				border-style: outset;
+        border-width: 2px;
+        border-color: "#996600";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
+        qproperty-alignment: 'AlignCenter | AlignCenter';
+				}				
+				QLabel::hover{
+				background-color: #b30000;
+				border-style: outset;
+        border-width: 2px;
+        border-color: "#996600";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
+        qproperty-alignment: 'AlignCenter | AlignCenter';
+				}				
+				]]
+  local _istylesheet = [[
+        QLabel{
+				background-color: #b30000;
+				border-style: outset;
+        border-width: 2px;
+        border-color: "#996600";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
+        qproperty-alignment: 'AlignCenter | AlignCenter';
+				}				
+				QLabel::hover{
+				background-color: #b30000;
+				border-style: outset;
+        border-width: 2px;
+        border-color: "#996600";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
+        qproperty-alignment: 'AlignCenter | AlignCenter';
+				]]
+
+  chatBox = EMCO:new({ x = "0", y = "0", width = "100%", height = "100%", gap = 2, consoles = {"Tell"},activeTabCSS = _stylesheet, inactiveTabCSS = _istylesheet},chatBoxContainer)
   chatBox:enableScrollbars()
   chatBox:enableBlink()
 chatBoxContainer:hide()
@@ -1708,13 +1817,20 @@ configContainer = configContainer or Adjustable.Container:new({name="configConta
   if (castbarBoxContainer.hidden == false) then hiddenState = "✔️" end
   configcastbar:echo("CastBar "..hiddenState)
 
+  partyInfo = partyInfo or Geyser.Label:new({name = "partyInfo", color = "black", x = 0, y = 140, width = "100%", height = "20"},configContainer)
+  partyInfo:setStyleSheet(configCSS)
+  partyInfo:setClickCallback("toggleBox",partyContainer)
+  local hiddenState = ""
+  if (castbarBoxContainer.hidden == false) then hiddenState = "✔️" end
+  partyInfo:echo("Party Info "..hiddenState)
 
-  configSave = configSave or Geyser.Label:new({name = "configSave", color = "black", x = 0, y = 140, width = "100%", height = "20"},configContainer)
+
+  configSave = configSave or Geyser.Label:new({name = "configSave", color = "black", x = 0, y = 160, width = "100%", height = "20"},configContainer)
   configSave:setStyleSheet(configCSS)
   configSave:setClickCallback("saveWindows")
   configSave:echo("Save Layout")
   
-  configLoad = configLoad or Geyser.Label:new({name = "configLoad", color = "black", x = 0, y = 160, width = "100%", height = "20"},configContainer)
+  configLoad = configLoad or Geyser.Label:new({name = "configLoad", color = "black", x = 0, y = 180, width = "100%", height = "20"},configContainer)
   configLoad:setStyleSheet(configCSS)
   configLoad:setClickCallback("loadWindows")
   configLoad:echo("Load Layout")
@@ -4049,8 +4165,8 @@ end
 function find_room()
   gmcp.Room = gmcp.Room or {}
   if gmcp.Room.Id == nil then gmcp.Room.Id = "drakenwood.4.580481" end
-	eleMap.lastRoom = eleMap.currentRoom or gmcp.Room.Id
-	eleMap.currentRoom = getRoomIDbyHash(gmcp.Room.Id)
+	eleMap.lastRoom = eleMap.currentRoom
+  eleMap.currentRoom = getRoomIDbyHash(gmcp.Room.Id)
 	if roomExists(eleMap.currentRoom) then
 		centerview(eleMap.currentRoom)
 	else 
@@ -4076,7 +4192,7 @@ function add_exits()
         end
       end
 	else
-		find_link(gmcp.Room.Exits)
+--		find_link(gmcp.Room.Exits)
 	end
 end
 
@@ -4100,21 +4216,73 @@ function find_link(exits)
 	end
 	if not roomExists(getRoomIDbyHash(gmcp.Room.Id)) then
 			local x,y,z = getRoomCoordinates(eleMap.lastRoom)
-			add_room(eleMap.currentRoom,x+1,y+1,z,getRoomArea(eleMap.lastRoom))
+      local moved = gmcp.Char.Moved
+			local newx,newy,newz = calculate_Coordinates(x,y,z,moved)
+      if moved == "north" then
+        y = y -2
+      elseif moved == "northeast" then
+        y = y +2
+        x = x +2
+      elseif moved == "east" then
+        x = x +2
+      elseif moved == "southeast" then
+        y = y -2
+        x = x +2
+      elseif moved == "south" then
+        y = y -2
+      elseif moved == "southwest" then
+        x = x -2
+        y = y -2
+      elseif moved == "west" then
+        x = x -2
+      elseif moved == "northwest" then
+        x = x -2
+        y = y +2
+      elseif moved == "up" then
+        z = z + 2
+      elseif moved == "down" then
+        z = z - 2
+      else
+        x = x +1
+        y = y +1
+      end
+			add_room(eleMap.currentRoom,newx,newy,newz,getRoomArea(eleMap.lastRoom))
 			cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; I didn't know where to put this room! ["..gmcp.Room.Id.."] please move it manually (New Zone?)\n")
+if is_standard_exit(moved) then
+	setExit(getRoomIDbyHash(gmcp.Room.Id),eleMap.lastRoom,reversemap[moved])
+	setExit(eleMap.lastRoom,getRoomIDbyHash(gmcp.Room.Id),moved)
+else
+--	addSpecialExit(realID,getRoomIDbyHash(exitHash),reversemap[moved])
+end
 	end
+end
+
+function onCharMove(moveDetails)
+  local moved = gmcp.Char.Moved
+  if brax.map.mode == "read" then return end
+	if roomExists(eleMap.currentRoom) == false then
+  		find_link(gmcp.Room.Exits)
+  else
+    if (is_standard_exit(moved) and brax.map.mode ~= "read") then
+    	setExit(getRoomIDbyHash(gmcp.Room.Id),eleMap.lastRoom,reversemap[moved])
+    	setExit(eleMap.lastRoom,getRoomIDbyHash(gmcp.Room.Id),moved)
+    end
+  end
 end
 
 function add_room(hashID,x,y,z,area)
 	local newID = createRoomID()
---print("Adding room id "..newID.." Hash:"..hashID)
+  local thisHash = hashID
+  if thisHash == -1 then thisHash = gmcp.Room.Id end
 	if hashId ~= -1 then
   	addRoom(newID)
     setRoomWeight(newID,10)
   	setRoomCoordinates(newID,x,y,z)
   	setRoomArea(newID,area)
-  	setRoomIDbyHash(newID,hashID)
+  	setRoomIDbyHash(newID,thisHash)
   	centerview(newID)
+--  	eleMap.lastRoom = eleMap.currentRoom
+  	eleMap.currentRoom = newID
   	add_room_neighbours(newID,gmcp.Room.Exits)
 	end
 end
@@ -4205,7 +4373,6 @@ function mapper_Installed(_, name)
   	setRoomArea(newID,1)
 		setRoomIDbyHash(newID,gmcp.Room.Id)
   	centerview(newID)
---  	add_room_neighbours(getRoomIDbyHash(gmcp.Room.Id),gmcp.Room.Exits)
   	updateMap()
   end
 end
@@ -4282,6 +4449,7 @@ registerAnonymousEventHandler("mapOpenEvent", "mapWindowOpen")
 registerAnonymousEventHandler("onSymbol", "onSymbol")
 registerAnonymousEventHandler("gmcp.Room.Id", "find_room")
 registerAnonymousEventHandler("gmcp.Room.Exits", "add_exits")
+registerAnonymousEventHandler("gmcp.Char.Moved", "onCharMove")
 </script>
 					<eventHandlerList />
 				</Script>
