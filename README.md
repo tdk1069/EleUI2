@@ -3,14 +3,15 @@ Brax's Elephant Mud UI
 
 The best way to Fresh install this is to : 
 1. Log out of Ele if you are logged in.
-2. Restart Mudlet
+2. Restart Mudlet if you already have it loaded
 3. Start a new profile and select Offline
-4. Tools -> Package Manager
-5. Remove the default AutoMapper
-6. Install EleUI2
-7. Connect to ele
+4. Install EleUI2
+5. Connect to ele
+6. type 'ui config' to choose and move which elements you want shown around.
 
 To Upgrade:
+**note** As of v1.53, *ui upgrade* will check here for updates, download and install if available (If you have made any code tweaks they will get lost so backup!) 
+Older than v1.53:
 1. Load your profile offline.
 2. Uninstall EleUI2 via the package manager
 3. Install the new release via the package manager
