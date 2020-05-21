@@ -5,7 +5,7 @@ The best way to Fresh install this is to :
 1. Log out of Ele if you are logged in.
 2. Restart Mudlet if you already have it loaded
 3. Start a new profile and select Offline
-4. Install EleUI2
+4. Drag the package you downloaded into ele 
 5. Connect to ele
 6. type 'ui config' to choose and move which elements you want shown around.
 
@@ -26,7 +26,7 @@ First release. Expect bugs :) i've done my best to get something usable together
 Body values can drift in combat. This is a GMCP issue, Bug has been raised on ele :) 
 
 Example of the my current layout:
-![alt text](https://raw.githubusercontent.com/tdk1069/EleUI2/master/EleUI2.png "Sample layout")
+![alt text](https://i.imgur.com/c13GXkF.gif "Sample layout")
 
 It's probably a good idea to untick "info" in the map window, and set the room/line/zoom to scales you like.
 
