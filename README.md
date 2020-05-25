@@ -26,8 +26,6 @@ Default Predefined Alias's
 
 First release. Expect bugs :) i've done my best to get something usable together.
 
-Body values can drift in combat. This is a GMCP issue, Bug has been raised on ele :) 
-
 It's probably a good idea to untick "info" in the map window, and set the room/line/zoom to scales you like.
 
 This UI uses AnimatedTimers,Drag and Drop framework, ECMO tab's for chat.
