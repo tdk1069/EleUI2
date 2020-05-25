@@ -2,7 +2,7 @@
 <!DOCTYPE MudletPackage>
 <MudletPackage version="1.001">
 	<HostPackage>
-		<Host autoClearCommandLineAfterSend="yes" printCommand="no" USE_IRE_DRIVER_BUGFIX="yes" mUSE_FORCE_LF_AFTER_PROMPT="no" mUSE_UNIX_EOL="no" mNoAntiAlias="no" mEchoLuaErrors="no" runAllKeyMatches="no" AmbigousWidthGlyphsToBeWide="auto" mRawStreamDump="no" mIsLoggingTimestamps="no" logDirectory="" logFileName="" logFileNameFormat="yyyy-MM-dd#HH-mm-ss" mAlertOnNewData="yes" mFORCE_NO_COMPRESSION="no" mFORCE_GA_OFF="no" mFORCE_SAVE_ON_EXIT="no" mEnableGMCP="yes" mEnableMSSP="yes" mEnableMSP="yes" mEnableMSDP="no" mMapStrongHighlight="no" mLogStatus="no" mEnableSpellCheck="yes" mEnableUserDictionary="yes" mUseSharedDictionary="no" mShowInfo="no" mAcceptServerGUI="yes" mAcceptServerMedia="yes" mMapperUseAntiAlias="yes" mFORCE_MXP_NEGOTIATION_OFF="no" enableTextAnalyzer="yes" mRoomSize="1.1" mLineSize="13.0" mBubbleMode="no" mShowRoomIDs="no" mShowPanel="no" mHaveMapperScript="yes" mEditorAutoComplete="yes" mEditorTheme="Mudlet" mEditorThemeFile="Mudlet.tmTheme" mThemePreviewItemID="3" mThemePreviewType="trigger" mSearchEngineName="Google" mTimerSupressionInterval="00:00:10.000" mUseProxy="no" mProxyAddress="" mProxyPort="0" mProxyUsername="" mProxyPassword="" mAutoReconnect="yes" mSslTsl="no" mSslIgnoreExpired="yes" mSslIgnoreSelfSigned="yes" mSslIgnoreAll="yes" mDiscordAccessFlags="2495" mRequiredDiscordUserName="" mRequiredDiscordUserDiscriminator="" mSGRCodeHasColSpaceId="no" mServerMayRedefineColors="no" playerRoomPrimaryColor="#ff000000" playerRoomSecondaryColor="#ffffffff" playerRoomStyle="0" playerRoomOuterDiameter="120" playerRoomInnerDiameter="70" mDoubleClickIgnore="'&quot;">
+		<Host autoClearCommandLineAfterSend="yes" printCommand="yes" USE_IRE_DRIVER_BUGFIX="yes" mUSE_FORCE_LF_AFTER_PROMPT="no" mUSE_UNIX_EOL="no" mNoAntiAlias="no" mEchoLuaErrors="yes" runAllKeyMatches="no" AmbigousWidthGlyphsToBeWide="auto" mRawStreamDump="yes" mIsLoggingTimestamps="no" logDirectory="" logFileName="" logFileNameFormat="yyyy-MM-dd#HH-mm-ss" mAlertOnNewData="yes" mFORCE_NO_COMPRESSION="no" mFORCE_GA_OFF="no" mFORCE_SAVE_ON_EXIT="no" mEnableGMCP="yes" mEnableMSSP="yes" mEnableMSP="yes" mEnableMSDP="no" mMapStrongHighlight="no" mLogStatus="yes" mEnableSpellCheck="yes" mEnableUserDictionary="yes" mUseSharedDictionary="no" mShowInfo="no" mAcceptServerGUI="yes" mAcceptServerMedia="yes" mMapperUseAntiAlias="yes" mFORCE_MXP_NEGOTIATION_OFF="no" enableTextAnalyzer="yes" mRoomSize="1.1" mLineSize="13.0" mBubbleMode="no" mShowRoomIDs="no" mShowPanel="no" mHaveMapperScript="yes" mEditorAutoComplete="yes" mEditorTheme="Mudlet" mEditorThemeFile="Mudlet.tmTheme" mThemePreviewItemID="3" mThemePreviewType="trigger" mSearchEngineName="Google" mTimerSupressionInterval="00:00:10.000" mUseProxy="no" mProxyAddress="" mProxyPort="0" mProxyUsername="" mProxyPassword="" mAutoReconnect="yes" mSslTsl="no" mSslIgnoreExpired="yes" mSslIgnoreSelfSigned="yes" mSslIgnoreAll="yes" mDiscordAccessFlags="2495" mRequiredDiscordUserName="" mRequiredDiscordUserDiscriminator="" mSGRCodeHasColSpaceId="no" mServerMayRedefineColors="no" playerRoomPrimaryColor="#ff000000" playerRoomSecondaryColor="#ffffffff" playerRoomStyle="0" playerRoomOuterDiameter="120" playerRoomInnerDiameter="70" mDoubleClickIgnore="'&quot;" EditorSearchOptions="0">
 			<name>Brax</name>
 			<mInstalledPackages>
 				<string>send-text-to-all-games</string>
@@ -17,10 +17,10 @@
 			<serverPackageName>nothing</serverPackageName>
 			<serverPackageVersion>-1</serverPackageVersion>
 			<port>4444</port>
-			<borderTopHeight>0</borderTopHeight>
+			<borderTopHeight>187</borderTopHeight>
 			<borderBottomHeight>55</borderBottomHeight>
 			<borderLeftWidth>0</borderLeftWidth>
-			<borderRightWidth>0</borderRightWidth>
+			<borderRightWidth>600</borderRightWidth>
 			<wrapAt>80</wrapAt>
 			<wrapIndentCount>0</wrapIndentCount>
 			<mFgColor>#c0c0c0</mFgColor>
@@ -33,7 +33,7 @@
 			<mLightBlack>#808080</mLightBlack>
 			<mRed>#800000</mRed>
 			<mLightRed>#ff0000</mLightRed>
-			<mBlue>#000080</mBlue>
+			<mBlue>#0000e3</mBlue>
 			<mLightBlue>#0000ff</mLightBlue>
 			<mGreen>#008000</mGreen>
 			<mLightGreen>#00ff00</mLightGreen>
@@ -48,7 +48,7 @@
 			<mDisplayFont>Bitstream Vera Sans Mono,14,-1,5,50,0,0,0,1,0</mDisplayFont>
 			<mCommandLineFont>Bitstream Vera Sans Mono,14,-1,5,50,0,0,0,0,0</mCommandLineFont>
 			<mCommandSeparator>;;</mCommandSeparator>
-			<commandLineMinimumHeight>30</commandLineMinimumHeight>
+			<commandLineMinimumHeight>37</commandLineMinimumHeight>
 			<mFgColor2>#c0c0c0</mFgColor2>
 			<mBgColor2>#000000</mBgColor2>
 			<mBlack2>#000000</mBlack2>
@@ -150,12 +150,16 @@ brax.wimpy = matches[2]</script>
 			<colorTriggerBgColor>#000000</colorTriggerBgColor>
 			<regexCodeList />
 			<regexCodePropertyList />
-			<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 				<name>pspray</name>
 				<script>brax = brax or {}
-brax.wimpy = brax.wimpy or {}
-if matches[2] ~= "Demon" then
-  send(brax.wimpy)
+brax.wimpy = brax.wimpy or exitmap[reversemap[gmcp.Char.Moved]]
+--display(matches)
+local who = matches[2]
+local what = matches[3]
+local spelltarget = matches[4]
+if string.lower(spelltarget) == "you" then
+  if brax.wimpy then send(brax.wimpy) else send(exitmap[reversemap[gmcp.Char.Moved]]) end
 end
 </script>
 				<triggerType>0</triggerType>
@@ -169,14 +173,14 @@ end
 				<colorTriggerFgColor>#000000</colorTriggerFgColor>
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
-					<string>^(\w*) begins to cast (.*)\.$</string>
+					<string>^(\w*) begins to cast (.*) at (\w*)</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
 				</regexCodePropertyList>
 			</Trigger>
 			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-				<name>Confuse</name>
+				<name>Cast-Flee</name>
 				<script>brax = brax or {}
 brax.wimpy = brax.wimpy or {}
 local avoid = {"Confusion","Force Cage"}
@@ -196,6 +200,29 @@ end
 				<colorTriggerBgColor>#000000</colorTriggerBgColor>
 				<regexCodeList>
 					<string>^.* begins to cast (.*) at you\!\!$</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>1</integer>
+				</regexCodePropertyList>
+			</Trigger>
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Crypt Teleport</name>
+				<script>brax = brax or {}
+brax.wimpy = brax.wimpy or gmcp.Char.Moved
+send(brax.wimpy)
+</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>^Crypt Thing begins to cast Crypt Teleport\.$</string>
 				</regexCodeList>
 				<regexCodePropertyList>
 					<integer>1</integer>
@@ -460,7 +487,7 @@ end
 		</Trigger>
 		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 			<name>PartyAdd</name>
-			<script>send("party add "..matches[2])</script>
+			<script>send("party add "..matches[2]) </script>
 			<triggerType>0</triggerType>
 			<conditonLineDelta>0</conditonLineDelta>
 			<mStayOpen>0</mStayOpen>
@@ -472,7 +499,7 @@ end
 			<colorTriggerFgColor>#000000</colorTriggerFgColor>
 			<colorTriggerBgColor>#000000</colorTriggerBgColor>
 			<regexCodeList>
-				<string>\[.* .*\] add (.*)</string>
+				<string>\] add (.*)</string>
 			</regexCodeList>
 			<regexCodePropertyList>
 				<integer>1</integer>
@@ -522,10 +549,10 @@ replace("")</script>
 		</Trigger>
 		<Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
 			<name>roomDesc</name>
-			<script>if getRoomUserData(getRoomIDbyHash(gmcp.Room.Id), "description") == nil then
+			<script>if getRoomUserData(getRoomIDbyHash(gmcp.Room.Id), "description") == "" then
   setRoomUserData(getRoomIDbyHash(gmcp.Room.Id), "description",line)
 end
-disableTrigger("roomDesc")</script>
+disableTrigger("roomDesc") </script>
 			<triggerType>0</triggerType>
 			<conditonLineDelta>0</conditonLineDelta>
 			<mStayOpen>0</mStayOpen>
@@ -565,9 +592,11 @@ end</script>
 				<integer>1</integer>
 			</regexCodePropertyList>
 		</Trigger>
-		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="yes" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-			<name>New trigger</name>
-			<script></script>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>You have discovered a new part of the Western Realms!</name>
+			<script>setRoomUserData(eleMap.currentRoom,"ExploredRoom","true")
+postHTTP("roomid="..gmcp.Room.Id, "https://dev.khviii.info/~dkearns/ele/")
+</script>
 			<triggerType>0</triggerType>
 			<conditonLineDelta>0</conditonLineDelta>
 			<mStayOpen>0</mStayOpen>
@@ -579,7 +608,67 @@ end</script>
 			<colorTriggerFgColor>#000000</colorTriggerFgColor>
 			<colorTriggerBgColor>#000000</colorTriggerBgColor>
 			<regexCodeList>
-				<string>slab</string>
+				<string>^You have discovered a new part of the Western Realms\!</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>1</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Hole</name>
+			<script>send("out")</script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>Shambler begins to shimmer and then fades into nothingness</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>0</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Sanc</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand>sanc</mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>You feel the effects of sanctuary wear off.</string>
+			</regexCodeList>
+			<regexCodePropertyList>
+				<integer>3</integer>
+			</regexCodePropertyList>
+		</Trigger>
+		<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>AutoMount</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand>mount horse</mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList>
+				<string>Your Ethereal Palfrey gallops into the room.</string>
 			</regexCodeList>
 			<regexCodePropertyList>
 				<integer>0</integer>
@@ -599,6 +688,20 @@ end</script>
 				<command></command>
 				<packageName></packageName>
 				<time>00:00:00.005</time>
+			</Timer>
+		</TimerGroup>
+		<TimerGroup isActive="yes" isFolder="yes" isTempTimer="no" isOffsetTimer="no">
+			<name>UI</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<time>00:00:00.000</time>
+			<Timer isActive="yes" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+				<name>xph</name>
+				<script>getXPH()</script>
+				<command></command>
+				<packageName></packageName>
+				<time>00:01:00.000</time>
 			</Timer>
 		</TimerGroup>
 	</TimerPackage>
@@ -700,6 +803,8 @@ elseif cmd == "config" then
 elseif cmd == "installmap" then
   loadMap(getMudletHomeDir().."/EleUI2/EleUI2Map.dat")
   find_room()
+elseif cmd == "startmap" then
+  mapper_Installed()
 elseif cmd == "theme" then
   ui_Theme(matches[3])
 elseif cmd == "routes" then
@@ -720,19 +825,50 @@ elseif cmd == "mapmode" then
   end
 elseif cmd == "update" then
   GitUpdater()
+elseif cmd == "note" then
+  local roomNote = getRoomUserData(eleMap.currentRoom,"RoomNote") or ""
+  if matches[3] ~= "" then
+    decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+    decho(matches[3].."\n") 
+    decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+    setRoomUserData(eleMap.currentRoom,"RoomNote",matches[3])    
+  elseif roomNote ~= ""  then 
+    decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+    decho(roomNote.."\n") 
+    decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
+  end
+elseif cmd == "clearnote" then
+  clearRoomUserData(eleMap.currentRoom,"RoomNote")
+elseif cmd == "roomcmd" then
+  setRoomUserData(eleMap.currentRoom,"roomCMD",matches[3])    
+elseif cmd == "exitcmd" then
+  local e_dir = matches[3]:match("^(%w*)")
+  local e_cmd = matches[3]:match("^%w* (.*)")
+  if e_cmd == "clear" then
+    setDoor(eleMap.currentRoom,e_dir,0)
+    clearRoomUserDataItem(eleMap.currentRoom,"Exit_"..e_dir)
+  else
+    setDoor(eleMap.currentRoom,e_dir,1)
+    setRoomUserData(eleMap.currentRoom,"Exit_"..e_dir,e_cmd)
+  end
 else
   decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
-  decho("ui help    - this page!\n")
-  decho("ui save    - Saves current window layout!\n")
-  decho("ui load    - Loads current window layout!\n")
-  decho("ui config  - Displays the UI Config window!\n")
-  decho("ui theme x - Changes border colour to x (red|green|purple|#660000|etc)\n")
-  decho("ui routes  - Show speedwalk menu\n")
-  decho("ui routes x- Speedwalk to destination\n")
-  decho("ui stop    - Kills speedwalking instantly\n")
-  decho("ui mapmode - Toggle Mapmode (Follow/Simple/Full) Current:"..brax.map.mode.."\n")
-  decho("ui update  - Check for updates\n")
-  decho("             UI "..brax.version.."\n")
+  decho("ui help       - this page!\n")
+  decho("ui save       - Saves current window layout!\n")
+  decho("ui load       - Loads current window layout!\n")
+  decho("ui config     - Displays the UI Config window!\n")
+  decho("ui theme &lt;x&gt;  - Changes border colour to x (red|green|purple|#660000|etc)\n")
+  decho("ui routes     - Show speedwalk menu\n")
+  decho("ui routes &lt;x&gt; - Speedwalk to destination\n")
+  decho("ui stop       - Kills speedwalking instantly\n")
+  decho("ui mapmode    - Toggle Mapmode (Follow/Simple/Full) Current:"..brax.map.mode.."\n")
+  decho("ui startmap   - Will Set mapmode to full, and create first room based on current location\n")
+  decho("ui exitcmd    - Takes two commands, dir and command ie 'ui exitcmd ne open gate'\n")
+  decho("              -  Used in speedwalking routes to auto open doors/gates etc\n")
+  decho("ui note &lt;x&gt;   - Display any custom notes for current room\n")
+  decho("ui clearnote  - Check for updates\n")
+  decho("ui update     - Check for updates\n")
+  decho("                UI "..brax.version.."\n")
   decho("&lt;128,0,128&gt;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n")
 end</script>
 				<command></command>
@@ -755,12 +891,30 @@ end</script>
 			</Alias>
 		</AliasGroup>
 		<Alias isActive="yes" isFolder="no">
-			<name>ui getdesc</name>
+			<name>map getdesc</name>
 			<script>enableTrigger("roomDesc")
 send("look")</script>
 			<command></command>
 			<packageName></packageName>
-			<regex>^ui getdesc$</regex>
+			<regex>^map getdesc$</regex>
+		</Alias>
+		<Alias isActive="yes" isFolder="no">
+			<name>tt</name>
+			<script>local _,t = next(gmcp.Char.Attackers.Attack)
+send("target "..t)
+
+</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^t$</regex>
+		</Alias>
+		<Alias isActive="yes" isFolder="no">
+			<name>phole</name>
+			<script>local item = matches[2]
+send("drop hole;;enter hole;;drop "..item..";;out;;get hole")</script>
+			<command></command>
+			<packageName></packageName>
+			<regex>^phole (\w*)$</regex>
 		</Alias>
 	</AliasPackage>
 	<ActionPackage />
@@ -858,20 +1012,34 @@ end
 				<script>function charItems()
 --display(gmcp.Char.Items)
   local id,item = next(gmcp.Char.Items)
+--display(item)
   if item == 0 then
     brax.items[id] = nil
   else
-    brax.items = table.update(brax.items,gmcp.Char.Items)
+--  display(gmcp.Char.Items)
+    local tempItem = {}
+    tempItem[id] = item
+--    display(tempItem)
+--    brax.items = table.update(brax.items,tempItem)
+  end
+end
+
+function testItems()
+  for id,item in pairs(brax.items) do
+  if item.name == nil then item.name = "" end
+  if item.subtype == nil then item.subtype = "" end
+    print(item.subtype..":"..item.name)
   end
 end
 
 registerAnonymousEventHandler("gmcp.Char.Items","charItems")</script>
 				<eventHandlerList />
 			</Script>
-			<Script isActive="yes" isFolder="no">
+			<Script isActive="no" isFolder="no">
 				<name>Target</name>
 				<packageName></packageName>
 				<script>function targetHP()
+if true then return end
   gmcp.Char.Target = gmcp.Char.Target or {}
   gmcp.Char.Target.Vitals = gmcp.Char.Target.Vitals or {}
   gmcp.Char.Target.Vitals.hp = gmcp.Char.Target.Vitals.hp or nil
@@ -956,10 +1124,10 @@ function castT()
 --display(gmcp.Char.Target.Cast)
 end
 
-registerAnonymousEventHandler("gmcp.Char.Target.Vitals", "targetHP")
-registerAnonymousEventHandler("gmcp.Char.Target", "targetHP")
-registerAnonymousEventHandler("gmcp.Char.Attackers", "targetHP")
-registerAnonymousEventHandler("gmcp.Char.Target.Cast", "targetHP")
+--registerAnonymousEventHandler("gmcp.Char.Target.Vitals", "targetHP")
+--registerAnonymousEventHandler("gmcp.Char.Target", "targetHP")
+--registerAnonymousEventHandler("gmcp.Char.Attackers", "targetHP")
+--registerAnonymousEventHandler("gmcp.Char.Target.Cast", "targetHP")
 
 </script>
 				<eventHandlerList />
@@ -1017,26 +1185,174 @@ end</script>
 			<Script isActive="yes" isFolder="no">
 				<name>newWeights</name>
 				<packageName></packageName>
-				<script>function newWeights()
+				<script>function Geyser.nameAll(type)
+  for _, v in pairs(Geyser.windowList) do
+    if v.type == type or not type then
+      print(v.name)
+    end
+  end
+end
+
+
+function getExploredRooms()
+  local rooms = getRooms()
+  for i, v in ipairs(rooms) do
+    if getAllRoomUserData(i)['ExploredRoom'] then
+      cechoLink(i.." - "..getRoomName(i).."\n",[[centerview(]]..i..[[)]],"",true)
+    end
+  end
+end
+
+function delSquareExits()
+  local rooms = getRooms()
+  for i, v in ipairs(rooms) do
+    if getSpecialExitsSwap(i)['square'] then
+    print(i)
+    removeSpecialExit(i,'square')
+    end
+  end
+end
+
+
+function newWeights()
 -- Paths = 1
 -- Sea = Block
 
   local rooms = getRooms()
   for i, v in ipairs(rooms) do
-    if getRoomWeight(i) == 5 then
---      setRoomWeight(i, 1)
-    end
     if getRoomEnv(i) == 267 then -- Yellow Path
 --      setRoomWeight(i, 1)
-    end
-    if getRoomEnv(i) == 260 then -- sea Blue (disable speedwalk)
+    elseif getRoomEnv(i) == 260 then -- sea Blue (disable speedwalk)
 --      lockRoom(i,true)
+    elseif getRoomEnv(i) == 296 then -- sea Blue (disable speedwalk)
+      lockRoom(i,false)
+      setRoomWeight(i,10)
+    else
+      setRoomWeight(i,10)
     end
-    if getRoomEnv(i) == 296 then -- sea Blue (disable speedwalk)
---     lockRoom(i,false)
+    if getAllRoomUserData(i)['ExploredRoom'] then
+--      print(i.." - "..getRoomName(i))
+      cechoLink(i.." - "..getRoomName(i).."\n",[[centerview(]]..i..[[)]],"",true)
     end
   end
-end -- getpa getRoomIDbyHash</script>
+end -- getpa getRoomIDbyHash
+
+--R {    1} {0} {} {kera} { } {Inside a warm, friendly inn called the Elephant's Ears^[[0;37;40m} {} {aerdy.8.8} {} {aerdy.177.145107} {1.000}
+--E {    2} {n} {n} {1} {0} {}
+--E {   18} {ne} {ne} {3} {0} {}
+--E {    3} {e} {e} {2} {0} {}
+--E {   42} {se} {se} {6} {0} {}
+--E {   18} {s} {s} {4} {0} {}
+--E {   17} {sw} {sw} {12} {0} {}
+--E {   35} {w} {w} {8} {0} {}
+--E {   45} {nw} {nw} {9} {0} {}
+--E {  420} {in} {in} {0} {0} {}
+--E {  305} {out} {out} {0} {0} {}
+
+function exportToTinTin()
+  local rooms = getRooms()
+  file = io.open (getMudletHomeDir()..[[/tt.map]] ,"w")
+  io.output(file)
+  local roomName = ""
+  local roomHash = ""
+  local dirNum = 0
+  local roomExits = {}
+  for i, v in ipairs(rooms) do
+    roomName = getRoomName(i) or ""
+    roomHash = getRoomHashByID(i) or ""
+    roomExits = getRoomExits(i)
+    io.write("R {"..i.."} {0} {} {"..roomName.."} {"..rgbToHex(getCustomEnvColorTable()[getRoomEnv(i)]).."} {} {} {"..roomHash.."} {} {} {1.000}\n")
+      for dir, toRoom in pairs(roomExits) do
+        if dir == "north" then dirNum = 1 end
+        if dir == "northeast" then dirNum = 3 end
+        if dir == "east" then dirNum = 2 end
+        if dir == "southeast" then dirNum = 6 end
+        if dir == "south" then dirNum = 4 end
+        if dir == "southwest" then dirNum = 12 end
+        if dir == "west" then dirNum = 8 end
+        if dir == "northwest" then dirNum = 9 end
+        io.write("E {"..toRoom.."} {"..dir.."} {"..dir.."} {"..dirNum.."} {0} {}\n")
+      end
+    io.write("\n")
+  end
+  io.close(file)
+end 
+
+function rgbToHex(rgb)
+	local hexadecimal = ''
+  if rgb == nil then return ' ' end
+	for key, value in pairs(rgb) do
+    local index = math.ceil(value/42.5)
+    if index == 0 then index = 1 end
+    hexadecimal = hexadecimal .. string.sub('abcdef', index, index)
+	end
+
+	return '&lt;'..hexadecimal..'&gt;#'
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>SwitchContainers</name>
+				<packageName></packageName>
+				<script>function switchContainer(event,details)
+  display(event)
+  display(details)
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>Skills Matrix</name>
+				<packageName></packageName>
+				<script>function skillsMatrix()
+  brax = brax or {}
+  brax.skills = brax.skills or {}
+  brax.skills.warmage = brax.skills.warmage or {}
+  brax.skills.warmage.scry = {}
+  brax.skills.warmage.scry.cmd = "scry"
+  brax.skills.warmage.scry.icon = getMudletHomeDir().."/EleUI2/imgs/pspray.png"
+  brax.skills.warmage.blast = {}
+  brax.skills.warmage.blast.cmd = "scry"
+  brax.skills.warmage.blast.icon = getMudletHomeDir().."/EleUI2/imgs/blast.png"
+  
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>xph</name>
+				<packageName></packageName>
+				<script>function getXPH()
+  brax.XPH = brax.XPH or brax.xp
+  local rate = (brax.xp - brax.XPH) * 60
+  --print("XP Rate: "..comma_value(rate).." xp per Hours")
+  brax.XPH = brax.xp
+  brax.XPRate = rate
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>New script</name>
+				<packageName></packageName>
+				<script>function pins()
+  local rooms =
+    {
+      "aerdy.115.671984","aerdy.122.283505","aerdy.122.306062","aerdy.130.642230","aerdy.130.893694",
+      "aerdy.132.703436","aerdy.135.130901","aerdy.137.74180","aerdy.151.110827","aerdy.151.733333",
+      "aerdy.151.789710","aerdy.177.443104","aerdy.177.579356","aerdy.177.795765","aerdy.178.493821",
+      "aerdy.179.30511","aerdy.193.220250","aerdy.193.846494","aerdy.195.120709","aerdy.195.311181",
+      "aerdy.195.385866","aerdy.196.688310","aerdy.197.493821","aerdy.198.986618","aerdy.199.639701",
+      "aerdy.199.790196","aerdy.199.854443","aerdy.201.962797","aerdy.25.28344","aerdy.25.437038",
+      "aerdy.34.345747","aerdy.34.715646","drakenwood.233.25063","drakenwood.239.562199",
+      "drakenwood.239.724500","drakenwood.241.61780","drakenwood.69.113241","drakenwood.98.137928",
+      "rosfarren.215.280201","rosfarren.215.754577","rosfarren.219.722571","rosfarren.219.853058",
+      "rosfarren.220.486010","rosfarren.228.746949","rosfarren.228.88830","rosfarren.243.25179",
+      "rosfarren.243.379049","rosfarren.244.243063","rosfarren.246.841053","rosfarren.247.213500",
+      "valena.11.344111","valena.11.397200","valena.172.33406","valena.172.665057","valena.38.630561",
+    }
+  for id, hash in pairs(rooms) do
+    setRoomChar(getRoomIDbyHash(hash), "📌")
+  end
+end
+</script>
 				<eventHandlerList />
 			</Script>
 		</ScriptGroup>
@@ -1050,6 +1366,336 @@ end -- getpa getRoomIDbyHash</script>
 -------------------------------------------------
 </script>
 			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>onLoad</name>
+				<packageName></packageName>
+				<script>function get_Ready()
+  print(":: Getting stuff ready....")
+  gmcp = gmcp or {}
+  gmcp.Char = gmcp.Char or {}
+  gmcp.Char.Vitals = gmcp.Char.Vitals or {}
+  gmcp.Char.Vitals.hp = gmcp.Char.Vitals.hp or 0
+  gmcp.Char.Vitals.mp = gmcp.Char.Vitals.mp or 0
+  gmcp.Char.Vitals.sp = gmcp.Char.Vitals.sp or 0
+  gmcp.Char.Vitals.maxhp = gmcp.Char.Vitals.maxhp or 1
+  gmcp.Char.Vitals.maxmp = gmcp.Char.Vitals.maxmp or 1
+  gmcp.Char.Vitals.maxsp = gmcp.Char.Vitals.maxsp or 1
+  gmcp.Char.Status = gmcp.Char.Status or {}
+  gmcp.Char.Status.class = gmcp.Char.Status.class or {}
+  gmcp.Char.Attackers = gmcp.Char.Attackers or {}
+  gmcp.Char.Attackers.Hunt = gmcp.Char.Attackers.Hunt or {}
+  gmcp.Char.Attackers.Attack = gmcp.Char.Attackers.Attack or {}
+  
+  brax = brax or {}
+  brax.name = brax.name or gmcp.Char.Status.fullname
+  brax.level = brax.level or gmcp.Char.Status.level
+  brax.map = brax.map or {}
+  brax.map.mode = brax.map.mode or "read"
+  brax.version = "Version: 1.56"
+  brax.speedwalkDelay = 0.3
+  brax.xp = brax.xp or 0
+  brax.class = brax.class or {}
+  brax.class.prime = brax.class.prime or ""
+  brax.class.second = brax.class.second or ""
+  brax.party = brax.party or {}
+  brax.party.Members = brax.party.Members or {}
+  brax.party.Vitals = brax.party.Vitals or {}
+  brax.items = brax.items or {}
+  brax.target = brax.target or {}  
+  brax.hotbar = brax.hotbar or {}
+  brax.bell = true
+  setDiscordApplicationID("689229426529140740")
+  setDiscordLargeIcon("server-icon")
+  setDiscordLargeIconText("Elephant MUD")
+  setDiscordElapsedStartTime(os.time(os.date("*t")))
+--  setDiscordDetail(brax.name.." ("..brax.level..")")
+
+  local btnStyle = [[QLabel{ border-radius: 7px; background-color: rgba(140,140,140,100%);}QLabel::hover{ background-color: rgba(160,160,160,50%);}]]
+  local adjStyle = [[border: 6px solid transparent;border-image: url(]]..getMudletHomeDir()..[[/EleUI2/imgs/oga.png) round;]]
+-- adjLabelstyle=adjStyle, buttonstyle=btnStyle,
+
+statBoxContainer = statBoxContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,x=10,y=10,name="statBoxContainer",titleText="Vitals"})
+  statsBox = Geyser.Label:new({name = "Stats", color = "black", x = 0, y = 0, width = "100%", height = "100%"},statBoxContainer)
+  statsDetails = Geyser.Label:new({name = "Details", color = "black", x = 0, y = 125, width = "100%", height = "40px"},statsBox)  
+  statsBox:setStyleSheet([[background:rgba(0,0,0,0)]])
+  statsDetails:setStyleSheet([[background:rgba(0,0,0,0)]])
+  hpbar = Geyser.Gauge:new({name="hpbar",x="0%", y="5px",width="100%", height="39px"},statsBox)
+  statsDetails:setClickCallback("toggleXP")
+  hpbar:setStyleSheet([[qproperty-alignment: 'AlignBottom';]])
+  hpbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #f04141, stop: 0.1 #ef2929, stop: 0.49 #cc0000, stop: 0.5 #a40000, stop: 1 #cc0000);
+      border-top: 1px black solid;
+      border-left: 1px black solid;
+      border-bottom: 1px black solid;
+      border-radius: 7;
+      padding: 3px;]])
+  hpbar.back:setStyleSheet([[background-color: black;
+      border-width: 1px;
+      border-color: #f04141;
+      border-style: solid;
+      border-radius: 7;
+      padding: 3px;]])
+  mpbar = Geyser.Gauge:new({name="mpbar",x="0%", y="45px",width="100%", height="35px"},statsBox)
+  mpbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #9841f0, stop: 0.1 #8c29f0, stop: 0.49 #6600cc, stop: 0.5 #5200a3, stop: 1 #6600cc);
+      border-top: 1px black solid;
+      border-left: 1px black solid;
+      border-bottom: 1px black solid;
+      border-radius: 7;
+      padding: 3px;]])
+  mpbar.back:setStyleSheet([[background-color: black;
+      border-width: 1px;
+      border-color: #9841f0;
+      border-style: solid;
+      border-radius: 7;
+      padding: 3px;]])
+  spbar = Geyser.Gauge:new({name="spbar",x="0%", y="85px",width="100%", height="35px"},statsBox)
+  spbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #98f041, stop: 0.1 #8cf029, stop: 0.49 #66cc00, stop: 0.5 #52a300, stop: 1 #66cc00);
+      border-top: 1px black solid;
+      border-left: 1px black solid;
+      border-bottom: 1px black solid;
+      border-radius: 7;
+      padding: 3px;]])
+  spbar.back:setStyleSheet([[background-color: black;
+      border-width: 1px;
+      border-color: #98f041;
+      border-style: solid;
+      border-radius: 7;
+      padding: 3px;]])
+statBoxContainer:hide()
+
+buffBoxContainer = buffBoxContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,x=20,y=20,name="buffBoxContainer",titleText="Buffs / Debuffs Status"})
+  buffBox = Geyser.Label:new({name = "Buffs", color = "black", x = 0, y = 0, width = "100%", height = "100%"},buffBoxContainer)
+  buffBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+  buffBox:setStyleSheet([[background:rgba(0,0,0,0)]])
+buffBoxContainer:hide()
+
+bodyBoxContainer = bodyBoxContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,name="bodyBoxContainer",titleText="Body Damage"})
+  bodyBox = Geyser.Label:new({name = "Body", color = "black", x = 0, y = 0, width = "100%", height = "100%"},bodyBoxContainer)
+  bodyBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+  bodyBox:setStyleSheet([[background:rgba(0,0,0,0)]])
+bodyBoxContainer:hide()
+
+cooldownBoxContainer = cooldownBoxContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,x=30,y=30,name="cooldownBoxContainer",titleText="Outstanding Cooldowns"})
+  cooldownBox = Geyser.Label:new({name = "Cooldowns", color = "black", x = 0, y = 0, width = "100%", height = "100%"},cooldownBoxContainer)
+  cooldownBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+  cooldownBox:raise()
+  cooldownBox:setStyleSheet([[background:rgba(0,0,0,0)]])
+cooldownBoxContainer:hide()
+
+mapBoxContainer = mapBoxContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,x=40,y=40,name="mapBoxContainer",titleText="You Are Here!"})
+mapBoxContainer:hide()
+
+chatBoxContainer = chatBoxContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,x=50,y=50,name="chatBoxContainer",titleText="Chat"})
+  local stylesheet = [[background-color: rgb(0,0,0,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
+  local istylesheet = [[background-color: rgb(60,60,60,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
+  local _stylesheet = [[
+        QLabel{
+				background-color: #4d0000;
+				border-style: outset;
+        border-width: 2px;
+        border-color: "#996600";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
+        qproperty-alignment: 'AlignCenter | AlignCenter';
+				}				
+				QLabel::hover{
+				background-color: #b30000;
+				border-style: outset;
+        border-width: 2px;
+        border-color: "#996600";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
+        qproperty-alignment: 'AlignCenter | AlignCenter';
+				}				
+				]]
+  local _istylesheet = [[
+        QLabel{
+				background-color: #b30000;
+				border-style: outset;
+        border-width: 2px;
+        border-color: "#996600";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
+        qproperty-alignment: 'AlignCenter | AlignCenter';
+				}				
+				QLabel::hover{
+				background-color: #b30000;
+				border-style: outset;
+        border-width: 2px;
+        border-color: "#996600";
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-right: 1px;
+        margin-left: 1px;
+        qproperty-alignment: 'AlignCenter | AlignCenter';
+				]]
+
+  chatBox = EMCO:new({ x = "0", y = "0", width = "100%", height = "100%", gap = 2, consoles = {"Tell"},activeTabCSS = _stylesheet, inactiveTabCSS = _istylesheet},chatBoxContainer)
+  chatBox.tabBoxLabel:setStyleSheet([[background-color: rgba(0,0,0,0);]])
+  chatBox:enableScrollbars()
+  chatBox:enableBlink()
+chatBoxContainer:hide()
+  
+castbarBoxContainer = castbarBoxContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,x=60,y=60,name="castbarBoxContainer",titleText="Casting"})
+--  castbarBox = Geyser.Label:new({name = "Casting", color = "black", x = 0, y = 0, width = "100%", height = "100%"},cooldownBoxContainer)
+--  castbarBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+--  castbarBoxContainer:resize(300,50)
+castbarBoxContainer:hide()
+
+partyContainer = partyContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,x=10,y=10,name="partyContainer",titleText="Party"})
+  partyBox = Geyser.Label:new({name = "Party", color = "black", x = 0, y = 0, width = "100%", height = "100%"},partyContainer)
+  partyBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
+  partyBox:setStyleSheet([[background:rgba(0,0,0,0)]])
+  do_Config()
+-- 💾
+
+-- Black's
+targetBoxContainer = targetBoxContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,x=100,y=100,name = "targetBoxContainer", titleText = "Target Info"})
+  targetBar = targetBar or Geyser.Gauge:new({name="targetBar",x="0%", y="5px",width="100%", height="15px"},targetBoxContainer)
+  targetBox = targetBox or Geyser.Label:new( {name = "targetBox", color = "black", x = 0, y = "25px", width = "100%", height = "70%"}, targetBoxContainer)
+  targetBox:setStyleSheet([[qproperty-alignment: 'AlignTop';background-color:rgba(70,70,70,0%)]])
+  targetBoxContainer:hide()
+targetBar:hide()
+
+Adjustable.Container.loadAll()
+
+uninstallPackage("generic_mapper")
+mudlet = mudlet or {}; mudlet.mapper_script = true
+eleMap = eleMap or {}
+eleMap.mode = 0 				-- 1 = edit, 0=follow
+
+eleMap = Geyser.Mapper:new({
+  name = "eleMap",
+  x = 0, y = 0,
+  width = "100%",
+  height = "100%",
+},mapBoxContainer)
+
+end
+
+function do_Config()
+  local configCSS = [[QLabel{padding-left:25px;background:rgba(0,0,0,0);}QLabel::hover {background-image : url("]]..getMudletHomeDir()..[[/EleUI2/imgs/FF7Cursor.png"); background-repeat:no-repeat;};]]
+  local btnStyle = [[QLabel{ border-radius: 7px; background-color: rgba(140,140,140,100%);}QLabel::hover{ background-color: rgba(160,160,160,50%);}]]
+  local adjStyle = [[border: 6px solid transparent;border-image: url(]]..getMudletHomeDir()..[[/EleUI2/imgs/oga.png) round;]]
+  configContainer = configContainer or Adjustable.Container:new({adjLabelstyle=adjStyle, buttonstyle=btnStyle,name="configContainer",titleText="Config",width="200px", height="230px"})
+  configStats = configStats or Geyser.Label:new({name = "configStats", color = "black", x = 0, y = 0, width = "100%", height = "20"},configContainer)
+  configStats:setStyleSheet(configCSS)
+  configStats:setClickCallback("toggleBox",statBoxContainer)
+  local hiddenState = ""
+  if (statBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configStats:echo("Stats Window "..hiddenState)
+
+  configBuffs = configBuffs or Geyser.Label:new({name = "configBuffs", color = "black", x = 0, y = 20, width = "100%", height = "20"},configContainer)
+  configBuffs:setStyleSheet(configCSS)
+  configBuffs:setClickCallback("toggleBox",buffBoxContainer)
+  local hiddenState = ""
+  if (buffBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configBuffs:echo("Buffs/Debuffs Window "..hiddenState)
+
+  configBody = configBody or Geyser.Label:new({name = "configBody", color = "black", x = 0, y = 40, width = "100%", height = "20"},configContainer)
+  configBody:setStyleSheet(configCSS)
+  configBody:setClickCallback("toggleBox",bodyBoxContainer)
+  local hiddenState = ""
+  if (bodyBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configBody:echo("Limb Damage Window "..hiddenState)
+
+  configCooldowns = configCooldowns or Geyser.Label:new({name = "configCooldown", color = "black", x = 0, y = 60, width = "100%", height = "20"},configContainer)
+  configCooldowns:setStyleSheet(configCSS)
+  configCooldowns:setClickCallback("toggleBox",cooldownBoxContainer)
+  local hiddenState = ""
+  if (cooldownBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configCooldowns:echo("Cooldowns Window "..hiddenState)
+
+  chatCooldowns = chatCooldowns or Geyser.Label:new({name = "chatCooldown", color = "black", x = 0, y = 80, width = "100%", height = "20"},configContainer)
+  chatCooldowns:setStyleSheet(configCSS)
+  chatCooldowns:setClickCallback("toggleBox",chatBoxContainer)
+  local hiddenState = ""
+  if (chatBoxContainer.hidden == false) then hiddenState = "✔️" end
+  chatCooldowns:echo("Chat Window "..hiddenState)
+
+  configMap = configMap or Geyser.Label:new({name = "configmap", color = "black", x = 0, y = 100, width = "100%", height = "20"},configContainer)
+  configMap:setStyleSheet(configCSS)
+  configMap:setClickCallback("toggleBox",mapBoxContainer)
+  local hiddenState = ""
+  if (mapBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configMap:echo("Map "..hiddenState)
+
+  configcastbar = configcastbar or Geyser.Label:new({name = "configcastbar", color = "black", x = 0, y = 120, width = "100%", height = "20"},configContainer)
+  configcastbar:setStyleSheet(configCSS)
+  configcastbar:setClickCallback("toggleBox",castbarBoxContainer)
+  local hiddenState = ""
+  if (castbarBoxContainer.hidden == false) then hiddenState = "✔️" end
+  configcastbar:echo("CastBar "..hiddenState)
+
+  partyInfo = partyInfo or Geyser.Label:new({name = "partyInfo", color = "black", x = 0, y = 140, width = "100%", height = "20"},configContainer)
+  partyInfo:setStyleSheet(configCSS)
+  partyInfo:setClickCallback("toggleBox",partyContainer)
+  local hiddenState = ""
+  if (partyContainer.hidden == false) then hiddenState = "✔️" end
+  partyInfo:echo("Party Info "..hiddenState)
+
+  targetInfo = targetInfo or Geyser.Label:new({name = "targetInfo", color = "black", x = 0, y = 160, width = "100%", height = "20"},configContainer)
+  targetInfo:setStyleSheet(configCSS)
+  targetInfo:setClickCallback("toggleBox",targetBoxContainer)
+  local hiddenState = ""
+  if (targetInfo.hidden == false) then hiddenState = "✔️" end
+  targetInfo:echo("Target Info "..hiddenState)
+
+
+  configSave = configSave or Geyser.Label:new({name = "configSave", color = "black", x = 0, y = 180, width = "100%", height = "20"},configContainer)
+  configSave:setStyleSheet(configCSS)
+  configSave:setClickCallback("saveWindows")
+  configSave:echo("Save Layout")
+  
+  configLoad = configLoad or Geyser.Label:new({name = "configLoad", color = "black", x = 0, y = 200, width = "100%", height = "20"},configContainer)
+  configLoad:setStyleSheet(configCSS)
+  configLoad:setClickCallback("loadWindows")
+  configLoad:echo("Load Layout")
+end
+
+map = {}
+function map.eventHandler()
+end
+
+function first_Install(_, pkg)
+  if pkg == "EleUI2" then
+    uninstallPackage("generic_mapper")
+--    mapper_Installed()
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;Ele Drag and Drop UI Installed&lt;cyan&gt;««&lt;reset&gt;\n")
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;Commands: &lt;cyan&gt;««&lt;reset&gt;\n")
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;ui config - shows config window&lt;cyan&gt;««&lt;reset&gt;\n")
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;ui installmap - Installs pre-filled map&lt;cyan&gt;««&lt;reset&gt;\n")
+    get_Ready()
+  for  k,v in pairs(Geyser.windowList) do
+    if v.type == "adjustablecontainer" then 
+      v:hide()
+    end
+  end
+  end
+end
+
+function getName()
+  brax.name = gmcp.Char.Status.fullname
+end
+function getLevel()
+  brax.level = gmcp.Char.Status.level
+  if brax.name and brax.level then
+    setDiscordDetail(brax.name.." ("..brax.level..")")
+  end
+end
+
+registerAnonymousEventHandler("sysLoadEvent", "get_Ready")
+registerAnonymousEventHandler("sysInstallPackage", "first_Install")
+registerAnonymousEventHandler("gmcp.Char.Status.level", "getLevel")
+registerAnonymousEventHandler("gmcp.Char.Status.fullname", "getName")
+</script>
+				<eventHandlerList />
+			</Script>
 			<Script isActive="yes" isFolder="no">
 				<name>vitals</name>
 				<packageName></packageName>
@@ -1086,12 +1732,14 @@ if amount then
     return ""
   end
 end
-
+-- postHTTP(gmcp.Room.Id,"https://dev.khviii.info/~dkearns/ele/")
 function toggleXP()
   brax.xp = gmcp.Char.Vitals.exp
   brax.curXP = brax.xp
+--  brax.XPH = nil
   brax.xpType = not brax.xpType
   update_statsBox()
+  getXPH()
 end
 
 
@@ -1153,37 +1801,38 @@ registerAnonymousEventHandler("gmcp.Room.Items", "roomItems")</script>
       end
       local verNum = tonumber(versiontxt:match("Version: (.*)"))
       local thisVerNum = tonumber(brax.version:match("Version: (.*)"))
-      print("Online Version: "..verNum)
-      print("Installed Version: "..thisVerNum)
+      cecho("&lt;cyan&gt;»»&lt;reset&gt;Online Version:&lt;yellow&gt;"..verNum.."\n")
+      cecho("&lt;cyan&gt;»»&lt;reset&gt;Installed Version:&lt;yellow&gt;"..thisVerNum.."\n")
       
       if verNum &gt; thisVerNum then
-        print("Update Available ("..versiontxt..").. Downloading")
+        cecho("&lt;cyan&gt;»»&lt;reset&gt;Update Available (&lt;yellow&gt;"..versiontxt.."&lt;reset&gt;).. Downloading\n")
         if gmcp.Char.Status.name == "Brax" then
-          print("Blocking Update on dev profile!")
+          cecho("&lt;red&gt;»»&lt;reset&gt;Blocking Update on Dev Profile!&lt;red&gt;««&lt;reset&gt;\n")
           return
         else
           downloadFile(GitUpdate.localPath..GitUpdate.packageFile,GitUpdate.repo..GitUpdate.packageFile)
         end
       else
-        print("No update available")
+        cecho("&lt;cyan&gt;»»&lt;reset&gt;No update available&lt;reset&gt;\n")
       end
     elseif vFile == "EleUI2.mpackage" then -- end EleUI_version.txt download
       print("Update downloaded - Start uninstall")
+      Adjustable.Container.saveAll()
       uninstallPackage("EleUI2")
     end 
 
   elseif event == "sysUninstallPackage" then
     if arg[1] == "EleUI2" then
-      print("Uninstalled:"..arg[1])
+      cecho("&lt;cyan&gt;»»&lt;reset&gt;Uninstalled: &lt;yellow&gt;"..arg[1].."\n")
+      cecho("&lt;cyan&gt;»»&lt;reset&gt;Waiting  to install\n")
       
-      print(GitUpdate.localPath..GitUpdate.packageFile)
       installPackage(GitUpdate.localPath..GitUpdate.packageFile)
-      tempTimer(3, [[ installPackage(GitUpdate.localPath..GitUpdate.packageFile) ]])
+      tempTimer(5, [[ installPackage(GitUpdate.localPath..GitUpdate.packageFile) ]])
     end
   elseif event == "sysDownloadError" then
-   print("Download Error:"..arg[1])
+   cecho("&lt;red&gt;»»&lt;reset&gt;Download Error: "..arg[1].."\n")
   else
-    print("Checking for update")
+    cecho("&lt;cyan&gt;»»&lt;reset&gt;Checking for update&lt;reset&gt;\n")
     downloadFile(GitUpdate.localPath..GitUpdate.versionFile,GitUpdate.repo..GitUpdate.versionFile)
   end
 end</script>
@@ -1196,10 +1845,12 @@ end</script>
   local tab = "Tell"
   local chat_msg = gmcp.Msg.Tell.msg
   local from = gmcp.Msg.Tell.from
+  local to = gmcp.Msg.Tell.to
   if not table.contains(chatBox.consoles,tab) then
     chatBox:addTab(tab)
   end
-  chatBox:cecho(tab,"&lt;red&gt;"..from..":&lt;reset&gt; "..chat_msg.."\n")
+  chatBox:cecho(tab,"&lt;red&gt;"..from.."&lt;reset&gt; &gt; &lt;red&gt;"..to.."&lt;reset&gt;: "..chat_msg.."\n")
+  if brax.bell then playSoundFile(getMudletHomeDir()..[[/EleUI2/snd/FFXIV_Incoming_Tell_3.mp3]]) end
 end
 
 function incoming_channel()
@@ -1215,6 +1866,7 @@ function incoming_channel()
     chat_msg = chat_msg:match("%w*(.*)")
     boxMsg = ansicol.."["..chat_who.."]&lt;reset&gt;"..chat_msg:gsub("%%^.-%%^","").."\n"
   else
+    if string.lower(chat_msg):find(string.lower(gmcp.Char.Status.name)) and brax.bell then playSoundFile(getMudletHomeDir()..[[/EleUI2/snd/FFXIV_Incoming_Tell_3.mp3]]) end
     boxMsg = ansicol.."["..chat_who.."]&lt;reset&gt; "..chat_msg:gsub("%%^.-%%^","").."\n"
   end
   chatBox:cecho(tab,boxMsg)
@@ -1354,13 +2006,15 @@ registerAnonymousEventHandler("gmcp.Char.Buffs", "get_Buffs")</script>
 ]]
       for _ in pairs(myCooldowns) do count = count + 1 end
       myCooldownsTotal = count -1
-      demonnic.anitimer:new("cd"..spell, {x = 0, y=myCooldownsTotal*25, height = 20, width = "100%"}, dur, {container = cooldownBox, showTime = true, timerCaption = spell,cssFront=frontCSS,hook = "aTimerEnd(\""..spell.."\")"})
+      demonnic.anitimer:new("cd"..spell, {x = 0, y=myCooldownsTotal*25, height = 20, width = "100%"}, dur, {container = cooldownBoxContainer, showTime = true, timerCaption = spell,cssFront=frontCSS,hook = "aTimerEnd(\""..spell.."\")"})
       if cooldownBoxContainer.hidden == true then 
         demonnic.anitimer.timers["cd"..spell].gauge:hide(true) 
+      else
+        demonnic.anitimer.timers["cd"..spell].gauge:show() 
       end
       myCooldowns[spell] = demonnic.anitimer.timers["cd"..spell].current
     else 
-      if demonnic.anitimer.timers["cd"..spell] then demonnic.anitimer.timers["cd"..spell].gauge:hide() end
+--      if demonnic.anitimer.timers["cd"..spell] then demonnic.anitimer.timers["cd"..spell].gauge:hide() end
       myCooldowns["cd"..spell] = null
       demonnic.anitimer:destroy("cd"..spell)
     end
@@ -1375,9 +2029,11 @@ registerAnonymousEventHandler("gmcp.Char.Buffs", "get_Buffs")</script>
   local pos = 0
   local timeLeft = 0
   for i,v in pairs(myCooldowns) do 
-    timeLeft = demonnic.anitimer.timers["cd"..i].current
-    table.insert(tCooldowns,timeLeft)
-    tName[timeLeft]=i
+    if demonnic.anitimer.timers["cd"..i] then
+      timeLeft = demonnic.anitimer.timers["cd"..i].current
+      table.insert(tCooldowns,timeLeft)
+      tName[timeLeft]=i
+    end
   end
   table.sort(tCooldowns)
   for i,v in pairs(tCooldowns) do 
@@ -1397,6 +2053,15 @@ registerAnonymousEventHandler("gmcp.Char.Cooldowns","get_Cooldowns")</script>
   myLimbs = myLimbs or {}
   for limb,details in pairs(gmcp.Char.Limbs) do
     myLimbs[limb] = myLimbs[limb] or {}
+    if gmcp.Char.Limbs[limb] == "number" then
+      gmcp.Char.Limbs[limb].maxhp = gmcp.Char.Limbs[limb]
+      gmcp.Char.Limbs[limb].hp = gmcp.Char.Limbs[limb].hp
+      gmcp.Char.Limbs[limb].severed = 0
+      gmcp.Char.Limbs[limb].bandaged = 0
+    end
+    if gmcp.Char.Limbs[limb].hp == 0 and gmcp.Char.Limbs[limb].severed == 0 and gmcp.Char.Limbs[limb].bandaged == 0 then
+      myLimbs[limb] = nil
+    end
     gmcp.Char.Limbs = gmcp.Char.Limbs or {}
     if gmcp.Char.Limbs[limb].hp then myLimbs[limb].hp = gmcp.Char.Limbs[limb].hp or details.hp end
     if gmcp.Char.Limbs[limb].maxhp then myLimbs[limb].maxhp = gmcp.Char.Limbs[limb].maxhp or details.maxhp end
@@ -1421,7 +2086,7 @@ registerAnonymousEventHandler("gmcp.Char.Cooldowns","get_Cooldowns")</script>
   table.sort(list,byval)
   local bodyString = "&lt;table&gt;"
   for k=1,#list do
-        bodyString = bodyString .. "&lt;tr&gt;&lt;td width='50%'&gt;".. list[k] .. "&lt;/td&gt;&lt;td&gt;" .. tempLimb[list[k]] .. ("#"):rep(math.ceil(tempLimb[list[k]]/10)).."&lt;/td&gt;&lt;/tr&gt;"
+        bodyString = bodyString .. "&lt;tr&gt;&lt;td width='50%'&gt;".. list[k] .. "&lt;/td&gt;&lt;td&gt;" .. tempLimb[list[k]] .. "&lt;/td&gt;&lt;td&gt;"..("#"):rep(math.ceil(tempLimb[list[k]]/10)).."&lt;/td&gt;&lt;/tr&gt;"
   end
   bodyBox:echo(bodyString)
 end
@@ -1441,15 +2106,18 @@ function aTimerEnd(spell)
   local timer = timer or ""
   if myCooldowns[spell] then 
     myCooldowns[spell] = nil
+    demonnic.anitimer:destroy("cd"..spell)
   end 
 local tCooldowns = {}
   local tName = {}
   local pos = 0
   local timeLeft = 0
   for i,v in pairs(myCooldowns) do 
+  if demonnic.anitimer.timers["cd"..i] then
     timeLeft = demonnic.anitimer.timers["cd"..i].current
     table.insert(tCooldowns,timeLeft)
     tName[timeLeft]=i
+  end
   end
   table.sort(tCooldowns)
   for i,v in pairs(tCooldowns) do 
@@ -1500,6 +2168,7 @@ function ui_Theme(theme)
       border: 4px double ]]..theme..[[;
       border-radius: 4px;]]
   adjLabelstyle = adjLabelstyle..[[ qproperty-alignment: 'AlignLeft | AlignTop';]]
+--  adjLabelstyle = [[border: 6px solid transparent;border-image: url(C:/Users/tdk10/.config/mudlet/profiles/Brax/EleUI2/imgs/oga.png) round]]
   cont = cont or Geyser
   for  k,v in pairs(cont.windowList) do
     if v.type == "adjustablecontainer" then 
@@ -1510,23 +2179,59 @@ function ui_Theme(theme)
 
 end
 
-function Geyser.Container:raiseAll(container)
-  container = container or self
-  for i=1,#container.windows do
-    local v = container.windows[i]
-    container.windowList[v]:raise()
-    container.windowList[v]:raiseAll(container.windowList[v])
-  end
+function Geyser.Label:setCooldown(params)
+    self.start = params.start or 0 --start value of stylesheet variable
+    self.stop = params.stop or 1 -- stop value of stylesheet variable
+    self.cval = params.start -- current value of stylesheet variable (dynamic)
+    self.cdStyleSheet = params.styleSheet --stylesheet has %s in place of dynamic value
+    self.framerate = params.framerate or 0.05 -- framerate as decimal: default 20fps
+    self.cd_label = Geyser.Label:new({
+        name = self.name_cd_label,
+        x = 0,
+        y = 0,
+        height = '100%',
+        width = '100%',
+    }, self)
+    self.cd_label:hide()
+    
 end
 
-function Geyser.Container:lowerAll(container)
-  container = container or self
-  for i=#container.windows,1,-1 do
-    local v = container.windows[i]
-    container.windowList[v]:lower()
-    container.windowList[v]:lowerAll(container.windowList[v])
-  end
-end</script>
+function Geyser.Label:startCooldown(time)
+    self.time = time or 1
+    self.increment = self.framerate / self.time
+    self.cval = self.start
+    self.cd_label:show()
+    self.cd_label:setStyleSheet(string.format(self.cdStyleSheet, tostring(self.cval)))
+    if self.cdtimer then killTimer(self.cdtimer) end
+
+    self.cdtimer = tempTimer(self.framerate, function()
+        self.cval = self.cval + self.increment 
+        if self.cval &gt;= self.stop then
+            self:stopCooldown()
+        else
+            self.cd_label:setStyleSheet(string.format(self.cdStyleSheet, tostring(self.cval)))
+        end
+    end,
+    true --timer is repeating
+    )
+end
+
+function Geyser.Label:stopCooldown()
+    self.cval = self.start
+    self.cd_label:setStyleSheet(string.format(self.cdStyleSheet, tostring(self.cval)))
+    self.cd_label:hide()
+    killTimer(self.cdtimer)
+end
+
+brax.CDripple = [[
+	background-color: qradialgradient(
+		spread:pad, cx:0.5, cy:0.5, radius:%s, fx:0.5, fy:0.5, 
+		stop:0.3 rgba(100, 100, 100, 180), 
+		stop:0.6 rgba(100, 100, 100, 130), 
+		stop:0.7 rgba(120, 120, 120, 0))
+    ]]
+brax.qconical = [[background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:%s rgba(0, 0, 0, 200), stop:1 rgba(255, 255, 255, 0))]]
+</script>
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
@@ -1536,7 +2241,8 @@ end</script>
   if gmcp.Party.Members == {} then 
     brax.party.Members = {}
   else
-    brax.party.Members = table.update(brax.party.Members,gmcp.Party.Members)
+--  display(gmcp.Party.Members)
+    brax.party.Members = gmcp.Party.Members
   end
   if next(gmcp.Party.Members) == {} then brax.party.Members[next(gmcp.Party.Members)] = nil end
   getParty()
@@ -1582,305 +2288,18 @@ registerAnonymousEventHandler("gmcp.Party.Vitals","do_Party_Vitals")
 				<eventHandlerList />
 			</Script>
 			<Script isActive="yes" isFolder="no">
-				<name>onLoad</name>
-				<packageName></packageName>
-				<script>function get_Ready()
-  print(":: Getting stuff ready....")
-  gmcp = gmcp or {}
-  gmcp.Char = gmcp.Char or {}
-  gmcp.Char.Vitals = gmcp.Char.Vitals or {}
-  gmcp.Char.Vitals.hp = gmcp.Char.Vitals.hp or 0
-  gmcp.Char.Vitals.mp = gmcp.Char.Vitals.mp or 0
-  gmcp.Char.Vitals.sp = gmcp.Char.Vitals.sp or 0
-  gmcp.Char.Vitals.maxhp = gmcp.Char.Vitals.maxhp or 1
-  gmcp.Char.Vitals.maxmp = gmcp.Char.Vitals.maxmp or 1
-  gmcp.Char.Vitals.maxsp = gmcp.Char.Vitals.maxsp or 1
-  gmcp.Char.Status = gmcp.Char.Status or {}
-  gmcp.Char.Status.class = gmcp.Char.Status.class or {}
-  
-  brax = brax or {}
-  brax.map = brax.map or {}
-  brax.map.mode = brax.map.mode or "read"
-  brax.version = "Version: 1.53"
-  brax.xp = brax.xp or 0
-  brax.class = brax.class or {}
-  brax.class.prime = brax.class.prime or ""
-  brax.class.second = brax.class.second or ""
-  brax.party = brax.party or {}
-  brax.party.Members = brax.party.Members or {}
-  brax.party.Vitals = brax.party.Vitals or {}
-  brax.items = brax.items or {}
-  brax.target = brax.target or {}  
-  brax.hotbar = brax.hotbar or {}
-  setDiscordApplicationID("689229426529140740")
-  setDiscordLargeIcon("server-icon")
-  setDiscordLargeIconText("Elephant MUD")
-  setDiscordElapsedStartTime(os.time(os.date("*t")))
-
-statBoxContainer = statBoxContainer or Adjustable.Container:new({x=10,y=10,name="statBoxContainer",titleText="Vitals"})
-  statsBox = Geyser.Label:new({name = "Stats", color = "black", x = 0, y = 0, width = "100%", height = "100%"},statBoxContainer)
-  statsDetails = Geyser.Label:new({name = "Details", color = "black", x = 0, y = 125, width = "100%", height = "40px"},statsBox)  
-  hpbar = Geyser.Gauge:new({name="hpbar",x="0%", y="5px",width="100%", height="39px"},statsBox)
-  statsDetails:setClickCallback("toggleXP")
-  hpbar:setStyleSheet([[qproperty-alignment: 'AlignBottom';]])
-  hpbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #f04141, stop: 0.1 #ef2929, stop: 0.49 #cc0000, stop: 0.5 #a40000, stop: 1 #cc0000);
-      border-top: 1px black solid;
-      border-left: 1px black solid;
-      border-bottom: 1px black solid;
-      border-radius: 7;
-      padding: 3px;]])
-  hpbar.back:setStyleSheet([[background-color: black;
-      border-width: 1px;
-      border-color: #f04141;
-      border-style: solid;
-      border-radius: 7;
-      padding: 3px;]])
-  mpbar = Geyser.Gauge:new({name="mpbar",x="0%", y="45px",width="100%", height="35px"},statsBox)
-  mpbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #9841f0, stop: 0.1 #8c29f0, stop: 0.49 #6600cc, stop: 0.5 #5200a3, stop: 1 #6600cc);
-      border-top: 1px black solid;
-      border-left: 1px black solid;
-      border-bottom: 1px black solid;
-      border-radius: 7;
-      padding: 3px;]])
-  mpbar.back:setStyleSheet([[background-color: black;
-      border-width: 1px;
-      border-color: #9841f0;
-      border-style: solid;
-      border-radius: 7;
-      padding: 3px;]])
-  spbar = Geyser.Gauge:new({name="spbar",x="0%", y="85px",width="100%", height="35px"},statsBox)
-  spbar.front:setStyleSheet([[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #98f041, stop: 0.1 #8cf029, stop: 0.49 #66cc00, stop: 0.5 #52a300, stop: 1 #66cc00);
-      border-top: 1px black solid;
-      border-left: 1px black solid;
-      border-bottom: 1px black solid;
-      border-radius: 7;
-      padding: 3px;]])
-  spbar.back:setStyleSheet([[background-color: black;
-      border-width: 1px;
-      border-color: #98f041;
-      border-style: solid;
-      border-radius: 7;
-      padding: 3px;]])
-statBoxContainer:hide()
-
-buffBoxContainer = buffBoxContainer or Adjustable.Container:new({x=20,y=20,name="buffBoxContainer",titleText="Buffs / Debuffs Status"})
-  buffBox = Geyser.Label:new({name = "Buffs", color = "black", x = 0, y = 0, width = "100%", height = "100%"},buffBoxContainer)
-  buffBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
-buffBoxContainer:hide()
-
-bodyBoxContainer = bodyBoxContainer or Adjustable.Container:new({name="bodyBoxContainer",titleText="Body Damage"})
-  bodyBox = Geyser.Label:new({name = "Body", color = "black", x = 0, y = 0, width = "100%", height = "100%"},bodyBoxContainer)
-  bodyBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
-bodyBoxContainer:hide()
-
-cooldownBoxContainer = cooldownBoxContainer or Adjustable.Container:new({x=30,y=30,name="cooldownBoxContainer",titleText="Outstanding Cooldowns"})
-  cooldownBox = Geyser.Label:new({name = "Cooldowns", color = "black", x = 0, y = 0, width = "100%", height = "100%"},cooldownBoxContainer)
-  cooldownBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
-cooldownBoxContainer:hide()
-
-mapBoxContainer = mapBoxContainer or Adjustable.Container:new({x=40,y=40,name="mapBoxContainer",titleText="You Are Here!"})
-mapBoxContainer:hide()
-
-chatBoxContainer = chatBoxContainer or Adjustable.Container:new({x=50,y=50,name="chatBoxContainer",titleText="Chat"})
-  local stylesheet = [[background-color: rgb(0,0,0,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
-  local istylesheet = [[background-color: rgb(60,60,60,255); border-width: 1px; border-style: solid; border-color: gold; border-radius: 10px;]]
-  local _stylesheet = [[
-        QLabel{
-				background-color: #4d0000;
-				border-style: outset;
-        border-width: 2px;
-        border-color: "#996600";
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        margin-right: 1px;
-        margin-left: 1px;
-        qproperty-alignment: 'AlignCenter | AlignCenter';
-				}				
-				QLabel::hover{
-				background-color: #b30000;
-				border-style: outset;
-        border-width: 2px;
-        border-color: "#996600";
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        margin-right: 1px;
-        margin-left: 1px;
-        qproperty-alignment: 'AlignCenter | AlignCenter';
-				}				
-				]]
-  local _istylesheet = [[
-        QLabel{
-				background-color: #b30000;
-				border-style: outset;
-        border-width: 2px;
-        border-color: "#996600";
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        margin-right: 1px;
-        margin-left: 1px;
-        qproperty-alignment: 'AlignCenter | AlignCenter';
-				}				
-				QLabel::hover{
-				background-color: #b30000;
-				border-style: outset;
-        border-width: 2px;
-        border-color: "#996600";
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        margin-right: 1px;
-        margin-left: 1px;
-        qproperty-alignment: 'AlignCenter | AlignCenter';
-				]]
-
-  chatBox = EMCO:new({ x = "0", y = "0", width = "100%", height = "100%", gap = 2, consoles = {"Tell"},activeTabCSS = _stylesheet, inactiveTabCSS = _istylesheet},chatBoxContainer)
-  chatBox:enableScrollbars()
-  chatBox:enableBlink()
-chatBoxContainer:hide()
-  
-castbarBoxContainer = castbarBoxContainer or Adjustable.Container:new({x=60,y=60,name="castbarBoxContainer",titleText="Casting"})
-  castbarBox = Geyser.Label:new({name = "Casting", color = "black", x = 0, y = 0, width = "100%", height = "100%"},cooldownBoxContainer)
-  castbarBox:setStyleSheet([[qproperty-alignment: 'AlignTop';]])
-  castbarBoxContainer:resize(300,50)
-castbarBoxContainer:hide()
-
-partyContainer = partyContainer or Adjustable.Container:new({x=10,y=10,name="partyContainer",titleText="Party"})
-  partyBox = Geyser.Label:new({name = "Party", color = "black", x = 0, y = 0, width = "100%", height = "100%"},partyContainer)
-
-  do_Config()
--- 💾
-
-Adjustable.Container.loadAll()
-
-uninstallPackage("generic_mapper")
-mudlet = mudlet or {}; mudlet.mapper_script = true
-eleMap = eleMap or {}
-eleMap.mode = 0 				-- 1 = edit, 0=follow
-
-eleMap = Geyser.Mapper:new({
-  name = "eleMap",
-  x = 0, y = 0,
-  width = "100%",
-  height = "100%",
-},mapBoxContainer)
-
-end
-
-function do_Config()
-local configCSS = [[QLabel{padding-left:25px;}QLabel::hover {background-image : url("]]..getMudletHomeDir()..[[/EleUI2/imgs/FF7Cursor.png"); background-repeat:no-repeat;};]]
-configContainer = configContainer or Adjustable.Container:new({name="configContainer",titleText="Config"})
-  configStats = configStats or Geyser.Label:new({name = "configStats", color = "black", x = 0, y = 0, width = "100%", height = "20"},configContainer)
-  configStats:setStyleSheet(configCSS)
-  configStats:setClickCallback("toggleBox",statBoxContainer)
-  local hiddenState = ""
-  if (statBoxContainer.hidden == false) then hiddenState = "✔️" end
-  configStats:echo("Stats Window "..hiddenState)
-
-  configBuffs = configBuffs or Geyser.Label:new({name = "configBuffs", color = "black", x = 0, y = 20, width = "100%", height = "20"},configContainer)
-  configBuffs:setStyleSheet(configCSS)
-  configBuffs:setClickCallback("toggleBox",buffBoxContainer)
-  local hiddenState = ""
-  if (buffBoxContainer.hidden == false) then hiddenState = "✔️" end
-  configBuffs:echo("Buffs/Debuffs Window "..hiddenState)
-
-  configBody = configBody or Geyser.Label:new({name = "configBody", color = "black", x = 0, y = 40, width = "100%", height = "20"},configContainer)
-  configBody:setStyleSheet(configCSS)
-  configBody:setClickCallback("toggleBox",bodyBoxContainer)
-  local hiddenState = ""
-  if (bodyBoxContainer.hidden == false) then hiddenState = "✔️" end
-  configBody:echo("Limb Damage Window "..hiddenState)
-
-  configCooldowns = configCooldowns or Geyser.Label:new({name = "configCooldown", color = "black", x = 0, y = 60, width = "100%", height = "20"},configContainer)
-  configCooldowns:setStyleSheet(configCSS)
-  configCooldowns:setClickCallback("toggleBox",cooldownBoxContainer)
-  local hiddenState = ""
-  if (cooldownBoxContainer.hidden == false) then hiddenState = "✔️" end
-  configCooldowns:echo("Cooldowns Window "..hiddenState)
-
-  chatCooldowns = chatCooldowns or Geyser.Label:new({name = "chatCooldown", color = "black", x = 0, y = 80, width = "100%", height = "20"},configContainer)
-  chatCooldowns:setStyleSheet(configCSS)
-  chatCooldowns:setClickCallback("toggleBox",chatBoxContainer)
-  local hiddenState = ""
-  if (chatBoxContainer.hidden == false) then hiddenState = "✔️" end
-  chatCooldowns:echo("Chat Window "..hiddenState)
-
-  configMap = configMap or Geyser.Label:new({name = "configmap", color = "black", x = 0, y = 100, width = "100%", height = "20"},configContainer)
-  configMap:setStyleSheet(configCSS)
-  configMap:setClickCallback("toggleBox",mapBoxContainer)
-  local hiddenState = ""
-  if (mapBoxContainer.hidden == false) then hiddenState = "✔️" end
-  configMap:echo("Map "..hiddenState)
-
-  configcastbar = configcastbar or Geyser.Label:new({name = "configcastbar", color = "black", x = 0, y = 120, width = "100%", height = "20"},configContainer)
-  configcastbar:setStyleSheet(configCSS)
-  configcastbar:setClickCallback("toggleBox",castbarBoxContainer)
-  local hiddenState = ""
-  if (castbarBoxContainer.hidden == false) then hiddenState = "✔️" end
-  configcastbar:echo("CastBar "..hiddenState)
-
-  partyInfo = partyInfo or Geyser.Label:new({name = "partyInfo", color = "black", x = 0, y = 140, width = "100%", height = "20"},configContainer)
-  partyInfo:setStyleSheet(configCSS)
-  partyInfo:setClickCallback("toggleBox",partyContainer)
-  local hiddenState = ""
-  if (castbarBoxContainer.hidden == false) then hiddenState = "✔️" end
-  partyInfo:echo("Party Info "..hiddenState)
-
-
-  configSave = configSave or Geyser.Label:new({name = "configSave", color = "black", x = 0, y = 160, width = "100%", height = "20"},configContainer)
-  configSave:setStyleSheet(configCSS)
-  configSave:setClickCallback("saveWindows")
-  configSave:echo("Save Layout")
-  
-  configLoad = configLoad or Geyser.Label:new({name = "configLoad", color = "black", x = 0, y = 180, width = "100%", height = "20"},configContainer)
-  configLoad:setStyleSheet(configCSS)
-  configLoad:setClickCallback("loadWindows")
-  configLoad:echo("Load Layout")
-end
-
-function first_Install(_, pkg)
-  if pkg == "EleUI2" then
-    uninstallPackage("generic_mapper")
-    mapper_Installed()
-    cecho("&lt;cyan&gt;»»&lt;reset&gt;Ele Drag and Drop UI Installed&lt;cyan&gt;««&lt;reset&gt;\n")
-    cecho("&lt;cyan&gt;»»&lt;reset&gt;Commands: &lt;cyan&gt;««&lt;reset&gt;\n")
-    cecho("&lt;cyan&gt;»»&lt;reset&gt;ui config - shows config window&lt;cyan&gt;««&lt;reset&gt;\n")
-    cecho("&lt;cyan&gt;»»&lt;reset&gt;ui installmap - Installs pre-filled map&lt;cyan&gt;««&lt;reset&gt;\n")
-    get_Ready()
-  for  k,v in pairs(Geyser.windowList) do
-    if v.type == "adjustablecontainer" then 
-      v:hide()
-    end
-  end
-  end
-end
-
-function getName()
-  brax.name = gmcp.Char.Status.fullname
-end
-function getLevel()
-  brax.level = gmcp.Char.Status.level
-  if brax.name and brax.level then
-    setDiscordDetail(brax.name.." ("..brax.level..")")
-  end
-end
-
-registerAnonymousEventHandler("sysLoadEvent", "get_Ready")
-registerAnonymousEventHandler("sysInstallPackage", "first_Install")
-registerAnonymousEventHandler("gmcp.Char.Status.level", "getLevel")
-registerAnonymousEventHandler("gmcp.Char.Status.fullname", "getName")
-</script>
-				<eventHandlerList />
-			</Script>
-			<Script isActive="yes" isFolder="no">
 				<name>Casting Bar</name>
 				<packageName></packageName>
 				<script>function castBar()
   if gmcp.Char.Cast.cast_time &gt; 0 then
-    demonnic.anitimer:new("cast"..gmcp.Char.Cast.spell, {x = 0, y=0, height = "100%", width = "100%"}, gmcp.Char.Cast.cast_time, {container = castbarBoxContainer, showTime = true, timerCaption = gmcp.Char.Cast.spell})
+    demonnic.anitimer:new("cast_"..gmcp.Char.Cast.spell, {x = 0, y=0, height = "100%", width = "100%"}, gmcp.Char.Cast.cast_time, {container = castbarBoxContainer, showTime = true, timerCaption = gmcp.Char.Cast.spell})
       if castbarBoxContainer.hidden == true then 
-        demonnic.anitimer.timers["cast"..gmcp.Char.Cast.spell].gauge:hide(true) 
+        demonnic.anitimer.timers["cast_"..gmcp.Char.Cast.spell].gauge:hide(true) 
+      else
+        demonnic.anitimer.timers["cast_"..gmcp.Char.Cast.spell].gauge:show() 
       end
   else
-    demonnic.anitimer:destroy("cast"..gmcp.Char.Cast.spell)
+    demonnic.anitimer:destroy("cast_"..gmcp.Char.Cast.spell)
   end
 end
 
@@ -1893,27 +2312,19 @@ registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")</script>
 				<script>function uiRoutes(index)
   local path = ""
   local route = {}
-  table.insert(route, {id = "aerdy.144.37211", name = "High Pass North Gate"})
-  table.insert(route, {id = "aerdy.179.461053", name = "High Pass - Communual Stores"})
-  table.insert(route, {id = "aerdy.177.145107", name = "Erindar Stagecoach Office"})
-  table.insert(route, {id = "aerdy.25.28344", name = "South Entrance to Sterford"})
-  table.insert(route, {id = "aerdy.36.34523", name = "Nenrephi Fortress"})
-  table.insert(route, {id = "aerdy.127.31021", name = "Moratherin - East Gate"})
-  table.insert(route, {id = "aerdy.127.33012", name = "Moratherin - SouthEast Gate"})
-  table.insert(route, {id = "aerdy.127.37304", name = "Grazendale - East Gate"})
-  table.insert(route, {id = "aerdy.127.327007", name = "Dark and Twisted Forest"})
-  table.insert(route, {id = "aerdy.136.37577", name = "Myconids"})
-  table.insert(route, {id = "aerdy.144.41005", name = "Aerdy Entrance"})
-  table.insert(route, {id = "valena.108.34030", name = "Brenhaven East Gate"})
-  table.insert(route, {id = "drakenwood.104.748829", name = "The First Bank of Mirror Town"})
+  if io.exists(getMudletHomeDir().."/settings/Routes.lua") then
+    table.load(getMudletHomeDir().."/settings/Routes.lua",route)
+  end
   local menuIndex = tonumber(index)
-  if menuIndex == nil then
+  if index == "add" then
+    table.insert(route, {id = getRoomHashByID(eleMap.currentRoom), name = getRoomName(eleMap.currentRoom)})
+    table.save(getMudletHomeDir().."/settings/Routes.lua",route)
+  elseif menuIndex == nil then
     decho(
       "&lt;128,0,128&gt;\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"
     )
     for i, v in pairs(route) do
-      path = getPath(getRoomIDbyHash(gmcp.Room.Id), getRoomIDbyHash(v.id))
-      print(i .. ") " .. v.name .. " [" .. #speedWalkDir .. " steps]")
+      print(i .. ") " .. v.name)
     end
     decho(
       "&lt;128,0,128&gt;\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n"
@@ -1924,7 +2335,10 @@ registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")</script>
         getPath(getRoomIDbyHash(gmcp.Room.Id), getRoomIDbyHash(route[tonumber(index)].id))
       then
         brax.STOP = false
-        speedwalk(table.concat(speedWalkDir, ", "), false, 0.4)
+        if #speedWalkDir == 0 then return end
+        speedwalktimer(speedWalkDir, brax.speedwalkDelay , false)
+      else
+        decho("Unable to find a path there!\n")
       end
     end
   end
@@ -2011,672 +2425,23 @@ end</script>
   end
 end
 
-function Geyser.Container:_show (auto)
-  auto = auto or false
-  if auto then
-    self.auto_hidden = false
-  else
-    self.hidden = false
-  end
-  if not self.hidden and not self.auto_hidden then
-    self:show_impl()
-  end
-  for _, v in pairs(self.windowList) do
-    if v.hidden == false then v:show(true) end
-  end
-end
-
 function speedwalktimer(walklist, walkdelay, show)
+  if getDoors(eleMap.currentRoom)[walklist[1]] then 
+    send(getRoomUserData(eleMap.currentRoom,"Exit_"..walklist[1])) 
+  end
   send(walklist[1], show)
   table.remove(walklist, 1)
   if brax.STOP == true then walklist = {} end
   if #walklist &gt; 0 then
     local spFudge = 1-(gmcp.Char.Vitals.sp/gmcp.Char.Vitals.maxsp)
+    if spFudge&gt;0.95 then spFudge = spFudge + 0.3 end  
     tempTimer(walkdelay+spFudge, function()
-      speedwalktimer(walklist, walkdelay, show)
+    speedwalktimer(walklist, walkdelay, show)
     end)
   end
 end</script>
 				<eventHandlerList />
 			</Script>
-			<ScriptGroup isActive="yes" isFolder="yes">
-				<name>AdjustableContainer</name>
-				<packageName>AdjustableContainer</packageName>
-				<script></script>
-				<eventHandlerList />
-				<Script isActive="yes" isFolder="no">
-					<name>AdjustableContainer</name>
-					<packageName></packageName>
-					<script>--Adjustable Container V1.3
---Just use it like a normal Geyser Container with some extras like: 
---moveable, adjustable size, attach to borders, minimizeable, save/load...
---right click on top border for menu
---Inspired heavily by Adjustable Label, GUIFrame and EMCO
---by Edru 27Feb2020
-
-Adjustable = Adjustable or {}
-Adjustable.Container = Adjustable.Container or Geyser.Container:new({
-  name = "AdjustableContainerClass",})
-local adjustInfo
-
-local function make_percent(num)
-  num = num * 100
-  num = tostring(num).."%"
-  return num
-end
-
-local function shrink_title(lbl)
-    local  w  =  lbl:get_width()
-    local titleText = lbl.titleText
-    if #titleText &lt;= 15 then titleText = titleText.."   " end
-    if w &lt; (#titleText-10)*6.6+20 then
-      titleText = string.sub(lbl.titleText,0,math.floor(w/6)).."..."
-    end
-    if #titleText &lt;= 15 then titleText="" end
-      lbl.adjLabel:echo(titleText,lbl.titleTxtColor,"l")
-end
-  
-function Adjustable.Container:setTitle(text,color)
-    text = text or self.name.." - Adjustable Container"
-    self.titleTxtColor = color or "green"
-    self.titleText = "&amp;nbsp;&amp;nbsp;"..text
-    shrink_title(self)
-end
-
-
-function Adjustable.Container:finishPercent (size_as_percent, position_as_percent)
-  local x, y, w, h = self:get_x(), self:get_y(), self:get_width(), self:get_height()
-  local winw, winh = getMainWindowSize()
-  if (self.container) and (self.container ~= Geyser) then
-    x,y = x-self.container.get_x(),y-self.container.get_y()
-    winw, winh = self.container.get_width(), self.container.get_height()
-  end
-  x, y, w, h = make_percent(x/winw), make_percent(y/winh), make_percent(w/winw), make_percent(h/winh)
-  if size_as_percent then self:resize(w,h) end
-  if position_as_percent then self:move(x,y) end
-end
-
-function Adjustable.Container:onClick(event)
---Geyser.Container:raiseAll(self)
- self.rCLabel:hide()
-  if event.button == "LeftButton" and not(self.locked) then
-      local x, y = getMousePosition()
-      local w, h = self.adjLabel:get_width(), self.adjLabel:get_height()
-      local x1, y1 = x - event.x, y - event.y
-      local x2, y2 = x1 + w, y1 + h
-      local left, right, top, bottom = event.x &lt;= 10, x &gt;= x2 - 10, event.y &lt;= 3, y &gt;= y2 - 10
-      if right and left then left = false end
-      if top and bottom then top = false end
-      local move = not (right or left or top or bottom)
-      if self.minimized then move = true end
-      adjustInfo = {name = self.adjLabel.name, top = top, bottom = bottom, left = left, right = right, move = move, x = x, y = y}
-  end
-  if event.button == "RightButton" then
-      if self.hideTimer then killTimer(self.hideTimer) end
-      self.hideTimer = tempTimer(5,function() self.rCLabel:hide()end)
-      self.rCLabel:move(event.x,event.y)
-      self.rCLabel:show()
-      if self.container == Geyser then
-        for i=1,#self.att do
-          self.att[i]:hide()
-        end
-        self.attLabel:raise()
-      end
-      for i=1, #self.locksl do
-        self.locksl[i]:hide()
-      end
-      self.lockLabel:raise()
-      self.minLabel:raise()
-      self.saveLabel:raise()
-      self.loadLabel:raise()
-      self.lockSLabel:raise()
-  end
-end
-
-function Adjustable.Container:onRelease (event)
-  if event.button == "LeftButton"  and adjustInfo and adjustInfo.name == self.adjLabel.name then
-      adjustInfo = nil
-  end
-  Adjustable.Container.finishPercent(self,true,true)
-end
-
-function Adjustable.Container:onMove (event)
-  if adjustInfo and adjustInfo.name == self.adjLabel.name then
-      self:adjustBorder()
-      local x, y = getMousePosition()
-      local winw, winh = getMainWindowSize()
-      local x1, y1, w, h = self.get_x(), self.get_y(), self:get_width(), self:get_height()
-      if (self.container) and (self.container ~= Geyser) then
-        --x,y = 
-        x1,y1 = x1-self.container.get_x(), y1-self.container.get_y()
-        winw, winh = self.container.get_width(), self.container.get_height()
-      end
-      local dx, dy = adjustInfo.x - x, adjustInfo.y - y
-      local max, min = math.max, math.min
-      if adjustInfo.move then
-          local tx, ty = max(0,x1-dx), max(0,y1-dy)
-          tx, ty = min(tx, winw - w), min(ty, winh - h)
-          self:move(tx, ty)
-          --[[
-          if x1-dx &lt;-5 then self:attachToBorder("left") end
-          if y1-dy &lt;-5 then self:attachToBorder("top") end
-          if winw - w &lt; tx+0.1 then self:attachToBorder("right") end
-          if winh - h &lt; ty+0.1 then self:attachToBorder("bottom") end--]]
-      else
-          local w2, h2, x2, y2 = w - dx, h - dy, x1 - dx, y1 - dy
-          local tx, ty, tw, th = x1, y1, w, h
-          if adjustInfo.top then
-              ty, th = y2, h + dy
-          elseif adjustInfo.bottom then
-              th = h2
-          end
-          if adjustInfo.left then
-              tx, tw = x2, w + dx
-          elseif adjustInfo.right then
-              tw = w2
-          end
-          tx, ty, tw, th = max(0,tx), max(0,ty), max(10,tw), max(10,th)
-          tw, th = min(tw, winw), min(th, winh)
-          tx, ty = min(tx, winw-tw), min(ty, winh-th)
-          self:move(tx, ty)
-          local minw, minh = 0,0
-          if self.container == Geyser then minw, minh = 75,25 end
-          self:resize(max(minw,tw), max(minh,th))
-          shrink_title(self)
-      end
-      adjustInfo.x, adjustInfo.y = x, y
-  end
-end
-
-function Adjustable.Container:fPos()
-  local winw, winh = getMainWindowSize()
-  local fpos = ""
-  if  (winh*0.8)-self.get_height()&lt;= self.get_y()  then  fpos = fpos.."bottom," end
-  if  (winw*0.8)-self.get_width() &lt;= self.get_x() then  fpos = fpos.."right," end
-  if self.get_y() &lt;= winh*0.2 then fpos = fpos.."top," end
-  if self.get_x() &lt;= winw*0.2 then fpos = fpos.."left" end
-  return fpos
-end
-
-function Adjustable.Container:adjustBorder()
-  local winw, winh = getMainWindowSize()
-  local where = false
-  if type(self.attached) == "string" then 
-    where = self.attached:lower()
-    if string.find(self:fPos(),where) == nil or self.minimized or self.hidden then self:detach()
-    else
-      if        where == "right"   then setBorderRight(winw-self.get_x()) 
-        elseif  where == "left"    then setBorderLeft(self.get_width()+self.get_x())  
-        elseif  where == "bottom"  then setBorderBottom(winh-self.get_y())  
-        elseif  where == "top"     then setBorderTop(self.get_height()+self.get_y()) 
-        else self.attached= false 
-      end
-    end
-    else
-      return false
-  end
-end
-
-function Adjustable.Container:resizeBorder()
-  local winw, winh = getMainWindowSize()
-  self.timer_active = self.timer_active or true
-  -- Check if Window resize is happened. 
-  -- If that is not checked this creates an infinite loop and chrashes because setBorder also causes a resize event 
-  if winw ~= self.oldvalue and self.timer_active then
-    self.timer_active = false
-    tempTimer(0.2, function() self:adjustBorder() end)
-  end
-  self.oldvalue = winw
-end
- 
-function Adjustable.Container:attachToBorder(border)
-    if self.attached then self:detach() end  
-    self.attached = border
-    self:adjustBorder()
-    self.resizeHandlerID=registerAnonymousEventHandler("sysWindowResizeEvent", function() self:resizeBorder() end)
-end
-
-function Adjustable.Container:detach()  
-    self:resetBorder(self.attached)
-    self.attached=false
-    if self.resizeHandlerID then killAnonymousEventHandler(self.resizeHandlerID) end
-end
-
-function Adjustable.Container:resetBorder(where)
-    if        where == "right"   then setBorderRight(0) 
-      elseif  where == "left"    then setBorderLeft(0)  
-      elseif  where == "bottom"  then setBorderBottom(0)  
-      elseif  where == "top"     then setBorderTop(0)
-    end
-end
-
-function Adjustable.Container:createContainers()
-  self.adjLabel = Geyser.Label:new({
-      x = "0",
-      y = "0",
-      height = "100%",
-      width = "100%",
-      color = "green"
-  },self)
-  self.Inside = Geyser.Container:new({
-      x = self.padding,
-      y = self.padding*2,
-      height = "-"..self.padding,
-      width = "-"..self.padding,
-  },self)
-end
-
-function Adjustable.Container:lockContainer(lockStyle)
-  self.rCLabel:hide()
-  if lockStyle then self.lockStyle = lockStyle end
-  if self.minimized == false then
-    self.lockStylef[self.lockStyle](self)
-    self.exitLabel:hide()
-    self.minimizeLabel:hide()
-    self.locked = true
-    self:adjustBorder()
-  end
-end
-
-function Adjustable.Container:unlockContainer()
-  self.rCLabel:hide()
-  shrink_title(self)
-  self.Inside:resize("-"..self.padding,"-"..self.padding)
-  self.Inside:move(self.padding, self.padding*2)
-  self.adjLabel:setStyleSheet(self.adjLabelstyle)
-  self.exitLabel:show()
-  self.minimizeLabel:show()
-  self.locked = false
-end
-
-function Adjustable.Container:setPadding(padding)
-  self.padding = padding
-  if self.locked then
-    self:lockContainer()
-  else
-    self:unlockContainer()
-  end 
-end
-
-function Adjustable.Container:onClickL()
-  if self.locked == true then
-    self:unlockContainer()
-  else
-    self:lockContainer()
-  end
-end
-
-
-function Adjustable.Container:hideObj(event)
-  self:hide()
-  self:adjustBorder()
-end
-
-function Adjustable.Container:onClickMin()
-  self.rCLabel:hide()
-  if self.minimized == false then
-    self:minimize()
-  else
-    self:restore()
-  end
-end
-
-function Adjustable.Container:onClickSave()
-  self.rCLabel:hide()
-  self:save()
-end
-
-function Adjustable.Container:onClickLoad()
-  self.rCLabel:hide()
-  self:load()
-end
-
-function Adjustable.Container:minimize()
-  if self.minimized == false and self.locked == false then
-      self.origh = self.height
-      self.Inside:hide()
-      self:resize(nil,25)
-      self.minimized = true
-      self:adjustBorder()
-  end
-end
-
-function Adjustable.Container:restore()
-  if self.minimized == true then
-      self.origh = self.origh or "25%"
-      self.Inside:show()
-      self:resize(nil,self.origh)
-      self.minimized = false
-      self:adjustBorder()
-  end
-end
-
-
-function Adjustable.Container:onLeaveColor(txt,color)
-  color = color or "black"
-  self:echo(txt,color,"l")
-end
-
-function Adjustable.Container:onEnterColor(txt,color)
-  color = color or "white"
-  self:echo(txt,color,"l")
-end
-
-function Adjustable.Container:onClickAtt()
-    for i=1, #self.locksl do
-      self.locksl[i]:hide()
-    end
-    local attm = string.split(self:fPos(), ",")
-    local j = 1
-    if self.hideTimer then killTimer(self.hideTimer) end
-       self.hideTimer = tempTimer(5,function() self.rCLabel:hide()end)
-    for i=1,#attm do
-      self.att[math.min(3,i)].hidden = true
-      if attm[i] ~= "" and j &lt; 4 then
-        self.att[j]:echo("&lt;center&gt;"..attm[i],"black","l")
-        self.att[j]:show()
-        self.att[j]:raise()
-        self.att[j]:setClickCallback("Adjustable.Container.chBorder", self, attm[i])
-        j=j+1
-      end
-    end  
-end
-
-function Adjustable.Container:onClickLStyle()
-    for i=1,#self.att do
-      self.att[i]:hide()
-    end
-    local j = 1
-    if self.hideTimer then killTimer(self.hideTimer) end
-    self.hideTimer = tempTimer(5,function() self.rCLabel:hide()end)
-    for i=1,#self.locksl do self.locksl[i].hidden = true end   
-    for k,v in pairs(self.lockStylef) do
-      if j &gt; 5 then break end
-      self.locksl[j]:echo("&lt;center&gt;"..k,"black","l")
-      self.locksl[j]:show()
-      self.locksl[j]:raise()
-      self.locksl[j]:setClickCallback([[Adjustable.Container.lockContainer]], self, k)
-      j=j+1
-    end
-end
-
-function Adjustable.Container:chBorder(side)
-    self:attachToBorder(side)
-    self.rCLabel:hide()   
-end
-
-function Adjustable.Container:createLabels()
-  self.exitLabel = Geyser.Label:new({
-  x=-25,y=4,width = "15", height = "15",fontSize=8
-
-  },self)
-  self.exitLabel:echo("&lt;center&gt;x&lt;/center&gt;")
-
-
-  self.minimizeLabel = Geyser.Label:new({
-  x=-45,y=4,width = "15", height = "15",fontSize=8
-
-  },self)
-  self.minimizeLabel:echo("&lt;center&gt;-&lt;/center&gt;")
-  
-  --rightClick Label creation
-  self.rCLabel = Geyser.Label:new({
-  x=-45,y=4,width = "200", height = "120",fontSize=8
-
-  },self)
-
-  self.lockLabel = Geyser.Label:new({
-  x=0,y=0,width = "100", height = "20",fontSize=8,color="white"
-
-  },self.rCLabel)
-  
-  self.minLabel = Geyser.Label:new({
-  x=0,y=20,width = "100", height = "20",fontSize=8,color="white"
-
-  },self.rCLabel)
-
-  self.saveLabel = Geyser.Label:new({
-  x=0,y=40,width = "100", height = "20",fontSize=8,color="white"
-  },self.rCLabel)
-  
-  self.loadLabel = Geyser.Label:new({
-  x=0,y=60,width = "100", height = "20",fontSize=8,color="white"
-  },self.rCLabel)
-  
-  if self.container == Geyser then
-      self.attLabel = Geyser.Label:new({
-      x=0,y=80,width = "100", height = "20",fontSize=8,color="white"
-      },self.rCLabel)
-      
-      self.att[1] = Geyser.Label:new({
-      x=100,y=80,width = "80", height = "20",fontSize=8,color="white"
-      },self.rCLabel)
-      
-      self.att[2] = Geyser.Label:new({
-      x=100,y=60,width = "80", height = "20",fontSize=8,color="white"
-      },self.rCLabel)
-      
-      self.att[3] = Geyser.Label:new({
-      x=100,y=40,width = "80", height = "20",fontSize=8,color="white"
-      },self.rCLabel)
-      
-      self.lockSLabel = Geyser.Label:new({
-      x=0,y=100,width = "100", height = "20",fontSize=8,color="white"
-      },self.rCLabel)
-      for i=1,6 do
-        self.locksl[i] = Geyser.Label:new({
-        x=100,y=120-(i*20),width = "80", height = "20",fontSize=8,color="white"
-        },self.rCLabel)
-      end
-  else
-      self.lockSLabel = Geyser.Label:new({
-      x=0,y=80,width = "100", height = "20",fontSize=8,color="white"
-      },self.rCLabel)
-      for i=1,5 do
-        self.locksl[i] = Geyser.Label:new({
-        x=100,y=100-(i*20),width = "80", height = "20",fontSize=8,color="white"
-        },self.rCLabel)
-      end
-  end 
-  self.rCLabel:hide()
-end
-  
-function Adjustable.Container:styleLabels()
-  if self.container == Geyser then
-    self.attLabel.txt=string.format(self.formatL,"⚓","Attach to:")
-    self.attLabel:setClickCallback("Adjustable.Container.onClickAtt",self)
-  end
-  for k,v in pairs (self.rCLabel.windowList) do
-    v:setStyleSheet(self.menustyle)
-    v:echo(v.txt, "black", "l")
-    setLabelOnEnter(k,"Adjustable.Container.onEnterColor", v, v.txt, nil)
-    setLabelOnLeave(k,"Adjustable.Container.onLeaveColor", v, v.txt, nil)
-  end
-end
-
-function Adjustable.Container:add(window,cons)
-  Geyser.Container.add(self,window,cons)
-  --Add new Windows to the Inside Container
-  local wnr = self.wnr
-  wnr = wnr or 555
-  wnr = wnr + 1
-  --Add new Windows to the Inside Container
-  if self.windows[wnr] ~= nil then self.Inside:add(self.windowList[self.windows[wnr]]) end
-end
-
-function Adjustable.Container:show(auto)
-  Geyser.Container.show(self, auto)
-  self.rCLabel:hide()
-end
-
-function Adjustable.Container:save()
-  local mytable = {}
-  mytable.x = self.x
-  mytable.y = self.y
-  mytable.height= self.height
-  mytable.width= self.width
-  mytable.minimized= self.minimized
-  mytable.origh= self.origh
-  mytable.locked = self.locked
-  mytable.attached = self.attached
-  mytable.lockStyle = self.lockStyle
-  mytable.padding = self.padding
-  mytable.hidden = self.hidden
-  if not(io.exists(getMudletHomeDir().."/AdjContainer/")) then lfs.mkdir(getMudletHomeDir().."/AdjContainer/") end
-  table.save(getMudletHomeDir().."/AdjContainer/"..self.name..".lua", mytable)
-end
-
-function Adjustable.Container:load()
-  local mytable = {}
-  if io.exists(getMudletHomeDir().."/AdjContainer/"..self.name..".lua") then
-      table.load(getMudletHomeDir().."/AdjContainer/"..self.name..".lua", mytable)
-  end
-  self.lockStyle = mytable.lockStyle or self.lockStyle
-  self.padding = mytable.padding or self.padding
-  if mytable.x then
-      self:move(mytable.x,mytable.y)
-      self:resize(mytable.width,mytable.height)
-      self.minimized = mytable.minimized
-      self.hidden = mytable.hidden
-  if mytable.locked == true then self:lockContainer()  else self:unlockContainer() end
-  if self.minimized == true then self.Inside:hide() self:resize(nil,25) else self.Inside:show() end
-      self.origh = mytable.origh
-  end
-  if mytable.attached then self:attachToBorder(mytable.attached) end
-  self:adjustBorder()
-  if mytable.hidden == true then self:hide() else self:show() end
-end
-
-function Adjustable.Container:reposition()
-  Geyser.Container.reposition(self)
-  if self.titleText and not(self.locked) then
-    shrink_title(self)
-  end
-end
-
-function Adjustable.Container.saveAll(cont)
-  cont = cont or Geyser
-  for  k,v in pairs(cont.windowList) do
-    if v.type == "adjustablecontainer" then 
-      v:save()
-    end
---    print(v.name)
-    Adjustable.Container.saveAll(v)
-  end
-end
-
-function Adjustable.Container.loadAll(cont)
-  cont = cont or Geyser
-  for  k,v in pairs(cont.windowList) do
-    if v.type == "adjustablecontainer" then 
-      v:load()
-    end
-    Adjustable.Container.loadAll(v)
-  end
-end
-
-Adjustable.Container.lockStylef = Adjustable.Container.lockStylef or {}
-Adjustable.Container.lockStylef["standard"] = function (s) 
-    s.Inside:resize("100%",-1)
-    s.Inside:move(0,s.padding)
-    s.adjLabel:setStyleSheet(s.adjLabelstyle..[[border: 0;]])
-    s.adjLabel:echo("")
-  end
-  
-Adjustable.Container.lockStylef["border"] = function (s) 
-    s.Inside:resize("-"..s.padding,"-"..s.padding)
-    s.Inside:move(s.padding, s.padding)
-    s.adjLabel:setStyleSheet(s.adjLabelstyle)
-    s.adjLabel:echo("")
-  end
-  
-Adjustable.Container.lockStylef["full"] = function (s) 
-    s.Inside:resize("100%","100%")
-    s.Inside:move(0,0)
-    s.adjLabel:echo("")
-  end
-
-Adjustable.Container.lockStylef["light"] = function (s)
-    shrink_title(s)
-    s.Inside:resize("-"..s.padding,"-"..s.padding)
-    s.Inside:move(s.padding, s.padding*2)
-    s.adjLabel:setStyleSheet(s.adjLabelstyle)
-  end 
-  
-Adjustable.Container.parent = Geyser.Container
-
-function Adjustable.Container:new(cons,container)
-  local me = self.parent:new(cons,container)
-  setmetatable(me, self)
-  self.__index = self
-  me.type = "adjustablecontainer"
-  me.padding = me.padding or 10    
-  me:createContainers()
-  me.att = me.att or {}
-  me.locksl = me.locksl or {}
-  me:createLabels()
-  --Resize if in a Container
-  if container then
-    me:move(0,0)
-    me:resize((me.container:get_width()/me:get_width())*100, (me.container:get_height()/me:get_height())*100)
-    me:finishPercent (true, true)
-  end
- 
-  me.minimized = false
-  me.locked = false
-  me.formatL = [==[&lt;style&gt;
-                span { font-size: 16px;}
-                span a { font-size: 10px;}
-                &lt;/style&gt;
-                &lt;span&gt; %s&lt;a&gt; %s&lt;/a&gt;&lt;/span&gt;
-                ]==]
-  me.lockLabel.txt = string.format(me.formatL,"🔒","Lock/Unlock")
-  me.minLabel.txt=string.format(me.formatL,"🗕","Min/Restore")
-  me.saveLabel.txt =string.format(me.formatL,"💾","Save")
-  me.loadLabel.txt =string.format(me.formatL,"📁","Load")
-  me.lockSLabel.txt =string.format(me.formatL,"🖌️","Lockstyle")
-  me.menustyle = me.menustyle or [[QLabel::hover{ background-color: rgba(0,150,255,100%); color: white;}]]
-  me.labelsytle= me.labelsytle or [[
-      QLabel{ border-radius: 7px; background-color: rgba(255,30,30,100%);}
-      QLabel::hover{ background-color: rgba(255,0,0,50%);}
-      ]]
-  me.adjLabelstyle = me.adjLabelstyle or [[
-      background-color: rgba(0,0,0,100%);
-      border: 4px double yellow;
-      border-radius: 4px;]]
-  me.adjLabelstyle = me.adjLabelstyle..[[ qproperty-alignment: 'AlignLeft | AlignTop';]]
-  me.adjLabel:setClickCallback("Adjustable.Container.onClick",me)
-  me.adjLabel:setReleaseCallback("Adjustable.Container.onRelease",me)
-  me.adjLabel:setMoveCallback("Adjustable.Container.onMove",me)
-  
-  me.adjLabel:setStyleSheet(me.adjLabelstyle)
-  me.exitLabel:setStyleSheet(me.labelsytle)
-  me.minimizeLabel:setStyleSheet(me.labelsytle)
-
-  me.rCLabel:setStyleSheet([[background-color: rgba(0,0,0,0%);]])
-  me:styleLabels()
-
-  me.minLabel:setClickCallback("Adjustable.Container.onClickMin",me)
-  me.saveLabel:setClickCallback("Adjustable.Container.onClickSave",me)
-  me.lockLabel:setClickCallback("Adjustable.Container.onClickL",me)
-  me.loadLabel:setClickCallback("Adjustable.Container.onClickLoad",me)
-  me.lockSLabel:setClickCallback("Adjustable.Container.onClickLStyle",me)
-  me.origh = me.height
-  me.exitLabel:setClickCallback("Adjustable.Container.hideObj",me)
-  me.minimizeLabel:setClickCallback("Adjustable.Container.onClickMin",me)
-  me.wnr = #me.windows
-  me:adjustBorder()
-  me.titleTxtColor=me.titleTxtColor or "green"
-  me.titleText=me.titleText or me.name.." - Adjustable Container"
-  me.titleText = "&amp;nbsp;&amp;nbsp; "..me.titleText
-  shrink_title(me)
-  me.lockStyle = me.lockStyle or "standard"
-  return me
-
-end</script>
-					<eventHandlerList />
-				</Script>
-			</ScriptGroup>
 			<ScriptGroup isActive="yes" isFolder="yes">
 				<name>AnimatedTimers</name>
 				<packageName>AnimatedTimers</packageName>
@@ -3027,7 +2792,7 @@ end
 function EMCO:switchTab(tabName)
   local oldTab = self.currentTab
   if oldTab ~= tabName and oldTab ~= "" then
-    self.windows[oldTab]:hide()
+    self.mc[oldTab]:hide()
     self.tabs[oldTab]:setStyleSheet(self.inactiveTabCSS)
     self.tabs[oldTab]:setColor(self.inactiveTabBGColor)
     self.tabs[oldTab]:echo(oldTab, self.inactiveTabFGColor, "c")
@@ -3042,10 +2807,10 @@ function EMCO:switchTab(tabName)
   self.tabs[tabName]:setStyleSheet(self.activeTabCSS)
   self.tabs[tabName]:setColor(self.activeTabBGColor)
   self.tabs[tabName]:echo(tabName, self.activeTabFGColor, "c")
-  if oldTab and self.windows[oldTab] then
-    self.windows[oldTab]:hide()
+  if oldTab and self.mc[oldTab] then
+    self.mc[oldTab]:hide()
   end
-  self.windows[tabName]:show()
+  self.mc[tabName]:show()
   self.currentTab = tabName
 end
 
@@ -3053,6 +2818,9 @@ function EMCO:createComponentsForTab(tabName)
   local tab = Geyser.Label:new({
     name = string.format("%sTab%s", self.name, tabName)
   }, self.tabBox)
+  if self.tabFont then
+    tab:setFont(tabFont)
+  end
   tab:echo(tabName, self.inactiveTabFGColor, 'c')
   -- use the inactive CSS. It's "" if unset, which is ugly, but
   tab:setStyleSheet(self.inactiveTabCSS)
@@ -3074,6 +2842,9 @@ function EMCO:createComponentsForTab(tabName)
     window = Geyser.Mapper:new(windowConstraints, parent)
   else
     window = Geyser.MiniConsole:new(windowConstraints, parent)
+    if self.font then
+      window:setFont(font)
+    end
     window:setFontSize(self.fontSize)
     window:setColor(self.consoleColor)
     if self.autoWrap then
@@ -3087,7 +2858,7 @@ function EMCO:createComponentsForTab(tabName)
       window:disableScrollBar()
     end
   end
-  self.windows[tabName] = window
+  self.mc[tabName] = window
   window:hide()
 end
 
@@ -3169,6 +2940,82 @@ function EMCO:fuzzyBoolean(bool)
   else
     return nil
   end
+end
+
+--- clears a specific tab
+--- @tparam string tabName the name of the tab to clear
+function EMCO:clear(tabName)
+  local funcName = "EMCO:clear(tabName)"
+  if not table.contains(self.consoles, tabName) then
+    self.ae(funcName, "tabName must be an existing tab")
+  end
+  if self.mapTab and self.mapTabName == tabName then
+    self.ae(funcName, "Cannot clear the map tab")
+  end
+  self.mc[tabName]:clear()
+end
+
+--- clears all the tabs
+function EMCO:clearAll()
+  for _,tabName in ipairs(self.consoles) do
+    if not self.mapTab or (tabName ~= self.mapTabName) then
+      self:clear(tabName)
+    end
+  end
+end
+
+--- sets the font for all tabs
+--- @tparam string font the font to use.
+function EMCO:setTabFont(font)
+  self.tabFont = font
+  for _,tab in pairs(self.tabs) do
+    tab:setFont(font)
+  end
+end
+
+--- sets the font for a single tab. If you use setTabFont this will be overridden
+--- @tparam string tabName the tab to change the font of
+--- @tparam string font the font to use for that tab
+function EMCO:setSingleTabFont(tabName, font)
+  local funcName = "EMCO:setSingleTabFont(tabName, font)"
+  if not table.contains(self.consoles, tabName) then
+    self.ae(funcName, "tabName must be an existing tab")
+  end
+  self.tabs[tabName]:setFont(font)
+end
+
+--- sets the font for all the miniconsoles
+--- @tparam string font the name of the font to use
+function EMCO:setFont(font)
+  local af = getAvailableFonts()
+  if not (af[font] or font == "") then
+    local err = "EMCO:setFont(font): attempt to call setFont with font '" .. font .. "' which is not available, see getAvailableFonts() for valid options\n"
+    err = err .. "In the meantime, we will use a similar font which isn't the one you asked for but we hope is close enough"
+    debugc(err)
+  end
+  self.font = font
+  for _,tabName in pairs(self.consoles) do
+    if not self.mapTab or tabName ~= self.mapTabName then
+      self.mc[tabName]:setFont(font)
+    end
+  end
+end
+
+--- sets the font for a specific miniconsole. If setFont is called this will be overridden
+--- @tparam string tabName the name of window to set the font for
+--- @tparam string font the name of the font to use
+function EMCO:setSingleWindowFont(tabName, font)
+  local funcName = "EMCO:setSingleWindowFont(tabName, font)"
+  if not table.contains(self.consoles, tabName) then
+    self.ae(funcName, "tabName must be an existing tab")
+  end
+  local af = getAvailableFonts()
+  if not (af[font] or font == "") then
+    local err = "EMCO:setSingleWindowFont(tabName, font): attempt to call setFont with font '" .. font .. "' which is not available, see getAvailableFonts() for valid options\n"
+    err = err .. "In the meantime, we will use a similar font which isn't the one you asked for but we hope is close enough"
+    debugc(err)
+  end
+  self.mc[tabName]:setFont(font)
 end
 
 --- enables custom colors for the timestamp, if displayed
@@ -3349,7 +3196,7 @@ function EMCO:setFontSize(fontSize)
       if self.mapTab and tabName == self.mapTabName then
         -- skip this one
       else
-        local window = self.windows[tabName]
+        local window = self.mc[tabName]
         window:setFontSize(fontSizeNumber)
       end
     end
@@ -3421,7 +3268,7 @@ function EMCO:adjustConsoleColors()
     if self.mapTab and self.mapTabName == console then
       -- skip Map
     else
-      self.windows[console]:setColor(self.consoleColor)
+      self.mc[console]:setColor(self.consoleColor)
     end
   end
 end
@@ -3507,7 +3354,7 @@ function EMCO:enableAutoWrap()
     if self.mapTab and console == self.mapTabName then
       -- skip the map
     else
-      self.windows[console]:enableAutoWrap()
+      self.mc[console]:enableAutoWrap()
     end
   end
 end
@@ -3521,7 +3368,7 @@ function EMCO:disableAutoWrap()
     if self.mapTab and self.mapTabName == console then
       -- skip Map
     else
-      self.windows[console]:disableAutoWrap()
+      self.mc[console]:disableAutoWrap()
     end
   end
 end
@@ -3541,7 +3388,7 @@ function EMCO:setWrap(wrapAt)
       if self.mapTab and self.mapTabName == console then
         -- skip the Map
       else
-        self.windows[console]:setWrap(wrapAtNumber)
+        self.mc[console]:setWrap(wrapAtNumber)
       end
     end
   end
@@ -3585,8 +3432,8 @@ function EMCO:xEcho(tabName, message, xtype, excludeAll)
   if self.mapTab and self.mapTabName == tabName then
     error("You cannot send text to the Map tab")
   end
-  local console = self.windows[tabName]
-  local allTab = (self.allTab and not excludeAll and not table.contains(self.allTabExclusions, tabName) and tabName ~= self.allTabName) and self.windows[self.allTabName] or false
+  local console = self.mc[tabName]
+  local allTab = (self.allTab and not excludeAll and not table.contains(self.allTabExclusions, tabName) and tabName ~= self.allTabName) and self.mc[self.allTabName] or false
   local ofr,ofg,ofb,obr,obg,obb
   if xtype == "a" then
     selectCurrentLine()
@@ -3597,6 +3444,11 @@ function EMCO:xEcho(tabName, message, xtype, excludeAll)
       setBgColor(r,g,b)
     end
     copy()
+    if self.preserveBackground then
+      setBgColor(obr, obg, obb)
+    end
+    deselect()
+    resetFormat()
   else
     ofr,ofg,ofb = Geyser.Color.parse("white")
     obr,obg,obb = Geyser.Color.parse(self.consoleColor)
@@ -3713,8 +3565,8 @@ end
 
 -- internal function used for handling echoLink/popup
 function EMCO:xLink(tabName, linkType, text, commands, hints, useCurrentFormat, excludeAll)
-  local console = self.windows[tabName]
-  local allTab = (self.allTab and not excludeAll and not table.contains(self.allTabExclusions, tabName) and tabName ~= self.allTabName) and self.windows[self.allTabName] or false
+  local console = self.mc[tabName]
+  local allTab = (self.allTab and not excludeAll and not table.contains(self.allTabExclusions, tabName) and tabName ~= self.allTabName) and self.mc[self.allTabName] or false
   local arguments = {text, commands, hints, useCurrentFormat}
   if self.timestamp then
     local colorString = ""
@@ -3895,9 +3747,9 @@ function EMCO:adjustScrollbars()
       -- skip the Map tab
     else
       if self.scrollbars then
-        self.windows[console]:enableScrollBar()
+        self.mc[console]:enableScrollBar()
       else
-        self.windows[console]:disableScrollBar()
+        self.mc[console]:disableScrollBar()
       end
     end
   end
@@ -4016,11 +3868,13 @@ function EMCO:new(cons, container)
   else
     me.autoWrap = cons.autoWrap
   end
+  me.font = cons.font
+  me.tabFont = cons.tabFont
   me.wrapAt = cons.wrapAt or 300
   me.currentTab = ""
   me.tabs = {}
   me.tabsToBlink = {}
-  me.windows = {}
+  me.mc = {}
   self.blinkTimerID = tempTimer(me.blinkTime, function() me:doBlink() end, true)
   me:reset()
   if me.allTab then me:setAllTabName(me.allTabName or me.consoles[1]) end
@@ -4045,7 +3899,7 @@ end
 -- Note that you can also use external Scripts --
 -------------------------------------------------
 --
--- v0.2
+-- v1.55
 --
 -- eleMap.currentRoom = Mudlet room ID
 --
@@ -4185,14 +4039,8 @@ function add_exits()
 	local newID = createRoomID()
 	if roomExists(eleMap.currentRoom) then
 		add_room_neighbours(eleMap.currentRoom,gmcp.Room.Exits)
-      local stubs = getExitStubs(eleMap.currentRoom)
-      if stubs then
-        for i,v in pairs(stubs) do
-          connectExitStub(eleMap.currentRoom, v)
-        end
-      end
 	else
---		find_link(gmcp.Room.Exits)
+		find_link(gmcp.Room.Exits)
 	end
 end
 
@@ -4200,18 +4048,11 @@ function find_link(exits)
   for dir, id in pairs(exits) do
 		local roomID = getRoomIDbyHash(id)
 		if roomExists(roomID) then
---			cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Found adjoining room =&gt;&lt;red&gt;"..id.."&lt;reset&gt; "..exitmap[reversemap[dir]].."\n")
 			local x,y,z = getRoomCoordinates(roomID)
 			local newx,newy,newz = calculate_Coordinates(x,y,z,exitmap[reversemap[dir]])
---			add_room(eleMap.currentRoom,newx,newy,newz,getRoomArea(eleMap.lastRoom))
 			add_room(gmcp.Room.Id,newx,newy,newz,getRoomArea(roomID))
-      local stubs = getExitStubs(roomID)
-      if stubs then
-        for i,v in pairs(stubs) do
-          connectExitStub(roomID, v)
-        end
-      end
-			break
+--      setExit(eleMap.lastRoom,eleMap.currentRoom,gmcp.Char.Moved)
+--			break 
 		end
 	end
 	if not roomExists(getRoomIDbyHash(gmcp.Room.Id)) then
@@ -4246,12 +4087,19 @@ function find_link(exits)
         x = x +1
         y = y +1
       end
-			add_room(eleMap.currentRoom,newx,newy,newz,getRoomArea(eleMap.lastRoom))
 			cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; I didn't know where to put this room! ["..gmcp.Room.Id.."] please move it manually (New Zone?)\n")
-if is_standard_exit(moved) then
-	setExit(getRoomIDbyHash(gmcp.Room.Id),eleMap.lastRoom,reversemap[moved])
-	setExit(eleMap.lastRoom,getRoomIDbyHash(gmcp.Room.Id),moved)
-else
+      local newArea = (gmcp.Room.Id):match("(%w*)")
+      if newArea == "aerdy" then newArea = 4
+      elseif newArea == "drakenwood" then newArea = 1
+      elseif newArea == "valena" then newArea = 2
+      elseif newArea == "rosfarren" then newArea = 3
+      elseif newArea == "dunglenderry" then newArea = 5
+      else newArea = getRoomArea(eleMap.lastRoom) end
+			add_room(eleMap.currentRoom,newx,newy,newz,newArea)
+      if is_standard_exit(moved) then
+      	setExit(getRoomIDbyHash(gmcp.Room.Id),eleMap.lastRoom,reversemap[moved])
+      	setExit(eleMap.lastRoom,getRoomIDbyHash(gmcp.Room.Id),moved)
+      else
 --	addSpecialExit(realID,getRoomIDbyHash(exitHash),reversemap[moved])
 end
 	end
@@ -4259,6 +4107,9 @@ end
 
 function onCharMove(moveDetails)
   local moved = gmcp.Char.Moved
+  if getRoomUserData(eleMap.currentRoom,"roomCMD") then
+    send(getRoomUserData(eleMap.currentRoom,"roomCMD"))
+  end 
   if brax.map.mode == "read" then return end
 	if roomExists(eleMap.currentRoom) == false then
   		find_link(gmcp.Room.Exits)
@@ -4268,6 +4119,8 @@ function onCharMove(moveDetails)
     	setExit(eleMap.lastRoom,getRoomIDbyHash(gmcp.Room.Id),moved)
     end
   end
+  brax.moved = gmcp.Char.Moved
+  gmcp.Char.Moved = nil
 end
 
 function add_room(hashID,x,y,z,area)
@@ -4359,27 +4212,41 @@ function mapper_Installed(_, name)
     gmcp = gmcp or {}
     gmcp.Room = gmcp.Room or {}
     gmcp.Room.Id = gmcp.Room.Id or ""
-  	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; NEW MAP STARTED\n")
-  	cecho("&lt;cyan&lt;[  MAP  ]&lt;reset&gt; Adding first room "..gmcp.Room.Id.." Assuming your in Drakenwood, Manually move to new zone if not!\n")
+    eleMap.currentRoom = getRoomIDbyHash(gmcp.Room.Id)
+    brax = brax or {}
+    brax.map = brax.map or {}
+    brax.map.mode = "full"
   	setAreaName(1,"Drakenwood")
   	setAreaName(2,"Valena")
   	setAreaName(3,"Rosfarren")
   	setAreaName(4,"Aerdy")
 		setAreaName(5,"Dun Glenderry")
+    local newArea = (gmcp.Room.Id):match("(%w*)")
+  	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; NEW MAP STARTED\n")
+  	cecho("&lt;cyan&gt;[  MAP  ]&lt;reset&gt; Adding first room "..gmcp.Room.Id.." Assuming your in "..newArea..", Manually move to new zone if not!\n")
+    if newArea == "aerdy" then newArea = 4
+    elseif newArea == "drakenwood" then newArea = 1
+    elseif newArea == "valena" then newArea = 2
+    elseif newArea == "rosfarren" then newArea = 3
+    elseif newArea == "dunglenderry" then newArea = 5
+    else newArea = 1 end
 		local newID = createRoomID()
   	addRoom(newID)
     setRoomWeight(newID,10)
   	setRoomCoordinates(newID,0,0,0)
-  	setRoomArea(newID,1)
+  	setRoomArea(newID,newArea)
 		setRoomIDbyHash(newID,gmcp.Room.Id)
   	centerview(newID)
+    add_room_neighbours(newID,gmcp.Room.Exits)
   	updateMap()
   end
 end
 
 function doSpeedWalk()
     brax.STOP = false
-		speedwalk(table.concat(speedWalkDir, ", "),false,0.3)
+    if #speedWalkDir == 0 then return end
+--    decho("Starting speedwalking "..#speedWalkDir.." rooms. use &lt;255,0,0&gt;ui stop&lt;reset&gt; to stop\n")
+    speedwalktimer(speedWalkDir, brax.speedwalkDelay, false)
 end
 
 function onSymbol(...)
@@ -4387,8 +4254,8 @@ function onSymbol(...)
 	local rooms = arg[3]
 	if style == "Post Office" then
 		for i = 3,arg['n'] do
-			setRoomChar(arg[i],"✉")
-	  end
+			setRoomChar(arg[i],"📪")
+	  end 
 	elseif style == "Store" then
 		for i = 3,arg['n'] do
 			setRoomChar(arg[i],"🛒")
@@ -4411,11 +4278,27 @@ function onSymbol(...)
 	  end
 	elseif style == "Swords" then
 		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"⚔️")
+	  end
+	elseif style == "Gem" then
+		for i = 3,arg['n'] do
 			setRoomChar(arg[i],"💎")
 	  end
-	elseif style == "Swords" then
+	elseif style == "Food" then
 		for i = 3,arg['n'] do
-			setRoomChar(arg[i],"⚔")
+			setRoomChar(arg[i],"🍖")
+	  end
+	elseif style == "Clothes" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"👚")
+	  end
+	elseif style == "Bottle" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"🏺")
+	  end
+	elseif style == "Skull" then
+		for i = 3,arg['n'] do
+			setRoomChar(arg[i],"💀")
 	  end
 	elseif style == "Clear" then
 		for i = 3,arg['n'] do
@@ -4438,6 +4321,10 @@ function mapWindowOpen()
   addMapEvent("Swords", "onSymbol","Add Symbol")
   addMapEvent("Bar", "onSymbol","Add Symbol")
   addMapEvent("Gem", "onSymbol","Add Symbol")
+  addMapEvent("Clothes", "onSymbol","Add Symbol")
+  addMapEvent("Food", "onSymbol","Add Symbol")
+  addMapEvent("Bottle", "onSymbol","Add Symbol")
+  addMapEvent("Skull", "onSymbol","Add Symbol")
   addMapEvent("Clear", "onSymbol","Add Symbol")
 	find_room()
 	if not mapAlias1 then tempAlias("^map count$",[[count_rooms()]]) end
@@ -4455,6 +4342,100 @@ registerAnonymousEventHandler("gmcp.Char.Moved", "onCharMove")
 				</Script>
 			</ScriptGroup>
 		</ScriptGroup>
+		<Script isActive="yes" isFolder="no">
+			<name>Blacks Target</name>
+			<packageName></packageName>
+			<script>brax = brax or {}
+
+
+brax.targetState = {
+  name = nil,
+  hp = 1,
+  casting = nil
+}
+
+function update_target_status()
+if (gmcp.Char.Target == 0 or next(gmcp.Char.Target) == nil) then
+    clear_target()
+else
+    if (gmcp.Char.Target.name ~= nil) then
+      if (brax.targetState.name ~= gmcp.Char.Target.name) then
+        brax.targetState.hp = 1
+      end
+      brax.targetState.name = gmcp.Char.Target.name
+    else
+      brax.targetState.name = brax.targetState.name
+    end  
+    targetBar:setValue(brax.targetState.hp,1,brax.targetState.name .. " HP%: " .. string.format("%0.2f",brax.targetState.hp*100))
+    targetBar:show()
+end
+end
+
+function update_target_vitals()
+  brax.targetState.hp = gmcp.Char.Target.Vitals.hp or brax.targetState.hp
+if (brax.targetState.hp &gt; 0) then
+    targetBar:setValue(brax.targetState.hp,1,brax.targetState.name .. " HP%: " .. string.format("%0.2f",brax.targetState.hp*100))
+  targetBar:show()
+end
+end
+
+function update_target_cast()
+  local duration = gmcp.Char.Target.Cast.cast_time
+  if duration &lt;= 0 then
+    brax.targetState.casting = nil
+  else
+    brax.targetState.casting = {
+      name = gmcp.Char.Target.Cast.spell,
+      castTime = duration,
+      timeLeft = duration
+    }
+    demonnic.anitimer:new(
+        "T"..brax.targetState.casting.name,
+        {x = 0, y = 17, height = 15, width = "100%"}, brax.targetState.casting.castTime,
+        {container = targetBoxContainer, showTime = true, timerCaption = brax.targetState.casting.name, cssFront = frontCSS}
+      )
+  end
+end
+
+function attackers_hunters()
+  info = ""
+  if next(gmcp.Char.Attackers.Attack) ~= nil then
+    info = info.."&lt;b&gt;*Attackers&lt;/b&gt;&lt;br&gt;"
+    for i, who in pairs(gmcp.Char.Attackers.Attack) do
+      info = info .. who .. "&lt;br&gt;"
+    end
+  end
+  if next(gmcp.Char.Attackers.Hunt) ~= nil then
+    info = info.."&lt;b&gt;Hunters&lt;/b&gt;&lt;br&gt;"
+    for i, who in pairs(gmcp.Char.Attackers.Hunt) do
+      info = info .. who .. "&lt;br&gt;"
+    end
+  end
+    targetBox:echo(info)
+end
+
+function clear_targetBoxContainer()
+  targetBox:echo("")
+  targetBar:hide()
+  clear_target()
+end
+
+function clear_target()
+  brax.targetState.name = nil
+  brax.targetState.hp = 1
+  brax.targetState.Casting = nil
+  targetBar:setValue(0, 1, "")
+  targetBar:hide()
+end
+
+
+registerAnonymousEventHandler('gmcp.Char.Target', 'update_target_status')
+registerAnonymousEventHandler("gmcp.Char.Target.Vitals", "update_target_vitals")
+registerAnonymousEventHandler('gmcp.Char.Target.Cast', 'update_target_cast')
+registerAnonymousEventHandler("gmcp.Char.Attackers", "attackers_hunters")
+registerAnonymousEventHandler('gmcp.Char.Quit', 'clear_targetBoxContainer')</script>
+			<eventHandlerList />
+		</Script>
 	</ScriptPackage>
 	<KeyPackage>
 		<Key isActive="yes" isFolder="no">
