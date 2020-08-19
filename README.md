@@ -1,5 +1,7 @@
 # EleUI2
-Brax's Elephant Mud UI
+Elephant Mud UI
+
+[Latest Download](https://github.com/tdk1069/EleUI2/releases/latest/download/EleUI2.mpackage)
 
 ![Installing](https://github.com/tdk1069/EleUI2/raw/master/Mudlet-resize.gif "Sample layout")
 
@@ -13,7 +15,7 @@ The best way to Fresh install this is to :
 6. type 'ui config' to choose and move which elements you want shown around.
 
 To Upgrade:
-**note** As of v1.53, *ui upgrade* will check here for updates, download and install if available (If you have made any code tweaks they will get lost so backup!) 
+**note** As of v1.53, *ui update* will check here for updates, download and install if available (If you have made any code tweaks they will get lost so backup!) 
 Older than v1.53:
 1. Load your profile offline.
 2. Uninstall EleUI2 via the package manager
@@ -22,7 +24,6 @@ Older than v1.53:
 
 Default Predefined Alias's 
 **ui config** - This shows the config window where you can select which elements are visible
-**ui installmap** - this loads (and replaces if you already have one!) a basic map
 
 First release. Expect bugs :) i've done my best to get something usable together.
 
