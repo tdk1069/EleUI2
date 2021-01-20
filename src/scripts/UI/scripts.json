@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Aggro"
+  },
+  {
+    "name": "Blacks_Target"
+  },
+  {
+    "name": "Body"
+  },
+  {
+    "name": "Buffs"
+  },
+  {
+    "name": "Casting_Bar"
+  },
+  {
+    "name": "chatBox"
+  },
+  {
+    "name": "Cooldowns"
+  },
+  {
+    "name": "debuffs"
+  },
+  {
+    "name": "GitUpdater"
+  },
+  {
+    "name": "helpers"
+  },
+  {
+    "name": "Inventory"
+  },
+  {
+    "name": "newWindow"
+  },
+  {
+    "name": "onLoad"
+  },
+  {
+    "name": "overrides"
+  },
+  {
+    "name": "PartyStuff"
+  },
+  {
+    "name": "persistentSettings"
+  },
+  {
+    "name": "Routes"
+  },
+  {
+    "name": "ScoreWindow"
+  },
+  {
+    "name": "vitals"
+  },
+  {
+    "name": "worldMap"
+  }
+]

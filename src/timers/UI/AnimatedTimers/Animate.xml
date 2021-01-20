@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TimerPackage>
+		<Timer isActive="yes" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+			<name>Animate</name>
+			<script>demonnic.anitimer:animate()</script>
+			<command></command>
+			<packageName></packageName>
+			<time>00:00:00.005</time>
+		</Timer>
+	</TimerPackage>
+</MudletPackage>
