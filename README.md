@@ -1,5 +1,5 @@
 # EleUI2
-Elephant Mud UI
+Elephant Mud UI (This is in dire need of updating.. Soon!)
 
 [Latest Download](https://github.com/tdk1069/EleUI2/releases/latest/download/EleUI2.mpackage)
 
