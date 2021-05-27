@@ -5,7 +5,6 @@ Elephant Mud UI (This is in dire need of updating.. Soon!)
 
 ![Installing](https://raw.githubusercontent.com/tdk1069/EleUI2/master/docs/EleUI2.PNG)
 
-https://raw.githubusercontent.com/tdk1069/EleUI2/master/docs/EleUI2.PNG
 
 The best way to Fresh install this is to : 
 1. Log out of Ele if you are logged in.
