@@ -29,7 +29,7 @@ jobs:
       # this is the step I made, which builds your project with Muddler
       # it will show up as "Muddle" in the GitHub web interface later
       - name: Muddle
-        uses: demonnic/build-with-muddler@v1.2
+        uses: demonnic/build-with-muddler@main
       
       # This step uploads the artifact for you and others to download
       - name: Upload Artifact
