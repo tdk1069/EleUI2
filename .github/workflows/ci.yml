@@ -1,0 +1,43 @@
+# The name of the action, it is used for display in the actions view in GitHub
+name: CI
+
+# This section controls when the action runs. In this case, when code is checked
+# into the main branch or when a pull request is made targeting the main branch.
+# If your projects default branch is something else, such as 'development'
+# then you would use that instead of main below
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# Including this lets your run the action on demand as well
+  workflow_dispatch:
+
+# The jobs (collection of steps) for the action
+jobs:
+  # This collection is called 'build'
+  build:
+    # build on GitHub's latest ubuntu image
+    runs-on: ubuntu-latest
+
+    # The steps to follow for the 'build' job
+    steps:
+      # this step checks out the project repository to work on
+      - uses: actions/checkout@v2
+
+      # this is the step I made, which builds your project with Muddler
+      # it will show up as "Muddle" in the GitHub web interface later
+      - name: Muddle
+        uses: demonnic/build-with-muddler@v1.2
+      
+      # This step uploads the artifact for you and others to download
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          # build/tmp/ is the directory muddler makes the mpackage out of
+          # GitHub only allows you to upload zip files, so we let them
+          # zip it up and upload it. That's all the .mpackage is anyway
+          # just with a different file extension
+          name: EleUI2
+          path: build/tmp/
