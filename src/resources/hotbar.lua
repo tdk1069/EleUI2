@@ -1,0 +1,12 @@
+return {{[1] = {2},[2] = {3},[3] = {4},[4] = {5},[5] = {6},[6] = {7},[7] = {8},[8] = {9},[9] = {10},[10] = {11},},
+{[ [[cmd]] ] = [[grary]],[ [[buff]] ] = [[Rary's Greater Enhancer]],},
+{[ [[cmd]] ] = [[blast]],[ [[buff]] ] = [[]],},
+{[ [[cmd]] ] = [[pspray]],[ [[buff]] ] = [[]],},
+{[ [[cmd]] ] = [[soothe]],[ [[buff]] ] = [[Soothe Hurt]],},
+{[ [[cmd]] ] = [[mirror]],[ [[buff]] ] = [[Mirror Image]],},
+{[ [[cmd]] ] = [[]],[ [[buff]] ] = [[]],},
+{[ [[cmd]] ] = [[]],[ [[buff]] ] = [[]],},
+{[ [[cmd]] ] = [[]],[ [[buff]] ] = [[]],},
+{[ [[cmd]] ] = [[buffer]],[ [[buff]] ] = [[Buffering Shield]],},
+{[ [[cmd]] ] = [[aid]],[ [[buff]] ] = [[Holy Aid]],},
+}
