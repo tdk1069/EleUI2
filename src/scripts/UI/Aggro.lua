@@ -4,6 +4,8 @@ function aggroBox()
   local containerTitleHex = "#A4A100"
   local sortBox = require("EleUI2.sortbox")
   local timerGauge = require("EleUI2.timergauge")
+  local _,dpiHeight = calcFontSize(8)
+  local _,dpiGap = calcFontSize(10)
 
   
   local aggroTable = gmcp.Char.Target.Aggro or {}
@@ -35,7 +37,7 @@ local barCol = "background-color: #1f6140;"
 
   aggroContainer =
     aggroContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -67,7 +69,7 @@ local barCol = "background-color: #1f6140;"
       name=who,
       x="0",
       width="100%",
-      height="20",
+      height=dpiHeight,
       active = true,
       autoHide = true,
       manageContainer = true,
@@ -100,4 +102,6 @@ function clearAggroWindow()
   end
 end
 
-agBoxEvent = registerAnonymousEventHandler("gmcp.Char.Target.Aggro","aggroBox")
+brax = brax or {}
+brax.agBoxEvent = registerAnonymousEventHandler("gmcp.Char.Target.Aggro","aggroBox")
+

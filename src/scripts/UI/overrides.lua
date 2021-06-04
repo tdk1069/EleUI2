@@ -1,5 +1,4 @@
 function json_to_value(eledata)
---display(eledata)
 if string.find(eledata,"^%d+%.?%d*$") then
     return tonumber(eledata)
   elseif eledata:sub(3,5) == "_msg" then

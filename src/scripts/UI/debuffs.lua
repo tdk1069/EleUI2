@@ -56,7 +56,7 @@ function addDebuff(debuff,time)
     brax.target.debuffs[debuff]:setTime(tonumber(time))
     brax.target.debuffs[debuff]:restart()
     brax.target.debuffs[debuff]:show2()
-    brax.target.debuffs[debuff]:raise()
+    brax.target.debuffs[debuff]:raiseAll()
   else
     brax.target.debuffs[debuff] = timerGauge:new({
     name = debuff,
@@ -98,4 +98,5 @@ function doDebuffEvent()
   debuffBox:organize()
 end
 
-registerAnonymousEventHandler("gmcp.Char.Target.Buffs","doDebuffEvent")
+brax = brax or {}
+brax.targetBuffEvent = registerAnonymousEventHandler("gmcp.Char.Target.Buffs","doDebuffEvent")

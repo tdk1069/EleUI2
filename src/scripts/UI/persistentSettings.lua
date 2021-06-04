@@ -27,3 +27,4 @@ function EleUI:loadSettings()
   end
   return loadTable
 end
+

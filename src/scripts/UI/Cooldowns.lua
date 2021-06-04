@@ -2,6 +2,8 @@ function get_Cooldowns()
 
   myCooldowns = myCooldowns or {}
   myCooldownsTotal =   myCooldownsTotal or 0
+  local _,dpiHeight = calcFontSize(8)
+  local _,dpiGap = calcFontSize(10)
 
 --display(gmcp.Char.Cooldowns)
 
@@ -20,7 +22,7 @@ function get_Cooldowns()
 ]]
       for _ in pairs(myCooldowns) do count = count + 1 end
       myCooldownsTotal = count -1
-      demonnic.anitimer:new("cd"..spell, {x = 0, y=myCooldownsTotal*25, height = 20, width = "100%"}, dur, {container = cooldownBoxContainer, showTime = true, timerCaption = spell,cssFront=frontCSS,hook = "aTimerEnd(\""..spell.."\")"})
+      demonnic.anitimer:new("cd"..spell, {x = 0, y=myCooldownsTotal*dpiGap, height = dpiHeight, width = "100%"}, dur, {container = cooldownBoxContainer, showTime = true, timerCaption = spell,cssFront=frontCSS,hook = "aTimerEnd(\""..spell.."\")"})
       if cooldownBoxContainer.hidden == true then 
         demonnic.anitimer.timers["cd"..spell].gauge:hide(true) 
       else
@@ -51,11 +53,12 @@ function get_Cooldowns()
   end
   table.sort(tCooldowns)
   for i,v in pairs(tCooldowns) do 
-    demonnic.anitimer.timers["cd"..tName[v]].gauge:move(0,pos*25)
+    demonnic.anitimer.timers["cd"..tName[v]].gauge:move(0,pos*dpiGap)
     pos = pos +1
   end
   raiseEvent("EleUI.cooldown")
 
 end
 
-registerAnonymousEventHandler("gmcp.Char.Cooldowns","get_Cooldowns")
+brax = brax or {}
+brax.cooldownEvent = registerAnonymousEventHandler("gmcp.Char.Cooldowns","get_Cooldowns")

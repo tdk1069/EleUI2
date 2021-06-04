@@ -168,5 +168,6 @@ function initStats()
   scoreWindow:raiseAll()
 end
 
-registerAnonymousEventHandler("gmcp.Char.Skills", "skillsChanged")
-registerAnonymousEventHandler("gmcp.Char.Stats", "statsChanged")
+brax = brax or {}
+brax.skillsEvent = registerAnonymousEventHandler("gmcp.Char.Skills", "skillsChanged")
+brax.statsEvent = registerAnonymousEventHandler("gmcp.Char.Stats", "statsChanged")

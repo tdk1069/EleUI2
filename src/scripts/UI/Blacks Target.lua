@@ -108,8 +108,9 @@ function clear_target()
   if debuffBoxContainer then clearDebuffs() end
 end
 
-registerAnonymousEventHandler('gmcp.Char.Target', 'update_target_status')
-registerAnonymousEventHandler("gmcp.Char.Target.Vitals", "update_target_vitals")
-registerAnonymousEventHandler('gmcp.Char.Target.Cast', 'update_target_cast')
-registerAnonymousEventHandler("gmcp.Char.Attackers", "attackers_hunters")
-registerAnonymousEventHandler('gmcp.Char.Quit', 'clear_targetBoxContainer')
+brax = brax or {}
+brax.targetEvent = registerAnonymousEventHandler('gmcp.Char.Target', 'update_target_status')
+brax.targetVitalsEvent = registerAnonymousEventHandler("gmcp.Char.Target.Vitals", "update_target_vitals")
+brax.targetCastEvent = registerAnonymousEventHandler('gmcp.Char.Target.Cast', 'update_target_cast')
+brax.attackersEvent = registerAnonymousEventHandler("gmcp.Char.Attackers", "attackers_hunters")
+brax.quitEvent = registerAnonymousEventHandler('gmcp.Char.Quit', 'clear_targetBoxContainer')

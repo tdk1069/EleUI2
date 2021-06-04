@@ -33,7 +33,7 @@ function get_Ready()
   brax.level = brax.level or gmcp.Char.Status.level
   brax.map = brax.map or {}
   brax.map.mode = brax.map.mode or "read"
-  brax.version = "Version: 1.86"
+  brax.version = "Version: 1.94"
   brax.xp = brax.xp or 0
   brax.class = brax.class or {}
   brax.class.prime = brax.class.prime or ""
@@ -53,9 +53,10 @@ function get_Ready()
   local btnStyle = [[QLabel{ border-radius: 7px; background-color: rgba(0,0,140,100%);}QLabel::hover{ background-color: rgba(160,160,160,50%);}]]
   local adjStyle = [[border: 25px solid transparent;border-image: url(]] .. getMudletHomeDir() .. [[/EleUI2/imgs/UI_BG.png) round;padding-top:-20px;]]
   local containerTitleHex = "#A4A100"
+  local _,padding = calcFontSize(15)
   statBoxContainer =
     statBoxContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -75,13 +76,14 @@ function get_Ready()
     )
   statsDetails =
     Geyser.Label:new(
-      {name = "Details", color = "black", x = 0, y = "70", width = "100%", height = "40px"}, statsBox
+      {name = "Details", color = "black", x = 0, y = padding*3.3, width = "100%", height = padding*2}, statsBox
     )
   statsBox:setStyleSheet([[background:rgba(0,0,0,0)]])
   statsDetails:setStyleSheet([[background:rgba(0,0,0,0)]])
+
   hpbar =
     Geyser.Gauge:new(
-      {name = "hpbar", x = "0%", y = "5px", width = "100%", height = "20px"}, statsBox
+      {name = "hpbar", x = "0%", y = "5px", width = "100%", height = padding}, statsBox
     )
   statsDetails:setClickCallback("toggleXP")
   hpbar:setStyleSheet([[qproperty-alignment: 'AlignBottom';]])
@@ -90,7 +92,7 @@ function get_Ready()
       border-top: 1px black solid;
       border-left: 1px black solid;
       border-bottom: 1px black solid;
-      border-radius: 7;
+      border-radius: ]]..(padding/2.2)..[[;
       padding: 3px;]]
   )
   hpbar.back:setStyleSheet(
@@ -98,19 +100,19 @@ function get_Ready()
       border-width: 1px;
       border-color: #f04141;
       border-style: solid;
-      border-radius: 7;
+      border-radius: ]]..(padding/2.2)..[[;
       padding: 3px;]]
   )
   mpbar =
     Geyser.Gauge:new(
-      {name = "mpbar", x = "0%", y = "26px", width = "100%", height = "20px"}, statsBox
+      {name = "mpbar", x = "0%", y = padding*1.1, width = "100%", height = padding}, statsBox
     )
   mpbar.front:setStyleSheet(
     [[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #9841f0, stop: 0.1 #8c29f0, stop: 0.49 #6600cc, stop: 0.5 #5200a3, stop: 1 #6600cc);
       border-top: 1px black solid;
       border-left: 1px black solid;
       border-bottom: 1px black solid;
-      border-radius: 7;
+      border-radius: ]]..(padding/2.2)..[[;
       padding: 3px;]]
   )
   mpbar.back:setStyleSheet(
@@ -118,19 +120,19 @@ function get_Ready()
       border-width: 1px;
       border-color: #9841f0;
       border-style: solid;
-      border-radius: 7;
+      border-radius: ]]..(padding/2.2)..[[;
       padding: 3px;]]
   )
   spbar =
     Geyser.Gauge:new(
-      {name = "spbar", x = "0%", y = "48px", width = "100%", height = "20px"}, statsBox
+      {name = "spbar", x = "0%", y = padding*2.2, width = "100%", height = padding}, statsBox
     )
   spbar.front:setStyleSheet(
     [[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #98f041, stop: 0.1 #8cf029, stop: 0.49 #66cc00, stop: 0.5 #52a300, stop: 1 #66cc00);
       border-top: 1px black solid;
       border-left: 1px black solid;
       border-bottom: 1px black solid;
-      border-radius: 7;
+      border-radius: ]]..(padding/2.2)..[[;
       padding: 3px;]]
   )
   spbar.back:setStyleSheet(
@@ -138,13 +140,13 @@ function get_Ready()
       border-width: 1px;
       border-color: #98f041;
       border-style: solid;
-      border-radius: 7;
+      border-radius: ]]..(padding/2.2)..[[;
       padding: 3px;]]
   )
   statBoxContainer:hide()
   buffBoxContainer =
     buffBoxContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -166,7 +168,7 @@ function get_Ready()
   buffBox:setStyleSheet([[background:rgba(0,0,0,0)]])
   bodyBoxContainer =
     bodyBoxContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -188,7 +190,7 @@ function get_Ready()
   bodyBox:setStyleSheet([[background:rgba(0,0,0,0)]])
   cooldownBoxContainer =
     cooldownBoxContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -211,7 +213,7 @@ function get_Ready()
   cooldownBox:setStyleSheet([[background:rgba(0,0,0,0)]])
   mapBoxContainer =
     mapBoxContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -224,8 +226,9 @@ function get_Ready()
         titleTxtColor = containerTitleHex,
       }
     )
+  local _,iconSize = calcFontSize(13)
   worldMapIcon = Geyser.Label:new(
-      {name = "worldMapIcon", color = "black", x = 10, y = 1, width = "20px", height = "20px"},
+      {name = "worldMapIcon", color = "black", x = 10, y = 1, width = iconSize, height = iconSize},
       mapBoxContainer.adjLabel
     )
   worldMapIcon:setStyleSheet([[background:rgba(0,0,0,0)]])
@@ -234,7 +237,7 @@ function get_Ready()
   -- worldMapIcon
   chatBoxContainer =
     chatBoxContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -301,6 +304,7 @@ function get_Ready()
         qproperty-alignment: 'AlignCenter | AlignCenter';
 				]]
   local EMCO = require("EleUI2.EMCO")
+  local _,tabCalcHeight = calcFontSize(10)
   chatBox =
     EMCO:new(
       {
@@ -314,6 +318,7 @@ function get_Ready()
         consoles = {"All"},
         activeTabCSS = _stylesheet,
         inactiveTabCSS = _istylesheet,
+        tabHeight = tabCalcHeight
       },
       chatBoxContainer
     )
@@ -322,7 +327,7 @@ function get_Ready()
   chatBox:enableBlink()
   castbarBoxContainer =
     castbarBoxContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -337,7 +342,7 @@ function get_Ready()
     )
   partyContainer =
     partyContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -360,7 +365,7 @@ function get_Ready()
   -- Black's
   targetBoxContainer =
     targetBoxContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -373,10 +378,11 @@ function get_Ready()
         titleTxtColor = containerTitleHex,
       }
     )
-  targetBar =
+  local _,padding = calcFontSize(10)
+    targetBar =
     targetBar or
     Geyser.Gauge:new(
-      {name = "targetBar", x = "0%", y = "5px", width = "100%", height = "15px"}, targetBoxContainer
+      {name = "targetBar", x = "0%", y = "5px", width = "100%", height = padding}, targetBoxContainer
     )
   targetBox =
     targetBox or
@@ -387,7 +393,6 @@ function get_Ready()
   targetBox:setStyleSheet([[qproperty-alignment: 'AlignTop';background-color:rgba(70,70,70,0%)]])
 
   Adjustable.Container.loadAll()
-  echo("--------------------------------------")
   aggroBox()
   debuffWin()
   do_Config()
@@ -397,9 +402,11 @@ function get_Ready()
   eleMap = eleMap or {}
   eleMap.mode = 0
   -- 1 = edit, 0=follow
+  local _,padding = calcFontSize(7)
+  mapBoxContainer:setPadding(padding)
   eleMap =
     Geyser.Mapper:new(
-      {name = "eleMap", x = 0, y = 0, width = "100%", height = "100%"}, mapBoxContainer
+      {name = "eleMap", x = 0, y = 0, width = "100%", height = "100%"}, mapBoxContainer.Inside
     )
 -- Check for update at launch
   GitUpdater({check = true})
@@ -409,14 +416,16 @@ function do_Config()
   local configCSS =
     [[QLabel{padding-left:25px;background:rgba(0,0,0,0);}QLabel::hover {background-image : url("]] ..
     getMudletHomeDir() ..
-    [[/EleUI2/imgs/FF7Cursor.png"); background-repeat:no-repeat;};]]
+    [[/EleUI2/imgs/FF7Cursor.png"); background-repeat:no-repeat;background-position:left center;};]]
   local btnStyle =
     [[QLabel{ border-radius: 7px; background-color: rgba(0,0,140,100%);}QLabel::hover{ background-color: rgba(160,160,160,50%);}]]
   local adjStyle = [[border: 25px solid transparent;border-image: url(]] .. getMudletHomeDir() .. [[/EleUI2/imgs/UI_BG.png) round;padding-top:-20px;]]
   local containerTitleHex = "#A4A100"
+  local _,labelPadding = calcFontSize(13)
+  local optionHeight = labelPadding
   configContainer =
     configContainer or
-    Adjustable.Container:new(
+    eleFrame:new(
       {
         adjLabelstyle = adjStyle,
         buttonstyle = btnStyle,
@@ -432,7 +441,7 @@ function do_Config()
   configStats =
     configStats or
     Geyser.Label:new(
-      {name = "configStats", color = "black", x = 0, y = 0, width = "100%", height = "20"},
+      {name = "configStats", color = "black", x = 0, y = 0, width = "100%", height = optionHeight},
       configContainer
     )
   configStats:setStyleSheet(configCSS)
@@ -442,10 +451,11 @@ function do_Config()
     hiddenState = "✔️"
   end
   configStats:echo("Stats Window " .. hiddenState)
+  labelPadding = optionHeight
   configBuffs =
     configBuffs or
     Geyser.Label:new(
-      {name = "configBuffs", color = "black", x = 0, y = 20, width = "100%", height = "20"},
+      {name = "configBuffs", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   configBuffs:setStyleSheet(configCSS)
@@ -455,10 +465,11 @@ function do_Config()
     hiddenState = "✔️"
   end
   configBuffs:echo("Buffs/Debuffs Window " .. hiddenState)
+  labelPadding = labelPadding + optionHeight
   configBody =
     configBody or
     Geyser.Label:new(
-      {name = "configBody", color = "black", x = 0, y = 40, width = "100%", height = "20"},
+      {name = "configBody", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   configBody:setStyleSheet(configCSS)
@@ -468,10 +479,11 @@ function do_Config()
     hiddenState = "✔️"
   end
   configBody:echo("Limb Damage Window " .. hiddenState)
+  labelPadding = labelPadding + optionHeight
   configCooldowns =
     configCooldowns or
     Geyser.Label:new(
-      {name = "configCooldown", color = "black", x = 0, y = 60, width = "100%", height = "20"},
+      {name = "configCooldown", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   configCooldowns:setStyleSheet(configCSS)
@@ -481,10 +493,11 @@ function do_Config()
     hiddenState = "✔️"
   end
   configCooldowns:echo("Cooldowns Window " .. hiddenState)
+  labelPadding = labelPadding + optionHeight
   chatCooldowns =
     chatCooldowns or
     Geyser.Label:new(
-      {name = "chatCooldown", color = "black", x = 0, y = 80, width = "100%", height = "20"},
+      {name = "chatCooldown", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   chatCooldowns:setStyleSheet(configCSS)
@@ -494,10 +507,11 @@ function do_Config()
     hiddenState = "✔️"
   end
   chatCooldowns:echo("Chat Window " .. hiddenState)
+  labelPadding = labelPadding + optionHeight
   configMap =
     configMap or
     Geyser.Label:new(
-      {name = "configmap", color = "black", x = 0, y = 100, width = "100%", height = "20"},
+      {name = "configmap", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   configMap:setStyleSheet(configCSS)
@@ -507,10 +521,11 @@ function do_Config()
     hiddenState = "✔️"
   end
   configMap:echo("Map " .. hiddenState)
+  labelPadding = labelPadding + optionHeight
   configcastbar =
     configcastbar or
     Geyser.Label:new(
-      {name = "configcastbar", color = "black", x = 0, y = 120, width = "100%", height = "20"},
+      {name = "configcastbar", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   configcastbar:setStyleSheet(configCSS)
@@ -520,10 +535,11 @@ function do_Config()
     hiddenState = "✔️"
   end
   configcastbar:echo("CastBar " .. hiddenState)
+  labelPadding = labelPadding + optionHeight
   partyInfo =
     partyInfo or
     Geyser.Label:new(
-      {name = "partyInfo", color = "black", x = 0, y = 140, width = "100%", height = "20"},
+      {name = "partyInfo", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   partyInfo:setStyleSheet(configCSS)
@@ -533,50 +549,39 @@ function do_Config()
     hiddenState = "✔️"
   end
   partyInfo:echo("Party Info " .. hiddenState)
+  labelPadding = labelPadding + optionHeight
   targetInfo =
     targetInfo or
     Geyser.Label:new(
-      {name = "targetInfo", color = "black", x = 0, y = 160, width = "100%", height = "20"},
+      {name = "targetInfo", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   targetInfo:setStyleSheet(configCSS)
   targetInfo:setClickCallback("toggleBox", targetBoxContainer)
-
-  aggroConfig =
-    aggroConfig or
-    Geyser.Label:new(
-      {name = "aggroConfig", color = "black", x = 0, y = 180, width = "100%", height = "20"},
-      configContainer
-    )
-  aggroConfig:setStyleSheet(configCSS)
-  aggroConfig:setClickCallback("toggleBox", aggroContainer)
-
-
   local hiddenState = ""
   if (targetBoxContainer.hidden == false) then
     hiddenState = "✔️"
   end
   targetInfo:echo("Target Info " .. hiddenState)
-
+  labelPadding = labelPadding + optionHeight
+  aggroConfig =
+    aggroConfig or
+    Geyser.Label:new(
+      {name = "aggroConfig", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
+      configContainer
+    )
+  aggroConfig:setStyleSheet(configCSS)
+  aggroConfig:setClickCallback("toggleBox", aggroContainer)
   local hiddenState = ""
   if (aggroContainer.hidden == false) then
     hiddenState = "✔️"
   end
   aggroConfig:echo("Aggro " .. hiddenState)
-  
-  partyInfo =
-    partyInfo or
-    Geyser.Label:new(
-      {name = "partyInfo", color = "black", x = 0, y = 140, width = "100%", height = "20"},
-      configContainer
-    )
-  partyInfo:setStyleSheet(configCSS)
-  partyInfo:setClickCallback("toggleBox", partyContainer)
-
+  labelPadding = labelPadding + optionHeight
   debuffsConfig =
     debuffsConfig or
     Geyser.Label:new(
-      {name = "debuffsConfig", color = "black", x = 0, y = 200, width = "100%", height = "20"},
+      {name = "debuffsConfig", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   debuffsConfig:setStyleSheet(configCSS)
@@ -586,26 +591,27 @@ function do_Config()
     hiddenState = "✔️"
   end
   debuffsConfig:echo("Buffs/Debuffs Window " .. hiddenState)
-
-
+  labelPadding = labelPadding + optionHeight
   configSave =
     configSave or
     Geyser.Label:new(
-      {name = "configSave", color = "black", x = 0, y = 220, width = "100%", height = "20"},
+      {name = "configSave", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   configSave:setStyleSheet(configCSS)
   configSave:setClickCallback("saveWindows")
   configSave:echo("Save Layout")
+  labelPadding = labelPadding + optionHeight
   configLoad =
     configLoad or
     Geyser.Label:new(
-      {name = "configLoad", color = "black", x = 0, y = 240, width = "100%", height = "20"},
+      {name = "configLoad", color = "black", x = 0, y = labelPadding, width = "100%", height = optionHeight},
       configContainer
     )
   configLoad:setStyleSheet(configCSS)
   configLoad:setClickCallback("loadWindows")
   configLoad:echo("Load Layout")
+  configContainer:resize(configContainer.get_width(),labelPadding+(optionHeight*2.2))
 end
 
 map = {}
@@ -669,8 +675,9 @@ function getLevel()
   end
 end
 
+brax = brax or {}
 
-registerAnonymousEventHandler("sysLoadEvent", "get_Ready")
-registerAnonymousEventHandler("sysInstallPackage", "first_Install")
-registerAnonymousEventHandler("gmcp.Char.Status.level", "getLevel")
-registerAnonymousEventHandler("gmcp.Char.Status.fullname", "getName")
+brax.onLoadEvent = registerAnonymousEventHandler("sysLoadEvent", "get_Ready")
+brax.installEvent = registerAnonymousEventHandler("sysInstallPackage", "first_Install")
+brax.levelEvent = registerAnonymousEventHandler("gmcp.Char.Status.level", "getLevel")
+brax.nameEvent = registerAnonymousEventHandler("gmcp.Char.Status.fullname", "getName")

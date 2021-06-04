@@ -1,7 +1,13 @@
 function get_Buffs()
   myBuffs = myBuffs or {}
   myBuffsTotal = myBuffsTotal or 0
---  display(gmcp.Char.Buffs)
+
+  local _,dpiHeight = calcFontSize(8)
+  local _,dpiGap = calcFontSize(10)
+  
+  gmcp = gmcp or {}
+  gmcp.Char = gmcp.Char or {}
+  gmcp.Char.Buffs = gmcp.Char.Buffs or {}
   if type(gmcp.Char.Buffs) ~= "table" then return end
   for spell, dur in pairs(gmcp.Char.Buffs) do
     if dur ~= 0 then
@@ -40,7 +46,7 @@ function get_Buffs()
       end
       demonnic.anitimer:new(
         spell,
-        {x = 0, y = (myBuffsTotal * 25)+20, height = 20, width = "100%"},
+        {x = 0, y = (myBuffsTotal * dpiGap)+20, height = dpiHeight, width = "100%"},
         dur[1],
         {container = buffBoxContainer, showTime = true, timerCaption = spell, cssFront = frontCSS}
       )
@@ -93,10 +99,11 @@ end
   end
   table.sort(tBuff)
   for i, v in pairs(tBuff) do
-    demonnic.anitimer.timers[tName[v]].gauge:move(0, (pos * 25)+10)
+    demonnic.anitimer.timers[tName[v]].gauge:move(0, (pos * dpiGap))
     pos = pos + 1
   end
   raiseEvent("EleUI.buff",spell)
 end
 
-registerAnonymousEventHandler("gmcp.Char.Buffs", "get_Buffs")
+brax = brax or {}
+brax.buffEvent = registerAnonymousEventHandler("gmcp.Char.Buffs", "get_Buffs")

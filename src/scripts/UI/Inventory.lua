@@ -270,6 +270,14 @@ function locate(searchString)
   brax.items = brax.items or {}
   brax.items.inventory = brax.items.inventory or {}
   brax.items.baggedItems = brax.items.baggedItems or {}
+  local rarity = {}
+  rarity[0] = ""
+  rarity[1] = "<0,128,0>Uncommon<192,192,192>"
+  rarity[2] = "<0,153,255>Rare<192,192,192>"
+  rarity[3] = "<255,102,0>Epic<192,192,192>"
+  
+  if gmcp.Char.Vitals.Capacity == nil then gmcp.Char.Vitals.Capacity = 0 end
+  echo("["..string.rep("#",(gmcp.Char.Vitals.Capacity*100/2))..string.rep("-",50-(gmcp.Char.Vitals.Capacity*100/2)).."]\n")
   for id, item in pairs(brax.items.inventory) do
     local wornState = ""
     local bagNumber = ""
@@ -285,7 +293,7 @@ function locate(searchString)
             if item.type == "armour" then item.colour = "<0,128,0>"
         elseif item.type == "weapon" then item.colour = "<128,0,0>"
         else item.colour = "<128,128,0>" end
-      decho("["..id.."] "..item.colour..item.name ..wornState.."<192,192,192> "..bagNumber.." "..item.subtype.."\n")
+      decho(item.colour..item.name ..wornState.."<192,192,192> "..bagNumber.." "..rarity[item.rarity].." ".. item.subtype .." ("..item.level..")\n")
     end
   end
   for bagID, bag in pairs(brax.items.baggedItems) do
@@ -310,8 +318,9 @@ if 1 then return end
   brax.items.baggedItems = {}
 end
 
-registerAnonymousEventHandler("gmcp.Char.Wielded", "addWieldedFlag")
-registerAnonymousEventHandler("gmcp.Char.Worn", "addWornFlag")
-registerAnonymousEventHandler("gmcp.Char.Items", "charItems")
+brax = brax or {}
+brax.wieldedEvent = registerAnonymousEventHandler("gmcp.Char.Wielded", "addWieldedFlag")
+brax.wornEvent = registerAnonymousEventHandler("gmcp.Char.Worn", "addWornFlag")
+brax.itemsEvent = registerAnonymousEventHandler("gmcp.Char.Items", "charItems")
 --registerAnonymousEventHandler("gmcp.Char.Items.Bag", "buildBagList")
-registerAnonymousEventHandler("gmcp.Char.Reset","invReset")
+brax.charResetEvent = registerAnonymousEventHandler("gmcp.Char.Reset","eleProfileReset")

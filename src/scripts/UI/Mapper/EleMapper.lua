@@ -149,7 +149,7 @@ end
 function add_exits()
   if mapBoxContainer then 
     local mTitle = properCase((gmcp.Room.Id):match("%w*"))
-    if gmcp.Room.Terrain ~= 0  then mTitle = mTitle.." - "..properCase(gmcp.Room.Terrain) end
+    if gmcp.Room.Terrain ~= "0"  then mTitle = mTitle.." - "..properCase(gmcp.Room.Terrain) end
     mapBoxContainer:setTitle(mTitle,"#A4A100") 
   end
   if brax.map.mode == "read" then return end
@@ -211,7 +211,6 @@ end
 
 function onCharMove(moveDetails)
   gmcp.Char.Moved = speedwalkDIR or brax.mapper.convertDir[command]
-  display(speedwalkDIR)
   speedwalkDIR = nil
   local moved = gmcp.Char.Moved
   brax.moved = gmcp.Char.Moved
@@ -227,6 +226,11 @@ function onCharMove(moveDetails)
   end -- If read mode thats it!
   if brax.AutoMapColour then
     setRoomEnv(getRoomIDbyHash(gmcp.Room.Id),brax.mapper.terrain[gmcp.Room.Terrain] or -1)
+    if gmcp.Room.Path then
+      setRoomEnv(getRoomIDbyHash(gmcp.Room.Id),brax.mapper.terrain["path"])
+      setRoomUserData(getRoomIDbyHash(gmcp.Room.Id),"Path",gmcp.Room.Path)
+      gmcp.Room.Path = nil
+    end
   end
   setRoomUserData(getRoomIDbyHash(gmcp.Room.Id),"Terrain",gmcp.Room.Terrain)
  	if roomExists(getRoomIDbyHash(gmcp.Room.Id)) == false then
@@ -456,10 +460,12 @@ function mapWindowOpen()
 end
 
 brax.mapper = brax.mapper or {}
+setCustomEnvColor(273,40,40,40,255) -- Paths -Custom colour
+-- These colours below can be altered in Prefs > Mapper colours
 brax.mapper.terrain = {
   forest = 258,
   plains = 259,
-  hills = 272,
+  hills = 263,
   mountains = 272,
   town = -1,
   coast = 270,
@@ -473,7 +479,8 @@ brax.mapper.terrain = {
   snowplains = 271,
   treetops = 258,
   river = 260,
-  lake = 260
+  lake = 260,
+  path = 273
 }
 
 brax.mapper.convertDir = {
@@ -490,12 +497,18 @@ brax.mapper.convertDir = {
 }
   
   
+function doRoomName()
+  if brax.map.mode ~= "read" then 
+    setRoomName(eleMap.currentRoom,gmcp.Room.Name)
+  end
+end
 
-
-registerAnonymousEventHandler("mapOpenEvent", "mapWindowOpen")
-registerAnonymousEventHandler("onSymbol", "onSymbol")
-registerAnonymousEventHandler("gmcp.Room.Id", "find_room")
+brax = brax or {}
+brax.openMapEvent = registerAnonymousEventHandler("mapOpenEvent", "mapWindowOpen")
+brax.mapSymbolEvent = registerAnonymousEventHandler("onSymbol", "onSymbol")
+brax.roomIdEvent = registerAnonymousEventHandler("gmcp.Room.Id", "find_room")
 --registerAnonymousEventHandler("gmcp.Room.Exits", "add_exits")
 --registerAnonymousEventHandler("gmcp.Char.Moved", "onCharMove")
-registerAnonymousEventHandler("gmcp.Room.Exits", "onCharMove")
+brax.roomExitsEvent = registerAnonymousEventHandler("gmcp.Room.Exits", "onCharMove")
 
+brax.roomNameEvent = registerAnonymousEventHandler("gmcp.Room.Name","doRoomName")

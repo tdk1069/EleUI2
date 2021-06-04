@@ -1,5 +1,4 @@
 function castBar()
---display(gmcp.Char.Cast.cast_time)
   local timerGauge = require("EleUI2.timergauge")
   if gmcp.Char.Cast.cast_time > 0 then
     local csFront = [[background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #f04141, stop: 0.1 #ef2929, stop: 0.49 #cc0000, stop: 0.5 #a40000, stop: 1 #cc0000);
@@ -20,7 +19,7 @@ function castBar()
         border-style: solid;
         border-radius: 5;
         padding: 3px;]]
-
+--display(gmcp.Char.Cast)
 --    demonnic.anitimer:new("cast_"..gmcp.Char.Cast.spell, {x = 0, y=0, height = "100%", width = "100%"}, gmcp.Char.Cast.cast_time, {container = castbarBoxContainer, showTime = true, timerCaption = properCase(gmcp.Char.Cast.spell),cssFront = csFront,cssBack = csBack})
     if brax.castBar then
       brax.castBar.suffix = " "..properCase(gmcp.Char.Cast.spell)
@@ -56,4 +55,5 @@ end
   raiseEvent("EleUI.casting")
 end
 
-registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")
+brax = brax or {}
+brax.castingEvent = registerAnonymousEventHandler("gmcp.Char.Cast", "castBar")

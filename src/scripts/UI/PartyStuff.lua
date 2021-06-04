@@ -41,5 +41,23 @@ function colStat(value)
   return "<span style='color:"..colour..";'>"..stat.."%</span>"
 end
 
-registerAnonymousEventHandler("gmcp.Party.Members","do_Party")
-registerAnonymousEventHandler("gmcp.Party.Vitals","do_Party_Vitals")
+function partyLocation()
+--  display(gmcp.Party.Location)
+  local who,where = next(gmcp.Party.Location)
+  local room_id = getRoomIDbyHash(where)
+  brax = brax or {}
+  brax.party = brax.party or {}
+  brax.party.Location = brax.party.Location or {}
+  brax.party.Location[who] = brax.party.Location[who] or {}
+  local last_id = brax.party.Location[who].room_id or 0
+  brax.party.Location[who].room_id = room_id
+  local r, g, b = unpack(color_table.blue)
+  local br, bg, bb = unpack(color_table.orange)
+  highlightRoom(room_id, r, g, b, br, bg, bb, 1, 255, 255)
+  unHighlightRoom(last_id)
+end
+
+brax = brax or {}
+brax.membersEvent = registerAnonymousEventHandler("gmcp.Party.Members","do_Party")
+brax.pvitalsEvent = registerAnonymousEventHandler("gmcp.Party.Vitals","do_Party_Vitals")
+brax.partyLocationEvent = registerAnonymousEventHandler("gmcp.Party.Location","partyLocation")
