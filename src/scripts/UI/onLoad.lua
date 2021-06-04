@@ -1,7 +1,7 @@
 eleMap = eleMap or {}
 EleUI = EleUI or {}
 function get_Ready()
-  print(":: Getting stuff ready....")
+  print(":: Getting stuff ready...")
   gmcp = gmcp or {}
   gmcp.Char = gmcp.Char or {}
   gmcp.Char.Vitals = gmcp.Char.Vitals or {}
