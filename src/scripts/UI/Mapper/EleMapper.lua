@@ -462,7 +462,7 @@ end
 brax.mapper = brax.mapper or {}
 setCustomEnvColor(273,40,40,40,255) -- Paths -Custom colour
 -- These colours below can be altered in Prefs > Mapper colours
-brax.mapper.terrain = {
+brax.mapper.terrain = brax.loadSettings.terrain or {
   forest = 258,
   plains = 259,
   hills = 263,
